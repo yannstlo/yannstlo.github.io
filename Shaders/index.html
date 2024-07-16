@@ -4,13 +4,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>WebGL Shader Example</title>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap">
         <style>
         body { margin: 0; }
         canvas { display: block; }
+        .centered-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 64px;
+            font-family: 'Quicksand', sans-serif;
+            color: white;
+        }
     </style>
     </head>
     <body>
         <canvas id="glCanvas"></canvas>
+        <div class="centered-text">yann.ca</div>
         <script src="shader.js"></script>
     </body>
 </html>
