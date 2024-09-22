@@ -1,0 +1,182 @@
+const phoneData = [
+    {
+        "model": "iPhone 14, 14 Plus, 14 Pro & 14 Pro Max",
+        "year": "2022",
+        "modelNumbers": "A2881, A2885, A2889, A2893",
+        "image": "https://cdn.alloallo.media/catalog/product/apple/iphone/iphone-14-pro/iphone-14-pro-deep-purple.jpg",
+        "prices": [
+            {
+                "part": "Front Screen Assembly",
+                "price": "Coming Soon"
+            },
+            {
+                "part": "Back Glass",
+                "price": "Coming Soon"
+            }
+        ],
+        "phone": "6048095169"
+    },
+    {
+        "model": "iPhone SE (3rd generation)",
+        "year": "2022",
+        "modelNumbers": "A2595",
+        "image": "your_image_url_here",
+        "prices": [
+            {
+                "part": "Front Screen Assembly",
+                "price": "Call or Text for Pricing"
+            }
+        ],
+        "phone": "6048095169"
+    },
+    {
+        "model": "iPhone 13 Mini, 13, 13 Pro & 13 Pro Max",
+        "year": "2021",
+        "modelNumbers": "A2626, A2631, A2636, A2641",
+        "image": "https://github.com/yannstlo/yannstlo.github.io/blob/master/images/iphone13pro.webp?raw=true",
+        "prices": [
+            {
+                "part": "Front Screen Assembly",
+                "price": "Coming Soon"
+            },
+            {
+                "part": "Back Glass",
+                "price": "Coming Soon"
+            }
+        ],
+        "phone": "6048095169"
+    },
+    {
+        "model": "iPhone 12 Mini, 12, 12 Pro & 12 Pro Max",
+        "year": "2020",
+        "modelNumbers": "A2398, A2402, A2406, A2410",
+        "image": "your_image_url_here",
+        "prices": [
+            {
+                "part": "iPhone 12 Front Screen Assembly",
+                "price": "$160"
+            },
+            {
+                "part": "iPhone 12 Pro Front Screen Assembly",
+                "price": "$160"
+            },
+            {
+                "part": "iPhone 12 Pro Max Front Screen Assembly",
+                "price": "N/A"
+            }
+        ],
+        "phone": "6048095169"
+    },
+    {
+        "model": "iPhone SE (2nd generation)",
+        "year": "2020",
+        "modelNumbers": "A2275",
+        "image": "https://i.ebayimg.com/images/g/GaoAAOSwcr5lla7J/s-l1200.jpg",
+        "prices": [
+            {
+                "part": "Phone SE 2nd Generation Front Screen Assembly",
+                "price": "$100"
+            }
+        ],
+        "phone": "6048095169"
+    },
+    {
+        "model": "iPhone 11, 11 Pro & 11 Pro Max",
+        "year": "2019",
+        "modelNumbers": "A2111, A2160, A2161",
+        "image": "your_image_url_here",
+        "prices": [
+            {
+                "part": "iPhone 11 Front Screen Assembly",
+                "price": "$150"
+            },
+            {
+                "part": "iPhone 11 Pro Front Screen Assembly",
+                "price": "$175"
+            },
+            {
+                "part": "iPhone 11 Pro Max Front Screen Assembly",
+                "price": "$200"
+            }
+        ],
+        "phone": "6048095169"
+    },
+    {
+        "model": "iPhone XS & XS Max",
+        "year": "2018",
+        "modelNumbers": "A1920, A2097, A1921, A2101",
+        "image": "your_image_url_here",
+        "prices": [
+            {
+                "part": "Screen Replacement",
+                "price": "Call or Text for Pricing"
+            }
+        ],
+        "phone": "6048095169"
+    },
+    {
+        "model": "iPhone XR",
+        "year": "2018",
+        "modelNumbers": "A1984, A2105",
+        "image": "your_image_url_here",
+        "prices": [
+            {
+                "part": "iPhone XR Front Screen Assembly",
+                "price": "$120"
+            }
+        ],
+        "phone": "6048095169"
+    },
+    {
+        "model": "iPhone X",
+        "year": "2017",
+        "modelNumbers": "A1865, A1901",
+        "image": "your_image_url_here",
+        "prices": [
+            {
+                "part": "iPhone X Front Screen Assembly",
+                "price": "$120"
+            }
+        ],
+        "phone": "6048095169"
+    },
+    {
+        "model": "iPhone 8 & 8 Plus",
+        "year": "2017",
+        "modelNumbers": "A1863, A1905",
+        "image": "your_image_url_here",
+        "prices": [
+            {
+                "part": "iPhone 8 Repair",
+                "price": "Call or Text for Pricing"
+            }
+        ],
+        "phone": "6048095169"
+    },
+    {
+        "model": "iPhone 7 & 7 Plus",
+        "year": "2016",
+        "modelNumbers": "A1660, A1778",
+        "image": "your_image_url_here",
+        "prices": [
+            {
+                "part": "iPhone 7 Repair",
+                "price": "Call or Text for Pricing"
+            }
+        ],
+        "phone": "6048095169"
+    },
+    {
+        "model": "Older Models",
+        "year": "",
+        "modelNumbers": "",
+        "image": "your_image_url_here",
+        "prices": [
+            {
+                "part": "Please Call for Details",
+                "price": ""
+            }
+        ],
+        "phone": "6048095169"
+    }
+];
