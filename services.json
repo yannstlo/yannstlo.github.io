@@ -1,4 +1,4 @@
-const phoneData = [
+[
     {
         "model": "iPhone 14, 14 Plus, 14 Pro & 14 Pro Max",
         "year": "2022",
@@ -179,4 +179,4 @@ const phoneData = [
         ],
         "phone": "6048095169"
     }
-];
+]
