@@ -9,32 +9,92 @@
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
         <style>
-        body { margin: 0; }
-        canvas { display: block; }
-        .centered-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 64px;
+        body {
+            margin: 0;
             font-family: 'Quicksand', sans-serif;
-            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #32CD32, #00FF00);
         }
-        img.profile-circle {
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Ensure the canvas is behind other content */
+        }
+
+        .profile-circle {
             width: 200px;
             height: 200px;
             border-radius: 50%;
             border: 5px solid white;
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
+            margin-top: 20px;
+            z-index: 1; /* Ensure it stays above the canvas */
         }
+
+        .centered-text {
+            font-size: 48px;
+            color: white;
+            margin-top: 20px;
+            z-index: 1; /* Ensure it stays above the canvas */
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            z-index: 1; /* Ensure it stays above the canvas */
+        }
+
         .social-links a {
-        margin: 0 10px;
-        color: white;
-        text-decoration: none; /* Prevents the underlines */
-        display: inline-block; /* Ensures proper spacing */
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .social-links i {
+            font-size: 32px;
+        }
+
+        @media (max-width: 768px) {
+            .centered-text {
+                font-size: 36px;
+                margin-top: 10px;
+            }
+
+            .profile-circle {
+                width: 150px;
+                height: 150px;
+                margin-top: 10px;
+            }
+
+            .social-links i {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .centered-text {
+                font-size: 28px;
+            }
+
+            .profile-circle {
+                width: 120px;
+                height: 120px;
+                margin-top: 5px;
+            }
+
+            .social-links i {
+                font-size: 20px;
+            }
         }
         </style>
     </head>
@@ -42,27 +102,21 @@
         <canvas id="glCanvas"></canvas>
         <img src="images/image.png" alt="Profile" class="profile-circle">
         <div class="centered-text">yann.ca</div>
-        <div class="social-links"
-            style="position: absolute; bottom: 10%; left: 50%; transform: translateX(-50%);">
-            <a href="https://www.youtube.com/@YannSaintLaurent" target="_blank"
-                style="margin: 0 10px; color: white;">
-                <i class="fab fa-youtube fa-2x"></i>
+        <div class="social-links">
+            <a href="https://www.youtube.com/@YannSaintLaurent" target="_blank">
+                <i class="fab fa-youtube"></i>
             </a>
-            <a href="https://x.com/yannstlo" target="_blank"
-                style="margin: 0 10px; color: white;">
-                <i class="fa-brands fa-x-twitter fa-2x"></i>
+            <a href="https://x.com/yannstlo" target="_blank">
+                <i class="fa-brands fa-x-twitter"></i>
             </a>
-            <a href="https://www.facebook.com/yannstlo" target="_blank"
-                style="margin: 0 10px; color: white;">
-                <i class="fab fa-facebook fa-2x"></i>
+            <a href="https://www.facebook.com/yannstlo" target="_blank">
+                <i class="fab fa-facebook"></i>
             </a>
-            <a href="https://www.linkedin.com/in/ystl/" target="_blank"
-                style="margin: 0 10px; color: white;">
-                <i class="fab fa-linkedin fa-2x"></i>
+            <a href="https://www.linkedin.com/in/ystl/" target="_blank">
+                <i class="fab fa-linkedin"></i>
             </a>
-            <a href="https://www.github.com/yannstlo" target="_blank"
-                style="margin: 0 10px; color: white;">
-                <i class="fab fa-github fa-2x"></i>
+            <a href="https://www.github.com/yannstlo" target="_blank">
+                <i class="fab fa-github"></i>
             </a>
         </div>
         <script src="shader.js"></script>
