@@ -1,0 +1,4766 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_3e6fb2bbdbb294faea1d9a565cf7c8ed {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_3e6fb2bbdbb294faea1d9a565cf7c8ed" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_3e6fb2bbdbb294faea1d9a565cf7c8ed = L.map(
+                "map_3e6fb2bbdbb294faea1d9a565cf7c8ed",
+                {
+                    center: [0.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 2,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_0d0b2ee888564a8f30a612584d00b352 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_0d0b2ee888564a8f30a612584d00b352.addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var marker_ec915d909e27721603073c378d2ee621 = L.marker(
+                [21.663, -158.051],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_e63272519669708740fc941a9d5411f2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_ec915d909e27721603073c378d2ee621.setIcon(icon_e63272519669708740fc941a9d5411f2);
+        
+    
+        var popup_025222a869708a9a31c048a95bf99baa = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d9fef1043b3a454f363b8551732b97ca = $(`<div id="html_d9fef1043b3a454f363b8551732b97ca" style="width: 100.0%; height: 100.0%;">     <b>Pipeline</b><br>     Famous spot on the North Shore of Oahu, Hawaii.     </div>`)[0];
+                popup_025222a869708a9a31c048a95bf99baa.setContent(html_d9fef1043b3a454f363b8551732b97ca);
+            
+        
+
+        marker_ec915d909e27721603073c378d2ee621.bindPopup(popup_025222a869708a9a31c048a95bf99baa)
+        ;
+
+        
+    
+    
+            var marker_e3cc87759f62aa64c69f9d235da328b5 = L.marker(
+                [-17.8483, -149.2335],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_6a2aa0aa4c634d535ebc2958de58082d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_e3cc87759f62aa64c69f9d235da328b5.setIcon(icon_6a2aa0aa4c634d535ebc2958de58082d);
+        
+    
+        var popup_6bc66401fa2a08cd45cd51a2c562eac3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_aedbb8de5ae2b31f0b6903a74ec1ca62 = $(`<div id="html_aedbb8de5ae2b31f0b6903a74ec1ca62" style="width: 100.0%; height: 100.0%;">     <b>Teahupoo</b><br>     Renowned for its heavy, glassy waves off the coast of Tahiti.     </div>`)[0];
+                popup_6bc66401fa2a08cd45cd51a2c562eac3.setContent(html_aedbb8de5ae2b31f0b6903a74ec1ca62);
+            
+        
+
+        marker_e3cc87759f62aa64c69f9d235da328b5.bindPopup(popup_6bc66401fa2a08cd45cd51a2c562eac3)
+        ;
+
+        
+    
+    
+            var marker_b55fcbceb9c6cf2c5080ea3062394636 = L.marker(
+                [37.4947, -122.4963],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_ee683110cc9c87aa8ba6e9a890e68d75 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_b55fcbceb9c6cf2c5080ea3062394636.setIcon(icon_ee683110cc9c87aa8ba6e9a890e68d75);
+        
+    
+        var popup_38596a57bc2e6d6e6d17cdff757b2ac5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0f16010b6d63190319a20c05abbb4fa2 = $(`<div id="html_0f16010b6d63190319a20c05abbb4fa2" style="width: 100.0%; height: 100.0%;">     <b>Mavericks</b><br>     Big-wave hotspot off Pillar Point Harbor, CA, USA.     </div>`)[0];
+                popup_38596a57bc2e6d6e6d17cdff757b2ac5.setContent(html_0f16010b6d63190319a20c05abbb4fa2);
+            
+        
+
+        marker_b55fcbceb9c6cf2c5080ea3062394636.bindPopup(popup_38596a57bc2e6d6e6d17cdff757b2ac5)
+        ;
+
+        
+    
+    
+            var marker_98c90c16dab790ea4787e6a176c330ed = L.marker(
+                [-17.8766, 177.1803],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_1f299992e7f35a6deea13c97bf7f9922 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_98c90c16dab790ea4787e6a176c330ed.setIcon(icon_1f299992e7f35a6deea13c97bf7f9922);
+        
+    
+        var popup_a4f9f165b95ba3b6af9cd3f77ca8a3f0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e4b7c7a0a2e8fb23036d15a244158bdc = $(`<div id="html_e4b7c7a0a2e8fb23036d15a244158bdc" style="width: 100.0%; height: 100.0%;">     <b>Cloudbreak</b><br>     A world-class left reef pass near Tavarua Island, Fiji.     </div>`)[0];
+                popup_a4f9f165b95ba3b6af9cd3f77ca8a3f0.setContent(html_e4b7c7a0a2e8fb23036d15a244158bdc);
+            
+        
+
+        marker_98c90c16dab790ea4787e6a176c330ed.bindPopup(popup_a4f9f165b95ba3b6af9cd3f77ca8a3f0)
+        ;
+
+        
+    
+    
+            var marker_1f3480b556334fe5d5f2b7faf27c2380 = L.marker(
+                [-8.8296, 115.0876],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_ed7a17df5a753757268031391743e148 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_1f3480b556334fe5d5f2b7faf27c2380.setIcon(icon_ed7a17df5a753757268031391743e148);
+        
+    
+        var popup_b16af5fdba72ef5d9ffb097998ff5218 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_85ff7f14fbc1524a7effcdbc3899a74e = $(`<div id="html_85ff7f14fbc1524a7effcdbc3899a74e" style="width: 100.0%; height: 100.0%;">     <b>Uluwatu</b><br>     Popular, consistent surf break on Bali’s Bukit Peninsula.     </div>`)[0];
+                popup_b16af5fdba72ef5d9ffb097998ff5218.setContent(html_85ff7f14fbc1524a7effcdbc3899a74e);
+            
+        
+
+        marker_1f3480b556334fe5d5f2b7faf27c2380.bindPopup(popup_b16af5fdba72ef5d9ffb097998ff5218)
+        ;
+
+        
+    
+    
+            var marker_4f64b740eb0d208f2d750c34cb88bbc2 = L.marker(
+                [-34.0507, 24.9338],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_1c23d0e8b9d55324722d62bd8de1670e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_4f64b740eb0d208f2d750c34cb88bbc2.setIcon(icon_1c23d0e8b9d55324722d62bd8de1670e);
+        
+    
+        var popup_5794bfa11c8d077fa672ce31b2c58e4a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7d9c521b3415f9d12ce9b83269393ba3 = $(`<div id="html_7d9c521b3415f9d12ce9b83269393ba3" style="width: 100.0%; height: 100.0%;">     <b>Supertubes</b><br>     Part of Jeffreys Bay, South Africa, known for its long walls.     </div>`)[0];
+                popup_5794bfa11c8d077fa672ce31b2c58e4a.setContent(html_7d9c521b3415f9d12ce9b83269393ba3);
+            
+        
+
+        marker_4f64b740eb0d208f2d750c34cb88bbc2.bindPopup(popup_5794bfa11c8d077fa672ce31b2c58e4a)
+        ;
+
+        
+    
+    
+            var marker_aac09edca7b72509fef45a75c3378502 = L.marker(
+                [-28.1676, 153.552],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_b51781b5bb3972023f1a254a52705643 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_aac09edca7b72509fef45a75c3378502.setIcon(icon_b51781b5bb3972023f1a254a52705643);
+        
+    
+        var popup_eb54dc5dff261f3fdb320a5c68815056 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c76660e48f1039331149a9621680153c = $(`<div id="html_c76660e48f1039331149a9621680153c" style="width: 100.0%; height: 100.0%;">     <b>Snapper Rocks</b><br>     Home of the Superbank on the Gold Coast, Australia.     </div>`)[0];
+                popup_eb54dc5dff261f3fdb320a5c68815056.setContent(html_c76660e48f1039331149a9621680153c);
+            
+        
+
+        marker_aac09edca7b72509fef45a75c3378502.bindPopup(popup_eb54dc5dff261f3fdb320a5c68815056)
+        ;
+
+        
+    
+    
+            var marker_383760c8f1b408678001d4d0228d9ab4 = L.marker(
+                [43.6637, -1.4424],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_f7267dee0d404f0a0f8b80ed6cf238c7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_383760c8f1b408678001d4d0228d9ab4.setIcon(icon_f7267dee0d404f0a0f8b80ed6cf238c7);
+        
+    
+        var popup_d02bc9bac7b10cc0934a2259fb4137ac = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1219435e8b1f5c010ab095ae23e0f3cf = $(`<div id="html_1219435e8b1f5c010ab095ae23e0f3cf" style="width: 100.0%; height: 100.0%;">     <b>Hossegor</b><br>     French Atlantic coast beach break with hollow, barreling waves.     </div>`)[0];
+                popup_d02bc9bac7b10cc0934a2259fb4137ac.setContent(html_1219435e8b1f5c010ab095ae23e0f3cf);
+            
+        
+
+        marker_383760c8f1b408678001d4d0228d9ab4.bindPopup(popup_d02bc9bac7b10cc0934a2259fb4137ac)
+        ;
+
+        
+    
+    
+            var marker_55b657ee30282ebd410c566911be20f4 = L.marker(
+                [15.8558, -97.0613],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_77e48714861e722b57a46564a43aa8cc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_55b657ee30282ebd410c566911be20f4.setIcon(icon_77e48714861e722b57a46564a43aa8cc);
+        
+    
+        var popup_52fdec8bb054ccaa9f24c2dd5d0acc06 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_375a0a0854902e0d9bb8bac8edbaa8f3 = $(`<div id="html_375a0a0854902e0d9bb8bac8edbaa8f3" style="width: 100.0%; height: 100.0%;">     <b>Puerto Escondido</b><br>     Mexican Pipeline, famous beach break in Oaxaca, Mexico.     </div>`)[0];
+                popup_52fdec8bb054ccaa9f24c2dd5d0acc06.setContent(html_375a0a0854902e0d9bb8bac8edbaa8f3);
+            
+        
+
+        marker_55b657ee30282ebd410c566911be20f4.bindPopup(popup_52fdec8bb054ccaa9f24c2dd5d0acc06)
+        ;
+
+        
+    
+    
+            var marker_6ba93017599a9a7966ebf4072a4913e7 = L.marker(
+                [34.4073, -119.5516],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_31941fb404842187674ac977bc610173 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_6ba93017599a9a7966ebf4072a4913e7.setIcon(icon_31941fb404842187674ac977bc610173);
+        
+    
+        var popup_965cd9474a2aa74820add6b7e7be02f7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_966d4df2a2b58de76532f1dd5472f659 = $(`<div id="html_966d4df2a2b58de76532f1dd5472f659" style="width: 100.0%; height: 100.0%;">     <b>Rincon</b><br>     Classic right-hand point break in California, USA.     </div>`)[0];
+                popup_965cd9474a2aa74820add6b7e7be02f7.setContent(html_966d4df2a2b58de76532f1dd5472f659);
+            
+        
+
+        marker_6ba93017599a9a7966ebf4072a4913e7.bindPopup(popup_965cd9474a2aa74820add6b7e7be02f7)
+        ;
+
+        
+    
+    
+            var marker_072e3818e6234714d578fc356f9ebf0c = L.marker(
+                [6.8433, 81.8268],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_a571328da01c948fefcd76501898955e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_072e3818e6234714d578fc356f9ebf0c.setIcon(icon_a571328da01c948fefcd76501898955e);
+        
+    
+        var popup_8fa49caffc07fa2ed11b8b99ef12411e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e0f1aaf8e138f31bab3d0013cc6dd9f3 = $(`<div id="html_e0f1aaf8e138f31bab3d0013cc6dd9f3" style="width: 100.0%; height: 100.0%;">     <b>Arugam Bay</b><br>     Sri Lanka’s most famous break, offering mellow right-hand waves.     </div>`)[0];
+                popup_8fa49caffc07fa2ed11b8b99ef12411e.setContent(html_e0f1aaf8e138f31bab3d0013cc6dd9f3);
+            
+        
+
+        marker_072e3818e6234714d578fc356f9ebf0c.bindPopup(popup_8fa49caffc07fa2ed11b8b99ef12411e)
+        ;
+
+        
+    
+    
+            var marker_e03307e5c4bacbb2041073d60c047f41 = L.marker(
+                [-7.6996, -79.4481],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_d4260a122b1239e2f67744045a0f1438 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_e03307e5c4bacbb2041073d60c047f41.setIcon(icon_d4260a122b1239e2f67744045a0f1438);
+        
+    
+        var popup_d4a72d0ff0e4bb1cb5a1d76d6dcb0068 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e5613370d0e3034c3c829df673bb36e9 = $(`<div id="html_e5613370d0e3034c3c829df673bb36e9" style="width: 100.0%; height: 100.0%;">     <b>Chicama</b><br>     Longest left in the world, located in Northern Peru.     </div>`)[0];
+                popup_d4a72d0ff0e4bb1cb5a1d76d6dcb0068.setContent(html_e5613370d0e3034c3c829df673bb36e9);
+            
+        
+
+        marker_e03307e5c4bacbb2041073d60c047f41.bindPopup(popup_d4a72d0ff0e4bb1cb5a1d76d6dcb0068)
+        ;
+
+        
+    
+    
+            var marker_e39ece761809ce739bd85cef0c8186e0 = L.marker(
+                [13.4901, -89.3333],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_1a6ef7284a74904172973102124bb14f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_e39ece761809ce739bd85cef0c8186e0.setIcon(icon_1a6ef7284a74904172973102124bb14f);
+        
+    
+        var popup_3dcf43d359ee3673e6a333b84f73ab57 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ccec24c8e2d6aea4f0947a26a890d575 = $(`<div id="html_ccec24c8e2d6aea4f0947a26a890d575" style="width: 100.0%; height: 100.0%;">     <b>El Salvador (Punta Roca)</b><br>     World-class right-hand point break.     </div>`)[0];
+                popup_3dcf43d359ee3673e6a333b84f73ab57.setContent(html_ccec24c8e2d6aea4f0947a26a890d575);
+            
+        
+
+        marker_e39ece761809ce739bd85cef0c8186e0.bindPopup(popup_3dcf43d359ee3673e6a333b84f73ab57)
+        ;
+
+        
+    
+    
+            var marker_9abdbeec0321c6c8ba8b1f439b9ed663 = L.marker(
+                [49.1238, -125.8858],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_0f1c695d5fc561f24337e7e05340e744 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_9abdbeec0321c6c8ba8b1f439b9ed663.setIcon(icon_0f1c695d5fc561f24337e7e05340e744);
+        
+    
+        var popup_635f5a415240596a87ca23fca5279bdc = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e4cadb3aed0c65b17c3eb5523b91340a = $(`<div id="html_e4cadb3aed0c65b17c3eb5523b91340a" style="width: 100.0%; height: 100.0%;">     <b>Waves in Tofino</b><br>     Popular cold-water surf in British Columbia, Canada.     </div>`)[0];
+                popup_635f5a415240596a87ca23fca5279bdc.setContent(html_e4cadb3aed0c65b17c3eb5523b91340a);
+            
+        
+
+        marker_9abdbeec0321c6c8ba8b1f439b9ed663.bindPopup(popup_635f5a415240596a87ca23fca5279bdc)
+        ;
+
+        
+    
+    
+            var marker_14661e4be36b4cda5f57241b833ca9c5 = L.marker(
+                [33.3882, -117.5937],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_d812e2bb98b5f56b2e3b631b913d017f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_14661e4be36b4cda5f57241b833ca9c5.setIcon(icon_d812e2bb98b5f56b2e3b631b913d017f);
+        
+    
+        var popup_61cd1c8144c440b700c061e34af40a40 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_07f889166f8d175065f271c55f1ec282 = $(`<div id="html_07f889166f8d175065f271c55f1ec282" style="width: 100.0%; height: 100.0%;">     <b>Trestles</b><br>     Collection of breaks in San Clemente, CA, including Lowers.     </div>`)[0];
+                popup_61cd1c8144c440b700c061e34af40a40.setContent(html_07f889166f8d175065f271c55f1ec282);
+            
+        
+
+        marker_14661e4be36b4cda5f57241b833ca9c5.bindPopup(popup_61cd1c8144c440b700c061e34af40a40)
+        ;
+
+        
+    
+    
+            var marker_a8eade0afc89ea7a5d2660b5190ec884 = L.marker(
+                [50.4142, -5.099],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_7de541778e9077fa185d9b633cfc3ffe = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_a8eade0afc89ea7a5d2660b5190ec884.setIcon(icon_7de541778e9077fa185d9b633cfc3ffe);
+        
+    
+        var popup_a4a1b8e035e48775ac94c0e72c0dab58 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7915a25c3f6ee64ba14a5c34002c0c2f = $(`<div id="html_7915a25c3f6ee64ba14a5c34002c0c2f" style="width: 100.0%; height: 100.0%;">     <b>Fistral Beach</b><br>     Famous for consistent swells in Cornwall, UK.     </div>`)[0];
+                popup_a4a1b8e035e48775ac94c0e72c0dab58.setContent(html_7915a25c3f6ee64ba14a5c34002c0c2f);
+            
+        
+
+        marker_a8eade0afc89ea7a5d2660b5190ec884.bindPopup(popup_a4a1b8e035e48775ac94c0e72c0dab58)
+        ;
+
+        
+    
+    
+            var marker_7f14150b28dcab1bc78cea77b2d80c29 = L.marker(
+                [43.4641, -3.7335],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_21c618582c543af7bfd13b5b86784008 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_7f14150b28dcab1bc78cea77b2d80c29.setIcon(icon_21c618582c543af7bfd13b5b86784008);
+        
+    
+        var popup_502b0278295e489ff04742724fe5679e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_613ef72cd21b10c331b24f8440bf59fa = $(`<div id="html_613ef72cd21b10c331b24f8440bf59fa" style="width: 100.0%; height: 100.0%;">     <b>Somo</b><br>     A classic beach break in Cantabria, Spain.     </div>`)[0];
+                popup_502b0278295e489ff04742724fe5679e.setContent(html_613ef72cd21b10c331b24f8440bf59fa);
+            
+        
+
+        marker_7f14150b28dcab1bc78cea77b2d80c29.bindPopup(popup_502b0278295e489ff04742724fe5679e)
+        ;
+
+        
+    
+    
+            var marker_055c08a22402f0097dbfd474a50c6efe = L.marker(
+                [35.3, 139.4833],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_d1ffa3172018bdb3044233483465cf64 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_055c08a22402f0097dbfd474a50c6efe.setIcon(icon_d1ffa3172018bdb3044233483465cf64);
+        
+    
+        var popup_8997889740546dc2a55a3034f0df5b6f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_444652404b5c6c39c58a19c90cf5030f = $(`<div id="html_444652404b5c6c39c58a19c90cf5030f" style="width: 100.0%; height: 100.0%;">     <b>Shonan</b><br>     Popular surf area near Kamakura, Japan.     </div>`)[0];
+                popup_8997889740546dc2a55a3034f0df5b6f.setContent(html_444652404b5c6c39c58a19c90cf5030f);
+            
+        
+
+        marker_055c08a22402f0097dbfd474a50c6efe.bindPopup(popup_8997889740546dc2a55a3034f0df5b6f)
+        ;
+
+        
+    
+    
+            var marker_a20bf8432729e812101c44dc47b4139c = L.marker(
+                [43.6758, -1.4383],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_5d8ccd27b4ed290b00ded039a0d1509b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_a20bf8432729e812101c44dc47b4139c.setIcon(icon_5d8ccd27b4ed290b00ded039a0d1509b);
+        
+    
+        var popup_33e5e4891fcdea91da8bf8091a36a84e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5a3f0442afc41c8e082d3b6fc91f51a3 = $(`<div id="html_5a3f0442afc41c8e082d3b6fc91f51a3" style="width: 100.0%; height: 100.0%;">     <b>La Graviere</b><br>     Heavy shorebreak in Hossegor, France.     </div>`)[0];
+                popup_33e5e4891fcdea91da8bf8091a36a84e.setContent(html_5a3f0442afc41c8e082d3b6fc91f51a3);
+            
+        
+
+        marker_a20bf8432729e812101c44dc47b4139c.bindPopup(popup_33e5e4891fcdea91da8bf8091a36a84e)
+        ;
+
+        
+    
+    
+            var marker_e92ab09c9e210be64cd1d8de1fd0adf4 = L.marker(
+                [-34.1053, 18.4698],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_e559623026af89f1e20b067f2ec32cfc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_e92ab09c9e210be64cd1d8de1fd0adf4.setIcon(icon_e559623026af89f1e20b067f2ec32cfc);
+        
+    
+        var popup_203ede286389afa52871986195f3f492 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_23a8ba0779b1b2c020f9d2cb9fb8cee4 = $(`<div id="html_23a8ba0779b1b2c020f9d2cb9fb8cee4" style="width: 100.0%; height: 100.0%;">     <b>Muizenberg</b><br>     Beginner-friendly break near Cape Town, South Africa.     </div>`)[0];
+                popup_203ede286389afa52871986195f3f492.setContent(html_23a8ba0779b1b2c020f9d2cb9fb8cee4);
+            
+        
+
+        marker_e92ab09c9e210be64cd1d8de1fd0adf4.bindPopup(popup_203ede286389afa52871986195f3f492)
+        ;
+
+        
+    
+    
+            var marker_48ac47531daf7b94e6d4c8c9c986e5c1 = L.marker(
+                [21.4272, 91.9876],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_c42dfe0b531ea108046599ad107faabf = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_48ac47531daf7b94e6d4c8c9c986e5c1.setIcon(icon_c42dfe0b531ea108046599ad107faabf);
+        
+    
+        var popup_0a9d3531f76cce3f45a4eea601a062db = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5aaf1f74349598a7f67d39d27c4cfc7a = $(`<div id="html_5aaf1f74349598a7f67d39d27c4cfc7a" style="width: 100.0%; height: 100.0%;">     <b>Cox’s Bazar</b><br>     Long sandy beach in Bangladesh with growing surf scene.     </div>`)[0];
+                popup_0a9d3531f76cce3f45a4eea601a062db.setContent(html_5aaf1f74349598a7f67d39d27c4cfc7a);
+            
+        
+
+        marker_48ac47531daf7b94e6d4c8c9c986e5c1.bindPopup(popup_0a9d3531f76cce3f45a4eea601a062db)
+        ;
+
+        
+    
+    
+            var marker_1b56d5db0a4783ee2f2d609ea48542f2 = L.marker(
+                [8.3999, 76.9778],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_6e376a34684cc9bbf94292d426b341c8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_1b56d5db0a4783ee2f2d609ea48542f2.setIcon(icon_6e376a34684cc9bbf94292d426b341c8);
+        
+    
+        var popup_556f7fc8310c3e2c2b4b274622632bd5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7373f346da617421a19383abcebd7ecb = $(`<div id="html_7373f346da617421a19383abcebd7ecb" style="width: 100.0%; height: 100.0%;">     <b>Kovalam Beach</b><br>     A popular surf spot in Kerala, India.     </div>`)[0];
+                popup_556f7fc8310c3e2c2b4b274622632bd5.setContent(html_7373f346da617421a19383abcebd7ecb);
+            
+        
+
+        marker_1b56d5db0a4783ee2f2d609ea48542f2.bindPopup(popup_556f7fc8310c3e2c2b4b274622632bd5)
+        ;
+
+        
+    
+    
+            var marker_9b0e902ee0c775e0db027b03fa324c5f = L.marker(
+                [-28.6448, 153.602],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_818003723fee575e9cf86726812b6a4d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_9b0e902ee0c775e0db027b03fa324c5f.setIcon(icon_818003723fee575e9cf86726812b6a4d);
+        
+    
+        var popup_4e2341638fef2eb90506f355dd1277d6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c2f3d74494e05749a1a0a50d5b43f0a1 = $(`<div id="html_c2f3d74494e05749a1a0a50d5b43f0a1" style="width: 100.0%; height: 100.0%;">     <b>Byron Bay (The Pass)</b><br>     Well-known right-hand point in New South Wales, Australia.     </div>`)[0];
+                popup_4e2341638fef2eb90506f355dd1277d6.setContent(html_c2f3d74494e05749a1a0a50d5b43f0a1);
+            
+        
+
+        marker_9b0e902ee0c775e0db027b03fa324c5f.bindPopup(popup_4e2341638fef2eb90506f355dd1277d6)
+        ;
+
+        
+    
+    
+            var marker_417b08eda83b20d5ade651c449b54287 = L.marker(
+                [43.4087, -2.693],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_0e693d493b3bce928be5bab8b1f63a6a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_417b08eda83b20d5ade651c449b54287.setIcon(icon_0e693d493b3bce928be5bab8b1f63a6a);
+        
+    
+        var popup_da77f0664f419184b7bf7576b393a3f4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_892f8ce5a1741bc4dfe28da0a207141e = $(`<div id="html_892f8ce5a1741bc4dfe28da0a207141e" style="width: 100.0%; height: 100.0%;">     <b>Mundaka</b><br>     Legendary left-hand river mouth in the Basque Country, Spain.     </div>`)[0];
+                popup_da77f0664f419184b7bf7576b393a3f4.setContent(html_892f8ce5a1741bc4dfe28da0a207141e);
+            
+        
+
+        marker_417b08eda83b20d5ade651c449b54287.bindPopup(popup_da77f0664f419184b7bf7576b393a3f4)
+        ;
+
+        
+    
+    
+            var marker_7870045223dac3f5226fbca13306bc2f = L.marker(
+                [8.3897, -83.135],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_b1359468cd47faecd65bc36f94aca66e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_7870045223dac3f5226fbca13306bc2f.setIcon(icon_b1359468cd47faecd65bc36f94aca66e);
+        
+    
+        var popup_866dbb696c6d30e7b226623fec1fcbef = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_054940a9bcf11f6f8536f3aebd560036 = $(`<div id="html_054940a9bcf11f6f8536f3aebd560036" style="width: 100.0%; height: 100.0%;">     <b>Pavones</b><br>     One of the longest lefts in Costa Rica.     </div>`)[0];
+                popup_866dbb696c6d30e7b226623fec1fcbef.setContent(html_054940a9bcf11f6f8536f3aebd560036);
+            
+        
+
+        marker_7870045223dac3f5226fbca13306bc2f.bindPopup(popup_866dbb696c6d30e7b226623fec1fcbef)
+        ;
+
+        
+    
+    
+            var marker_bdef1ea9e793de3d8d94550258e85e1d = L.marker(
+                [9.6401, -85.1622],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_bd7da8196f6b79dfbd2b0532d833b108 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_bdef1ea9e793de3d8d94550258e85e1d.setIcon(icon_bd7da8196f6b79dfbd2b0532d833b108);
+        
+    
+        var popup_92099d67f2aac347e85d62e19c44da51 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3a13568cbe3ebe2c36f01143027ec675 = $(`<div id="html_3a13568cbe3ebe2c36f01143027ec675" style="width: 100.0%; height: 100.0%;">     <b>Santa Teresa</b><br>     Fast and hollow beach break in Costa Rica.     </div>`)[0];
+                popup_92099d67f2aac347e85d62e19c44da51.setContent(html_3a13568cbe3ebe2c36f01143027ec675);
+            
+        
+
+        marker_bdef1ea9e793de3d8d94550258e85e1d.bindPopup(popup_92099d67f2aac347e85d62e19c44da51)
+        ;
+
+        
+    
+    
+            var marker_a11b4c667e065fce0ec42c22f371aa18 = L.marker(
+                [11.2833, -85.9],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_64626785dcbe84720c75d839bdd1815d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_a11b4c667e065fce0ec42c22f371aa18.setIcon(icon_64626785dcbe84720c75d839bdd1815d);
+        
+    
+        var popup_a6924dca4f2ab46357aeabc205309029 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1013de1b50b19521961c0833e059956e = $(`<div id="html_1013de1b50b19521961c0833e059956e" style="width: 100.0%; height: 100.0%;">     <b>Playa Maderas</b><br>     Consistent beach break near San Juan del Sur, Nicaragua.     </div>`)[0];
+                popup_a6924dca4f2ab46357aeabc205309029.setContent(html_1013de1b50b19521961c0833e059956e);
+            
+        
+
+        marker_a11b4c667e065fce0ec42c22f371aa18.bindPopup(popup_a6924dca4f2ab46357aeabc205309029)
+        ;
+
+        
+    
+    
+            var marker_0d842523e85cdc7c29e7ae64ded51ada = L.marker(
+                [5.9739, 80.4279],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_df16e7f7372df1764bf1d5a0bc14041a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_0d842523e85cdc7c29e7ae64ded51ada.setIcon(icon_df16e7f7372df1764bf1d5a0bc14041a);
+        
+    
+        var popup_bb82d11707c6bfa047276d33c15b4a71 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_392bb8be072912c970bff9ca7dfc8e27 = $(`<div id="html_392bb8be072912c970bff9ca7dfc8e27" style="width: 100.0%; height: 100.0%;">     <b>Weligama</b><br>     Beginner-friendly waves on Sri Lanka’s southern coast.     </div>`)[0];
+                popup_bb82d11707c6bfa047276d33c15b4a71.setContent(html_392bb8be072912c970bff9ca7dfc8e27);
+            
+        
+
+        marker_0d842523e85cdc7c29e7ae64ded51ada.bindPopup(popup_bb82d11707c6bfa047276d33c15b4a71)
+        ;
+
+        
+    
+    
+            var marker_f6c3fb53c07a22c148e0ed7b93813fed = L.marker(
+                [4.2966, 73.5501],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_3304a6818b5be8179906f1a0652d189e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_f6c3fb53c07a22c148e0ed7b93813fed.setIcon(icon_3304a6818b5be8179906f1a0652d189e);
+        
+    
+        var popup_3439f0d866c2d0339501f26adbde8b91 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_635f2b8f306175095e1cdfefa149e367 = $(`<div id="html_635f2b8f306175095e1cdfefa149e367" style="width: 100.0%; height: 100.0%;">     <b>Pasta Point</b><br>     Exclusive break in the Maldives with consistent, clean waves.     </div>`)[0];
+                popup_3439f0d866c2d0339501f26adbde8b91.setContent(html_635f2b8f306175095e1cdfefa149e367);
+            
+        
+
+        marker_f6c3fb53c07a22c148e0ed7b93813fed.bindPopup(popup_3439f0d866c2d0339501f26adbde8b91)
+        ;
+
+        
+    
+    
+            var marker_222adcb85e98ac9e993f8c363065e8a0 = L.marker(
+                [33.3812, -117.5683],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_e51cf3343bad33905021cc87f7b43120 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_222adcb85e98ac9e993f8c363065e8a0.setIcon(icon_e51cf3343bad33905021cc87f7b43120);
+        
+    
+        var popup_e45977479f2a08b9c2fa133c8477ed30 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_28dc0f7621337c719d89e9895d414c3d = $(`<div id="html_28dc0f7621337c719d89e9895d414c3d" style="width: 100.0%; height: 100.0%;">     <b>San Onofre</b><br>     Mellow, longboard-friendly break in Southern California.     </div>`)[0];
+                popup_e45977479f2a08b9c2fa133c8477ed30.setContent(html_28dc0f7621337c719d89e9895d414c3d);
+            
+        
+
+        marker_222adcb85e98ac9e993f8c363065e8a0.bindPopup(popup_e45977479f2a08b9c2fa133c8477ed30)
+        ;
+
+        
+    
+    
+            var marker_d2075a6397c6228488794aa96c295b20 = L.marker(
+                [21.2755, -157.8292],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_5e83073870447b740bd809462f9a5853 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_d2075a6397c6228488794aa96c295b20.setIcon(icon_5e83073870447b740bd809462f9a5853);
+        
+    
+        var popup_d23e86e55d8f6d35d5df20ea46735a30 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_52865f15011ef86d68533a746393f45b = $(`<div id="html_52865f15011ef86d68533a746393f45b" style="width: 100.0%; height: 100.0%;">     <b>Waikiki</b><br>     Historic surf beach in Honolulu, Hawaii, popular with beginners.     </div>`)[0];
+                popup_d23e86e55d8f6d35d5df20ea46735a30.setContent(html_52865f15011ef86d68533a746393f45b);
+            
+        
+
+        marker_d2075a6397c6228488794aa96c295b20.bindPopup(popup_d23e86e55d8f6d35d5df20ea46735a30)
+        ;
+
+        
+    
+    
+            var marker_e743313133619ba41736f57bcac334f8 = L.marker(
+                [4.332, 73.5967],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_76aa431823a12b48e1e8afafb154c2e4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_e743313133619ba41736f57bcac334f8.setIcon(icon_76aa431823a12b48e1e8afafb154c2e4);
+        
+    
+        var popup_091e792dc8ab68686f1a331d6e7718de = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_454c447f37f4fca0480d18982d1d64bb = $(`<div id="html_454c447f37f4fca0480d18982d1d64bb" style="width: 100.0%; height: 100.0%;">     <b>Sultans</b><br>     A hollow right-hander in the North Malé Atoll, Maldives.     </div>`)[0];
+                popup_091e792dc8ab68686f1a331d6e7718de.setContent(html_454c447f37f4fca0480d18982d1d64bb);
+            
+        
+
+        marker_e743313133619ba41736f57bcac334f8.bindPopup(popup_091e792dc8ab68686f1a331d6e7718de)
+        ;
+
+        
+    
+    
+            var marker_901bdc6a38419c53214b8ac3123b4089 = L.marker(
+                [4.3171, 73.5867],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_51ce8f8133ff2507314f827d7f379cfa = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_901bdc6a38419c53214b8ac3123b4089.setIcon(icon_51ce8f8133ff2507314f827d7f379cfa);
+        
+    
+        var popup_25a0f004bee24cdda131157ee8b949ba = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1ed427c0499b6005c7f168942bde0ab7 = $(`<div id="html_1ed427c0499b6005c7f168942bde0ab7" style="width: 100.0%; height: 100.0%;">     <b>Jailbreaks</b><br>     Fast, right-hand reef break also in the Maldives.     </div>`)[0];
+                popup_25a0f004bee24cdda131157ee8b949ba.setContent(html_1ed427c0499b6005c7f168942bde0ab7);
+            
+        
+
+        marker_901bdc6a38419c53214b8ac3123b4089.bindPopup(popup_25a0f004bee24cdda131157ee8b949ba)
+        ;
+
+        
+    
+    
+            var marker_6221c01d02f4f96a0fae753de9b5803c = L.marker(
+                [-3.0437, 100.354],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_dfe44aa1f7be2e7f1a5421e326449e42 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_6221c01d02f4f96a0fae753de9b5803c.setIcon(icon_dfe44aa1f7be2e7f1a5421e326449e42);
+        
+    
+        var popup_8c038afb191921464571101bdb409817 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_abcff4cc23931a162ef9a14a26aba68a = $(`<div id="html_abcff4cc23931a162ef9a14a26aba68a" style="width: 100.0%; height: 100.0%;">     <b>Thunders</b><br>     Consistent break in the Mentawai Islands, Indonesia.     </div>`)[0];
+                popup_8c038afb191921464571101bdb409817.setContent(html_abcff4cc23931a162ef9a14a26aba68a);
+            
+        
+
+        marker_6221c01d02f4f96a0fae753de9b5803c.bindPopup(popup_8c038afb191921464571101bdb409817)
+        ;
+
+        
+    
+    
+            var marker_7feb6e6aa7159834d4800b2611dd4a3d = L.marker(
+                [20.7736, -105.5313],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_b0f01da26cc999d09a3faab90c9512e3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_7feb6e6aa7159834d4800b2611dd4a3d.setIcon(icon_b0f01da26cc999d09a3faab90c9512e3);
+        
+    
+        var popup_85c5b87471242930597f47fc4409efb1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_279fdaa8676ea774486e8d7d7b89e697 = $(`<div id="html_279fdaa8676ea774486e8d7d7b89e697" style="width: 100.0%; height: 100.0%;">     <b>Punta Mita</b><br>     Multiple breaks in Nayarit, Mexico.     </div>`)[0];
+                popup_85c5b87471242930597f47fc4409efb1.setContent(html_279fdaa8676ea774486e8d7d7b89e697);
+            
+        
+
+        marker_7feb6e6aa7159834d4800b2611dd4a3d.bindPopup(popup_85c5b87471242930597f47fc4409efb1)
+        ;
+
+        
+    
+    
+            var marker_40a7cfdddc78defb9f93ad9d4bda8f87 = L.marker(
+                [-2.2146, -80.9527],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_5c59eba9f27c63a929ed1f287151a4a7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_40a7cfdddc78defb9f93ad9d4bda8f87.setIcon(icon_5c59eba9f27c63a929ed1f287151a4a7);
+        
+    
+        var popup_96cc33e00c06956627304c34caffa45c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8f63b9f37372f259758d04166815724b = $(`<div id="html_8f63b9f37372f259758d04166815724b" style="width: 100.0%; height: 100.0%;">     <b>Salinas</b><br>     Ecuador’s surf city known for consistent waves.     </div>`)[0];
+                popup_96cc33e00c06956627304c34caffa45c.setContent(html_8f63b9f37372f259758d04166815724b);
+            
+        
+
+        marker_40a7cfdddc78defb9f93ad9d4bda8f87.bindPopup(popup_96cc33e00c06956627304c34caffa45c)
+        ;
+
+        
+    
+    
+            var marker_412caaa7155a15b03af422c46dec5849 = L.marker(
+                [-1.8262, -80.7543],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_5f6dbeccc6e76def1523351ad99f0849 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_412caaa7155a15b03af422c46dec5849.setIcon(icon_5f6dbeccc6e76def1523351ad99f0849);
+        
+    
+        var popup_66665d5f5a237b8e72f95f297892eb5c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_97546021a93d7232af0bf405ba16848c = $(`<div id="html_97546021a93d7232af0bf405ba16848c" style="width: 100.0%; height: 100.0%;">     <b>Montañita</b><br>     Vibrant surf town on Ecuador’s Santa Elena coast.     </div>`)[0];
+                popup_66665d5f5a237b8e72f95f297892eb5c.setContent(html_97546021a93d7232af0bf405ba16848c);
+            
+        
+
+        marker_412caaa7155a15b03af422c46dec5849.bindPopup(popup_66665d5f5a237b8e72f95f297892eb5c)
+        ;
+
+        
+    
+    
+            var marker_43cdaf011d6df3b16a22277ca3a68666 = L.marker(
+                [10.1799, -85.7963],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_9598a8d874b43732179a53ede8d19352 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_43cdaf011d6df3b16a22277ca3a68666.setIcon(icon_9598a8d874b43732179a53ede8d19352);
+        
+    
+        var popup_34055a858eb0e63b5afbd4a3401db069 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5ab29f8c335b268fada6033cbe8ecebe = $(`<div id="html_5ab29f8c335b268fada6033cbe8ecebe" style="width: 100.0%; height: 100.0%;">     <b>Playa Negra</b><br>     Right reef break in Guanacaste, Costa Rica.     </div>`)[0];
+                popup_34055a858eb0e63b5afbd4a3401db069.setContent(html_5ab29f8c335b268fada6033cbe8ecebe);
+            
+        
+
+        marker_43cdaf011d6df3b16a22277ca3a68666.bindPopup(popup_34055a858eb0e63b5afbd4a3401db069)
+        ;
+
+        
+    
+    
+            var marker_7d3b65e1d68b356624d13cdc19eadf77 = L.marker(
+                [9.2525, -83.8594],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_76081ca7829bce53ec496487724fe85f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_7d3b65e1d68b356624d13cdc19eadf77.setIcon(icon_76081ca7829bce53ec496487724fe85f);
+        
+    
+        var popup_b817a1b06d9f1c8d6258469ca0d093b2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8cb01a52addfe51432027af24b6966fb = $(`<div id="html_8cb01a52addfe51432027af24b6966fb" style="width: 100.0%; height: 100.0%;">     <b>Dominical</b><br>     Consistent beach break on Costa Rica’s Pacific coast.     </div>`)[0];
+                popup_b817a1b06d9f1c8d6258469ca0d093b2.setContent(html_8cb01a52addfe51432027af24b6966fb);
+            
+        
+
+        marker_7d3b65e1d68b356624d13cdc19eadf77.bindPopup(popup_b817a1b06d9f1c8d6258469ca0d093b2)
+        ;
+
+        
+    
+    
+            var marker_7a95d351f1ada44765f0622a93c56775 = L.marker(
+                [9.578, -84.6234],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_990d002714ee17d87262e75638dccfd7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_7a95d351f1ada44765f0622a93c56775.setIcon(icon_990d002714ee17d87262e75638dccfd7);
+        
+    
+        var popup_300c8b8405bdd13fb8a534e91907566d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_536c35919ed33e7ec2e8882202c1b04d = $(`<div id="html_536c35919ed33e7ec2e8882202c1b04d" style="width: 100.0%; height: 100.0%;">     <b>Playa Hermosa</b><br>     Powerful, hollow waves near Jacó, Costa Rica.     </div>`)[0];
+                popup_300c8b8405bdd13fb8a534e91907566d.setContent(html_536c35919ed33e7ec2e8882202c1b04d);
+            
+        
+
+        marker_7a95d351f1ada44765f0622a93c56775.bindPopup(popup_300c8b8405bdd13fb8a534e91907566d)
+        ;
+
+        
+    
+    
+            var marker_d22f13eba3b65acac4dfc4f65a663b79 = L.marker(
+                [13.2042, -88.0969],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_aff70a85d9e95d2c7c4eb61f9ea1804f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_d22f13eba3b65acac4dfc4f65a663b79.setIcon(icon_aff70a85d9e95d2c7c4eb61f9ea1804f);
+        
+    
+        var popup_31191266432ed12d3b0facc26b85c533 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d96dd3798966a8407a8d5f8ee8dea421 = $(`<div id="html_d96dd3798966a8407a8d5f8ee8dea421" style="width: 100.0%; height: 100.0%;">     <b>Las Flores</b><br>     Right point break in eastern El Salvador.     </div>`)[0];
+                popup_31191266432ed12d3b0facc26b85c533.setContent(html_d96dd3798966a8407a8d5f8ee8dea421);
+            
+        
+
+        marker_d22f13eba3b65acac4dfc4f65a663b79.bindPopup(popup_31191266432ed12d3b0facc26b85c533)
+        ;
+
+        
+    
+    
+            var marker_7b41069f2de39919cb04762927a3c361 = L.marker(
+                [39.603, -9.0718],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_04897f4f100cbb1eedcedd2ebd656b49 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_7b41069f2de39919cb04762927a3c361.setIcon(icon_04897f4f100cbb1eedcedd2ebd656b49);
+        
+    
+        var popup_476367b07505bfe455461936a770d39b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_67cbcf5a6fa3d4f418275b621fba9f84 = $(`<div id="html_67cbcf5a6fa3d4f418275b621fba9f84" style="width: 100.0%; height: 100.0%;">     <b>Nazaré</b><br>     Home of gigantic waves in Portugal.     </div>`)[0];
+                popup_476367b07505bfe455461936a770d39b.setContent(html_67cbcf5a6fa3d4f418275b621fba9f84);
+            
+        
+
+        marker_7b41069f2de39919cb04762927a3c361.bindPopup(popup_476367b07505bfe455461936a770d39b)
+        ;
+
+        
+    
+    
+            var marker_60a0317cc021299476f2151bdca03b66 = L.marker(
+                [39.355, -9.3635],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_790d2c69a4b81427bf0e4781e3d701e6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_60a0317cc021299476f2151bdca03b66.setIcon(icon_790d2c69a4b81427bf0e4781e3d701e6);
+        
+    
+        var popup_d4ab0796f039e10d96b1d21d70d5701d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3bb47f976acff0f6ae5da0f1a28c764f = $(`<div id="html_3bb47f976acff0f6ae5da0f1a28c764f" style="width: 100.0%; height: 100.0%;">     <b>Peniche (Supertubos)</b><br>     World-class beach break producing powerful tubes in Portugal.     </div>`)[0];
+                popup_d4ab0796f039e10d96b1d21d70d5701d.setContent(html_3bb47f976acff0f6ae5da0f1a28c764f);
+            
+        
+
+        marker_60a0317cc021299476f2151bdca03b66.bindPopup(popup_d4ab0796f039e10d96b1d21d70d5701d)
+        ;
+
+        
+    
+    
+            var marker_442537b561c0400754b426a67cbd33cb = L.marker(
+                [38.9624, -9.4157],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_e93221e06e8e94e027332e95877090dc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_442537b561c0400754b426a67cbd33cb.setIcon(icon_e93221e06e8e94e027332e95877090dc);
+        
+    
+        var popup_92c7072a52b33d499a04a1d813aef382 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c6f58e5fcd662b8335321a339dfccbdc = $(`<div id="html_c6f58e5fcd662b8335321a339dfccbdc" style="width: 100.0%; height: 100.0%;">     <b>Ericeira</b><br>     Portugal’s surfing reserve with a variety of breaks.     </div>`)[0];
+                popup_92c7072a52b33d499a04a1d813aef382.setContent(html_c6f58e5fcd662b8335321a339dfccbdc);
+            
+        
+
+        marker_442537b561c0400754b426a67cbd33cb.bindPopup(popup_92c7072a52b33d499a04a1d813aef382)
+        ;
+
+        
+    
+    
+            var marker_7cf5de0cd869684e0808a467ad7fff0b = L.marker(
+                [30.5452, -9.7086],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_841ede42524f14799f670c74c01a42fd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_7cf5de0cd869684e0808a467ad7fff0b.setIcon(icon_841ede42524f14799f670c74c01a42fd);
+        
+    
+        var popup_69427df3f7366e5e4429465e945932f5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1720c79a05f9f5b326fb368fedcf066e = $(`<div id="html_1720c79a05f9f5b326fb368fedcf066e" style="width: 100.0%; height: 100.0%;">     <b>Taghazout (Anchor Point)</b><br>     Famous Moroccan right-hand point break.     </div>`)[0];
+                popup_69427df3f7366e5e4429465e945932f5.setContent(html_1720c79a05f9f5b326fb368fedcf066e);
+            
+        
+
+        marker_7cf5de0cd869684e0808a467ad7fff0b.bindPopup(popup_69427df3f7366e5e4429465e945932f5)
+        ;
+
+        
+    
+    
+            var marker_69eb1b2107c45b14ebb23f7f499c0fd8 = L.marker(
+                [30.8428, -9.8111],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_f838ac1a93eeb0721cdd97200c4fffca = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_69eb1b2107c45b14ebb23f7f499c0fd8.setIcon(icon_f838ac1a93eeb0721cdd97200c4fffca);
+        
+    
+        var popup_b75c0126f5a6f861021e9624b91cdd2c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6ded79547622614de9a16987fbc73445 = $(`<div id="html_6ded79547622614de9a16987fbc73445" style="width: 100.0%; height: 100.0%;">     <b>Imsouane</b><br>     Long, mellow right-hand wave in Morocco.     </div>`)[0];
+                popup_b75c0126f5a6f861021e9624b91cdd2c.setContent(html_6ded79547622614de9a16987fbc73445);
+            
+        
+
+        marker_69eb1b2107c45b14ebb23f7f499c0fd8.bindPopup(popup_b75c0126f5a6f861021e9624b91cdd2c)
+        ;
+
+        
+    
+    
+            var marker_b2074166b739f8adff944378281a5a71 = L.marker(
+                [29.1296, -13.5741],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_3f06c42c1e6fac67411c270792c1f5ed = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_b2074166b739f8adff944378281a5a71.setIcon(icon_3f06c42c1e6fac67411c270792c1f5ed);
+        
+    
+        var popup_7acff2d85008ed486c2b217686ecaa4e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f03e688645baa3824dada8922703053d = $(`<div id="html_f03e688645baa3824dada8922703053d" style="width: 100.0%; height: 100.0%;">     <b>La Santa</b><br>     Powerful reef break in Lanzarote, Canary Islands.     </div>`)[0];
+                popup_7acff2d85008ed486c2b217686ecaa4e.setContent(html_f03e688645baa3824dada8922703053d);
+            
+        
+
+        marker_b2074166b739f8adff944378281a5a71.bindPopup(popup_7acff2d85008ed486c2b217686ecaa4e)
+        ;
+
+        
+    
+    
+            var marker_58aaee2c44863752c5505dd0bc58110c = L.marker(
+                [29.1272, -13.5695],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_225be158d692d17902e8246c74043a27 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_58aaee2c44863752c5505dd0bc58110c.setIcon(icon_225be158d692d17902e8246c74043a27);
+        
+    
+        var popup_571215051fbb36ce19e17dce3d64839b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8b91f6c9be8c90e54a87cf36741fea5a = $(`<div id="html_8b91f6c9be8c90e54a87cf36741fea5a" style="width: 100.0%; height: 100.0%;">     <b>El Quemao</b><br>     Heavy slab wave across from La Santa, Canary Islands.     </div>`)[0];
+                popup_571215051fbb36ce19e17dce3d64839b.setContent(html_8b91f6c9be8c90e54a87cf36741fea5a);
+            
+        
+
+        marker_58aaee2c44863752c5505dd0bc58110c.bindPopup(popup_571215051fbb36ce19e17dce3d64839b)
+        ;
+
+        
+    
+    
+            var marker_6ad7b31df17a8a86d5b146061841b298 = L.marker(
+                [28.4142, -16.5446],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_ba42356f94d394ba5230605e86fbdf09 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_6ad7b31df17a8a86d5b146061841b298.setIcon(icon_ba42356f94d394ba5230605e86fbdf09);
+        
+    
+        var popup_a8a0387af19fa5d80db5c56596fcf884 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_23b8101e65110492d3db89ac5dae8e54 = $(`<div id="html_23b8101e65110492d3db89ac5dae8e54" style="width: 100.0%; height: 100.0%;">     <b>Puerto de la Cruz</b><br>     Popular Tenerife surf spot in the Canary Islands.     </div>`)[0];
+                popup_a8a0387af19fa5d80db5c56596fcf884.setContent(html_23b8101e65110492d3db89ac5dae8e54);
+            
+        
+
+        marker_6ad7b31df17a8a86d5b146061841b298.bindPopup(popup_a8a0387af19fa5d80db5c56596fcf884)
+        ;
+
+        
+    
+    
+            var marker_517235b9ebd31ef6296a0cfd0b6235e5 = L.marker(
+                [28.7359, -13.8651],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_475979187eecda640c7b267fe084e436 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_517235b9ebd31ef6296a0cfd0b6235e5.setIcon(icon_475979187eecda640c7b267fe084e436);
+        
+    
+        var popup_4544dcb425528453281c4f7882caf434 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9203fbe85d2de17b6698f8e70cf755ad = $(`<div id="html_9203fbe85d2de17b6698f8e70cf755ad" style="width: 100.0%; height: 100.0%;">     <b>Fuerteventura (Corralejo)</b><br>     Various reef and beach breaks in the northern part of the island.     </div>`)[0];
+                popup_4544dcb425528453281c4f7882caf434.setContent(html_9203fbe85d2de17b6698f8e70cf755ad);
+            
+        
+
+        marker_517235b9ebd31ef6296a0cfd0b6235e5.bindPopup(popup_4544dcb425528453281c4f7882caf434)
+        ;
+
+        
+    
+    
+            var marker_30f7c75fe8b2f395d2a750f5f3b1f9c6 = L.marker(
+                [-37.7989, 174.8343],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_1f727d2be18e77f9d30b00c5da270774 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_30f7c75fe8b2f395d2a750f5f3b1f9c6.setIcon(icon_1f727d2be18e77f9d30b00c5da270774);
+        
+    
+        var popup_5ce638eda829baca91b70460a0e16afe = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6292a832057e74254ccd53977f72c114 = $(`<div id="html_6292a832057e74254ccd53977f72c114" style="width: 100.0%; height: 100.0%;">     <b>Raglan (Whale Bay)</b><br>     New Zealand’s famous left-hand point breaks.     </div>`)[0];
+                popup_5ce638eda829baca91b70460a0e16afe.setContent(html_6292a832057e74254ccd53977f72c114);
+            
+        
+
+        marker_30f7c75fe8b2f395d2a750f5f3b1f9c6.bindPopup(popup_5ce638eda829baca91b70460a0e16afe)
+        ;
+
+        
+    
+    
+            var marker_0b7c9ece50cfddac580799dc4b7213d5 = L.marker(
+                [-36.9511, 174.4709],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_aa2f7cf7ce022fc9737e460d22176f03 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_0b7c9ece50cfddac580799dc4b7213d5.setIcon(icon_aa2f7cf7ce022fc9737e460d22176f03);
+        
+    
+        var popup_273bb1df117badebde323c3fce836d18 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_86d5cf62136a2288d6056248cd44f98f = $(`<div id="html_86d5cf62136a2288d6056248cd44f98f" style="width: 100.0%; height: 100.0%;">     <b>Piha Beach</b><br>     Iconic black sand beach near Auckland, New Zealand.     </div>`)[0];
+                popup_273bb1df117badebde323c3fce836d18.setContent(html_86d5cf62136a2288d6056248cd44f98f);
+            
+        
+
+        marker_0b7c9ece50cfddac580799dc4b7213d5.bindPopup(popup_273bb1df117badebde323c3fce836d18)
+        ;
+
+        
+    
+    
+            var marker_13e9e42d5de1937f853643ff653d78d8 = L.marker(
+                [-8.6659, 115.4545],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_fa5fb86aa2bf138c53109242bb1f7dc4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_13e9e42d5de1937f853643ff653d78d8.setIcon(icon_fa5fb86aa2bf138c53109242bb1f7dc4);
+        
+    
+        var popup_0d64547ee993bfc19663e90bb1f6ffb2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ea1e3994807c1521beb2304b29f66183 = $(`<div id="html_ea1e3994807c1521beb2304b29f66183" style="width: 100.0%; height: 100.0%;">     <b>Shipwrecks, Nusa Lembongan</b><br>     Popular right-hander off this small Indonesian island.     </div>`)[0];
+                popup_0d64547ee993bfc19663e90bb1f6ffb2.setContent(html_ea1e3994807c1521beb2304b29f66183);
+            
+        
+
+        marker_13e9e42d5de1937f853643ff653d78d8.bindPopup(popup_0d64547ee993bfc19663e90bb1f6ffb2)
+        ;
+
+        
+    
+    
+            var marker_9a377912528a72d853e5bb6eec9187e2 = L.marker(
+                [-8.6208, 115.3281],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_626c2d6b18d098ee0a81da5b8706476a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_9a377912528a72d853e5bb6eec9187e2.setIcon(icon_626c2d6b18d098ee0a81da5b8706476a);
+        
+    
+        var popup_63e1c552c56af3e65f755f30ec383441 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1964177b6039e0a4f39738cd076f71fb = $(`<div id="html_1964177b6039e0a4f39738cd076f71fb" style="width: 100.0%; height: 100.0%;">     <b>Keramas</b><br>     A rippable right-hander on Bali’s east coast.     </div>`)[0];
+                popup_63e1c552c56af3e65f755f30ec383441.setContent(html_1964177b6039e0a4f39738cd076f71fb);
+            
+        
+
+        marker_9a377912528a72d853e5bb6eec9187e2.bindPopup(popup_63e1c552c56af3e65f755f30ec383441)
+        ;
+
+        
+    
+    
+            var marker_834974e094d85759250d9b256bc386fd = L.marker(
+                [-8.4034, 114.8916],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_97953fb90bfe5b212b22105cf665a0b2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_834974e094d85759250d9b256bc386fd.setIcon(icon_97953fb90bfe5b212b22105cf665a0b2);
+        
+    
+        var popup_0bec14eb0a2c167e9cd016962df30948 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b8b571bb9a0fe9dabc289e6949aa68d4 = $(`<div id="html_b8b571bb9a0fe9dabc289e6949aa68d4" style="width: 100.0%; height: 100.0%;">     <b>Medewi</b><br>     Long left in West Bali, suitable for various levels.     </div>`)[0];
+                popup_0bec14eb0a2c167e9cd016962df30948.setContent(html_b8b571bb9a0fe9dabc289e6949aa68d4);
+            
+        
+
+        marker_834974e094d85759250d9b256bc386fd.bindPopup(popup_0bec14eb0a2c167e9cd016962df30948)
+        ;
+
+        
+    
+    
+            var marker_d330a41b38ccc28af4624d3e53dc7019 = L.marker(
+                [-8.7488, 115.849],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_cc17b261b71b851cb30689037fb1a859 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_d330a41b38ccc28af4624d3e53dc7019.setIcon(icon_cc17b261b71b851cb30689037fb1a859);
+        
+    
+        var popup_d51bdf3f5fb8ddbb7cf29e47b45a094b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_93422074f6225576ee3f55305bd49a0a = $(`<div id="html_93422074f6225576ee3f55305bd49a0a" style="width: 100.0%; height: 100.0%;">     <b>Desert Point</b><br>     World-class left on Lombok, Indonesia.     </div>`)[0];
+                popup_d51bdf3f5fb8ddbb7cf29e47b45a094b.setContent(html_93422074f6225576ee3f55305bd49a0a);
+            
+        
+
+        marker_d330a41b38ccc28af4624d3e53dc7019.bindPopup(popup_d51bdf3f5fb8ddbb7cf29e47b45a094b)
+        ;
+
+        
+    
+    
+            var marker_6dae57f30854976cd3ae3d189aecb458 = L.marker(
+                [-8.8899, 118.289],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_a72cf9b9a16df047aa1b3cc52914ba77 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_6dae57f30854976cd3ae3d189aecb458.setIcon(icon_a72cf9b9a16df047aa1b3cc52914ba77);
+        
+    
+        var popup_64bcf875692b9cf9c50107bfc10feab4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_903b19eb94c741cab53147d6b52e84d3 = $(`<div id="html_903b19eb94c741cab53147d6b52e84d3" style="width: 100.0%; height: 100.0%;">     <b>Lakey Peak</b><br>     Hollow peak in Sumbawa, Indonesia, with lefts and rights.     </div>`)[0];
+                popup_64bcf875692b9cf9c50107bfc10feab4.setContent(html_903b19eb94c741cab53147d6b52e84d3);
+            
+        
+
+        marker_6dae57f30854976cd3ae3d189aecb458.bindPopup(popup_64bcf875692b9cf9c50107bfc10feab4)
+        ;
+
+        
+    
+    
+            var marker_c28c2955f4ee1b0f8a16f87f06d80405 = L.marker(
+                [-8.8182, 115.1036],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_692b16dc9cc7a1af9a6328614a3da6d5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_c28c2955f4ee1b0f8a16f87f06d80405.setIcon(icon_692b16dc9cc7a1af9a6328614a3da6d5);
+        
+    
+        var popup_9d83f241e7bea053c3044220b0d6c24c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c5cb25e197d8e06b7abf00689463ce16 = $(`<div id="html_c5cb25e197d8e06b7abf00689463ce16" style="width: 100.0%; height: 100.0%;">     <b>Padang Padang</b><br>     Barreling left on the Bukit Peninsula, Bali.     </div>`)[0];
+                popup_9d83f241e7bea053c3044220b0d6c24c.setContent(html_c5cb25e197d8e06b7abf00689463ce16);
+            
+        
+
+        marker_c28c2955f4ee1b0f8a16f87f06d80405.bindPopup(popup_9d83f241e7bea053c3044220b0d6c24c)
+        ;
+
+        
+    
+    
+            var marker_2bba668ebe96120574b7d70c153cdc88 = L.marker(
+                [-33.7462, 115.0301],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_805e2deb39f2b6f36a41ea9cae85c662 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_2bba668ebe96120574b7d70c153cdc88.setIcon(icon_805e2deb39f2b6f36a41ea9cae85c662);
+        
+    
+        var popup_9b840f6b47acff7df0ab65c7f19aab30 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7760bd1fa74288f8f8ed4620e6780761 = $(`<div id="html_7760bd1fa74288f8f8ed4620e6780761" style="width: 100.0%; height: 100.0%;">     <b>The Box</b><br>     Heavy right slab in Margaret River region, Australia.     </div>`)[0];
+                popup_9b840f6b47acff7df0ab65c7f19aab30.setContent(html_7760bd1fa74288f8f8ed4620e6780761);
+            
+        
+
+        marker_2bba668ebe96120574b7d70c153cdc88.bindPopup(popup_9b840f6b47acff7df0ab65c7f19aab30)
+        ;
+
+        
+    
+    
+            var marker_398b20e6cbac167baf2805e6150d1e38 = L.marker(
+                [-22.9605, 113.7373],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_af4e30254cfcfaf83ca14d2346794a6c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_398b20e6cbac167baf2805e6150d1e38.setIcon(icon_af4e30254cfcfaf83ca14d2346794a6c);
+        
+    
+        var popup_b39fd5ca2e888f510bfe1d601d5370f3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f1b7c95854a68d416bd1f9755eae4a7b = $(`<div id="html_f1b7c95854a68d416bd1f9755eae4a7b" style="width: 100.0%; height: 100.0%;">     <b>Tombstones</b><br>     Serious wave at Gnaraloo, Western Australia.     </div>`)[0];
+                popup_b39fd5ca2e888f510bfe1d601d5370f3.setContent(html_f1b7c95854a68d416bd1f9755eae4a7b);
+            
+        
+
+        marker_398b20e6cbac167baf2805e6150d1e38.bindPopup(popup_b39fd5ca2e888f510bfe1d601d5370f3)
+        ;
+
+        
+    
+    
+            var marker_ddf818c901917de0c56f8dba206e879a = L.marker(
+                [-23.1364, 113.5456],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_40c68c05c32c4b829c03aeb633af9a98 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_ddf818c901917de0c56f8dba206e879a.setIcon(icon_40c68c05c32c4b829c03aeb633af9a98);
+        
+    
+        var popup_71387482b485e9422fb8267fbcc5d515 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_26224cac12f29db7bacef92b615c1379 = $(`<div id="html_26224cac12f29db7bacef92b615c1379" style="width: 100.0%; height: 100.0%;">     <b>Red Bluff</b><br>     Powerful left in Western Australia’s Coral Coast.     </div>`)[0];
+                popup_71387482b485e9422fb8267fbcc5d515.setContent(html_26224cac12f29db7bacef92b615c1379);
+            
+        
+
+        marker_ddf818c901917de0c56f8dba206e879a.bindPopup(popup_71387482b485e9422fb8267fbcc5d515)
+        ;
+
+        
+    
+    
+            var marker_9544258b06b4a8bfdb1ca6b42cbf0677 = L.marker(
+                [-26.3872, 153.0913],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_3a7047227cfd530ecae8122555296256 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_9544258b06b4a8bfdb1ca6b42cbf0677.setIcon(icon_3a7047227cfd530ecae8122555296256);
+        
+    
+        var popup_0d1d3296dcd6cc0dac0f6baaa81d6ff8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6b145cc1185647c2d69c21d36b8fe650 = $(`<div id="html_6b145cc1185647c2d69c21d36b8fe650" style="width: 100.0%; height: 100.0%;">     <b>Noosa Heads</b><br>     Longboard heaven with multiple right-hand points, QLD, Australia.     </div>`)[0];
+                popup_0d1d3296dcd6cc0dac0f6baaa81d6ff8.setContent(html_6b145cc1185647c2d69c21d36b8fe650);
+            
+        
+
+        marker_9544258b06b4a8bfdb1ca6b42cbf0677.bindPopup(popup_0d1d3296dcd6cc0dac0f6baaa81d6ff8)
+        ;
+
+        
+    
+    
+            var marker_ae93c96f08d9619fe4bf541690092536 = L.marker(
+                [-38.3702, 144.2831],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_6dcf16f102cadcb9dfc24292f8bf6fc7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_ae93c96f08d9619fe4bf541690092536.setIcon(icon_6dcf16f102cadcb9dfc24292f8bf6fc7);
+        
+    
+        var popup_7c52dcf080af47c838c904991b53c3c2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9af5e3cfd753a6f2e0d72b8c88c0056c = $(`<div id="html_9af5e3cfd753a6f2e0d72b8c88c0056c" style="width: 100.0%; height: 100.0%;">     <b>Bells Beach</b><br>     Historic surf location near Torquay, Victoria, Australia.     </div>`)[0];
+                popup_7c52dcf080af47c838c904991b53c3c2.setContent(html_9af5e3cfd753a6f2e0d72b8c88c0056c);
+            
+        
+
+        marker_ae93c96f08d9619fe4bf541690092536.bindPopup(popup_7c52dcf080af47c838c904991b53c3c2)
+        ;
+
+        
+    
+    
+            var marker_21d57a237578312a7cf00d6dd6d9d82d = L.marker(
+                [-38.369, 144.2841],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_9c6588620dcbb7f537b97b1424ddfd71 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_21d57a237578312a7cf00d6dd6d9d82d.setIcon(icon_9c6588620dcbb7f537b97b1424ddfd71);
+        
+    
+        var popup_c1928c27d1abc58e2edcdddab77e1dd8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ac52a75656e6aff28872e908b2ea3eea = $(`<div id="html_ac52a75656e6aff28872e908b2ea3eea" style="width: 100.0%; height: 100.0%;">     <b>Winki Pop</b><br>     Fast right-hander next to Bells Beach, Australia.     </div>`)[0];
+                popup_c1928c27d1abc58e2edcdddab77e1dd8.setContent(html_ac52a75656e6aff28872e908b2ea3eea);
+            
+        
+
+        marker_21d57a237578312a7cf00d6dd6d9d82d.bindPopup(popup_c1928c27d1abc58e2edcdddab77e1dd8)
+        ;
+
+        
+    
+    
+            var marker_949596a1b423273ffa36a392a6334104 = L.marker(
+                [-38.7619, 143.4352],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_82195490ea54cfc68cda530ca63992c5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_949596a1b423273ffa36a392a6334104.setIcon(icon_82195490ea54cfc68cda530ca63992c5);
+        
+    
+        var popup_1cd7266385c7818cb6161974a710692a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a123e111318186a760fe4d3c069af55a = $(`<div id="html_a123e111318186a760fe4d3c069af55a" style="width: 100.0%; height: 100.0%;">     <b>Johanna Beach</b><br>     Backup site for the Rip Curl Pro, Great Ocean Road, Australia.     </div>`)[0];
+                popup_1cd7266385c7818cb6161974a710692a.setContent(html_a123e111318186a760fe4d3c069af55a);
+            
+        
+
+        marker_949596a1b423273ffa36a392a6334104.bindPopup(popup_1cd7266385c7818cb6161974a710692a)
+        ;
+
+        
+    
+    
+            var marker_1450fd91c2cf3d816e340cbaf6e1a5d0 = L.marker(
+                [-31.1891, 152.9866],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_91f4644bd1bdd8bcd4047fb35bcd8a45 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_1450fd91c2cf3d816e340cbaf6e1a5d0.setIcon(icon_91f4644bd1bdd8bcd4047fb35bcd8a45);
+        
+    
+        var popup_d1832b460736e17c27d3075f0eadb0d1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_dffe6262c635ba0b3dfcd2e45d907b0d = $(`<div id="html_dffe6262c635ba0b3dfcd2e45d907b0d" style="width: 100.0%; height: 100.0%;">     <b>Crescent Head</b><br>     Classic right point in New South Wales, Australia.     </div>`)[0];
+                popup_d1832b460736e17c27d3075f0eadb0d1.setContent(html_dffe6262c635ba0b3dfcd2e45d907b0d);
+            
+        
+
+        marker_1450fd91c2cf3d816e340cbaf6e1a5d0.bindPopup(popup_d1832b460736e17c27d3075f0eadb0d1)
+        ;
+
+        
+    
+    
+            var marker_2c694d1d0c61ea0100b2225a2008eace = L.marker(
+                [-33.7963, 151.2874],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_bd8369d4595eab83a17b53bafe61fbb4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_2c694d1d0c61ea0100b2225a2008eace.setIcon(icon_bd8369d4595eab83a17b53bafe61fbb4);
+        
+    
+        var popup_afc8eab56eabb89b7cedddf1d5b69765 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_932a3ea3d12f0f7bf9ffc5179db91c42 = $(`<div id="html_932a3ea3d12f0f7bf9ffc5179db91c42" style="width: 100.0%; height: 100.0%;">     <b>Manly Beach</b><br>     Sydney’s iconic surfing beach.     </div>`)[0];
+                popup_afc8eab56eabb89b7cedddf1d5b69765.setContent(html_932a3ea3d12f0f7bf9ffc5179db91c42);
+            
+        
+
+        marker_2c694d1d0c61ea0100b2225a2008eace.bindPopup(popup_afc8eab56eabb89b7cedddf1d5b69765)
+        ;
+
+        
+    
+    
+            var marker_3d90dc43814d15ea548142b47355518a = L.marker(
+                [-33.8915, 151.2767],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_87ead20bad5e6b9dc0e109ffba4f0295 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_3d90dc43814d15ea548142b47355518a.setIcon(icon_87ead20bad5e6b9dc0e109ffba4f0295);
+        
+    
+        var popup_7660a90e62a0f57ab32f12f5e3e3347b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d1c7de05a9387d4a3c059d560fb88246 = $(`<div id="html_d1c7de05a9387d4a3c059d560fb88246" style="width: 100.0%; height: 100.0%;">     <b>Bondi Beach</b><br>     World-famous Australian beach with a vibrant surf culture.     </div>`)[0];
+                popup_7660a90e62a0f57ab32f12f5e3e3347b.setContent(html_d1c7de05a9387d4a3c059d560fb88246);
+            
+        
+
+        marker_3d90dc43814d15ea548142b47355518a.bindPopup(popup_7660a90e62a0f57ab32f12f5e3e3347b)
+        ;
+
+        
+    
+    
+            var marker_775a8ff336218741ed19c27b7b13d37d = L.marker(
+                [-32.9463, 151.7583],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_9ecc48ce591c6afc083b15049a642be7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_775a8ff336218741ed19c27b7b13d37d.setIcon(icon_9ecc48ce591c6afc083b15049a642be7);
+        
+    
+        var popup_bf1ea63c47d349b26949caf55bb9f362 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7a2bbf9daa71a61750a44830f48c5e24 = $(`<div id="html_7a2bbf9daa71a61750a44830f48c5e24" style="width: 100.0%; height: 100.0%;">     <b>Merewether Beach</b><br>     Newcastle’s surfing hotspot, birthplace of Mark Richards.     </div>`)[0];
+                popup_bf1ea63c47d349b26949caf55bb9f362.setContent(html_7a2bbf9daa71a61750a44830f48c5e24);
+            
+        
+
+        marker_775a8ff336218741ed19c27b7b13d37d.bindPopup(popup_bf1ea63c47d349b26949caf55bb9f362)
+        ;
+
+        
+    
+    
+            var marker_6bd8aa3a6aaaedeaedeb6f1462c99161 = L.marker(
+                [-28.1652, 153.532],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_a868468ef159bc1660f93000b76a52ee = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_6bd8aa3a6aaaedeaedeb6f1462c99161.setIcon(icon_a868468ef159bc1660f93000b76a52ee);
+        
+    
+        var popup_8175872c8e06e654d63ca1adaf119a7c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_55255c53509cbae26aec759e7924ae8e = $(`<div id="html_55255c53509cbae26aec759e7924ae8e" style="width: 100.0%; height: 100.0%;">     <b>Kirra</b><br>     World-class right-hand sand bottom point in Queensland, Australia.     </div>`)[0];
+                popup_8175872c8e06e654d63ca1adaf119a7c.setContent(html_55255c53509cbae26aec759e7924ae8e);
+            
+        
+
+        marker_6bd8aa3a6aaaedeaedeb6f1462c99161.bindPopup(popup_8175872c8e06e654d63ca1adaf119a7c)
+        ;
+
+        
+    
+    
+            var marker_1627287f52e4a3f7822505251b9fd43a = L.marker(
+                [-22.9867, -43.2003],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_397c600c93cf3fc16df8697fd7a3d102 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_1627287f52e4a3f7822505251b9fd43a.setIcon(icon_397c600c93cf3fc16df8697fd7a3d102);
+        
+    
+        var popup_2e308470acc2c979d2e7ef72220fd446 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cfa95264d6074ab678e2ad275944acd5 = $(`<div id="html_cfa95264d6074ab678e2ad275944acd5" style="width: 100.0%; height: 100.0%;">     <b>Arpoador</b><br>     Famous spot in Rio de Janeiro, Brazil.     </div>`)[0];
+                popup_2e308470acc2c979d2e7ef72220fd446.setContent(html_cfa95264d6074ab678e2ad275944acd5);
+            
+        
+
+        marker_1627287f52e4a3f7822505251b9fd43a.bindPopup(popup_2e308470acc2c979d2e7ef72220fd446)
+        ;
+
+        
+    
+    
+            var marker_f9c7e019e568010eed427066445e162f = L.marker(
+                [-27.5935, -48.4592],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_f0b25136a3a265fd83abc1c495bd8080 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_f9c7e019e568010eed427066445e162f.setIcon(icon_f0b25136a3a265fd83abc1c495bd8080);
+        
+    
+        var popup_84ae5792b65c6b53ef047047e7385ebd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a94b1521e958decd04a974cd7e976be1 = $(`<div id="html_a94b1521e958decd04a974cd7e976be1" style="width: 100.0%; height: 100.0%;">     <b>Florianópolis (Praia Mole)</b><br>     Popular beach break in Santa Catarina, Brazil.     </div>`)[0];
+                popup_84ae5792b65c6b53ef047047e7385ebd.setContent(html_a94b1521e958decd04a974cd7e976be1);
+            
+        
+
+        marker_f9c7e019e568010eed427066445e162f.bindPopup(popup_84ae5792b65c6b53ef047047e7385ebd)
+        ;
+
+        
+    
+    
+            var marker_4b95257bdb1be401ff7486396278360d = L.marker(
+                [-3.8554, -32.4233],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_e6e160af898d8e7852e2d4df6a8ccc8c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_4b95257bdb1be401ff7486396278360d.setIcon(icon_e6e160af898d8e7852e2d4df6a8ccc8c);
+        
+    
+        var popup_90e0f96774059617dafd12657a6d87b8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_80ed759057ba7d7d5e9e2075de8c47c8 = $(`<div id="html_80ed759057ba7d7d5e9e2075de8c47c8" style="width: 100.0%; height: 100.0%;">     <b>Fernando de Noronha</b><br>     Remote archipelago in Brazil with powerful waves.     </div>`)[0];
+                popup_90e0f96774059617dafd12657a6d87b8.setContent(html_80ed759057ba7d7d5e9e2075de8c47c8);
+            
+        
+
+        marker_4b95257bdb1be401ff7486396278360d.bindPopup(popup_90e0f96774059617dafd12657a6d87b8)
+        ;
+
+        
+    
+    
+            var marker_634b7c805dc05ecbf1b12fbb867e7fe1 = L.marker(
+                [-38.0055, -57.5426],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_2b6d2bca9112a97c89861abf412b6c2c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_634b7c805dc05ecbf1b12fbb867e7fe1.setIcon(icon_2b6d2bca9112a97c89861abf412b6c2c);
+        
+    
+        var popup_7f3d09efdf1e0d935d32d7d214864c5b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ad732a31ab68f526dca3841e902e8ee5 = $(`<div id="html_ad732a31ab68f526dca3841e902e8ee5" style="width: 100.0%; height: 100.0%;">     <b>Mar del Plata</b><br>     Argentina’s surf city on the Atlantic coast.     </div>`)[0];
+                popup_7f3d09efdf1e0d935d32d7d214864c5b.setContent(html_ad732a31ab68f526dca3841e902e8ee5);
+            
+        
+
+        marker_634b7c805dc05ecbf1b12fbb867e7fe1.bindPopup(popup_7f3d09efdf1e0d935d32d7d214864c5b)
+        ;
+
+        
+    
+    
+            var marker_62c0edde8f8ed8281717fb197571f683 = L.marker(
+                [-34.4004, -72.0244],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_d9b4a61fe3baa11ec87da34e52dbd1f0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_62c0edde8f8ed8281717fb197571f683.setIcon(icon_d9b4a61fe3baa11ec87da34e52dbd1f0);
+        
+    
+        var popup_2d97acefb97e047c74bf5b40a8712e0e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_86e7c9e98de6002cb9bcd55d04e3d3d5 = $(`<div id="html_86e7c9e98de6002cb9bcd55d04e3d3d5" style="width: 100.0%; height: 100.0%;">     <b>Pichilemu (Punta de Lobos)</b><br>     Big left-hand point break in Chile.     </div>`)[0];
+                popup_2d97acefb97e047c74bf5b40a8712e0e.setContent(html_86e7c9e98de6002cb9bcd55d04e3d3d5);
+            
+        
+
+        marker_62c0edde8f8ed8281717fb197571f683.bindPopup(popup_2d97acefb97e047c74bf5b40a8712e0e)
+        ;
+
+        
+    
+    
+            var marker_20d70b029717556047e8cba5f17a60ae = L.marker(
+                [-18.4765, -70.315],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_f67752758854465a271acfacbd012780 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_20d70b029717556047e8cba5f17a60ae.setIcon(icon_f67752758854465a271acfacbd012780);
+        
+    
+        var popup_d9a5567192b837667791ebd4e112de45 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_dd1e119506f13292abbfdd85a63946bc = $(`<div id="html_dd1e119506f13292abbfdd85a63946bc" style="width: 100.0%; height: 100.0%;">     <b>El Gringo (Arica)</b><br>     Heavy wave in northern Chile, known as the 'Chilean Pipeline'.     </div>`)[0];
+                popup_d9a5567192b837667791ebd4e112de45.setContent(html_dd1e119506f13292abbfdd85a63946bc);
+            
+        
+
+        marker_20d70b029717556047e8cba5f17a60ae.bindPopup(popup_d9a5567192b837667791ebd4e112de45)
+        ;
+
+        
+    
+    
+            var marker_6233de0df5f9fc8620f28e18def17f6b = L.marker(
+                [-12.1204, -77.0501],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_feddd9bf9b33cfd8c9435d5a65b650e9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_6233de0df5f9fc8620f28e18def17f6b.setIcon(icon_feddd9bf9b33cfd8c9435d5a65b650e9);
+        
+    
+        var popup_2bc6749aaa5f0dc685cec69ac068a51b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_233120f9b94fb51b78f6bbf07bf87f45 = $(`<div id="html_233120f9b94fb51b78f6bbf07bf87f45" style="width: 100.0%; height: 100.0%;">     <b>La Pampilla</b><br>     Urban beach break near Lima, Peru.     </div>`)[0];
+                popup_2bc6749aaa5f0dc685cec69ac068a51b.setContent(html_233120f9b94fb51b78f6bbf07bf87f45);
+            
+        
+
+        marker_6233de0df5f9fc8620f28e18def17f6b.bindPopup(popup_2bc6749aaa5f0dc685cec69ac068a51b)
+        ;
+
+        
+    
+    
+            var marker_55a1a927070e583fb9aca45c98fc3c55 = L.marker(
+                [-8.5146, 114.9997],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_047d6872ed99f2bee4f7ab83b3b5911f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_55a1a927070e583fb9aca45c98fc3c55.setIcon(icon_047d6872ed99f2bee4f7ab83b3b5911f);
+        
+    
+        var popup_a42a5ef74dca3ada8b873c6c4649798a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e65d778659b3a8398568b8fdbc139f1a = $(`<div id="html_e65d778659b3a8398568b8fdbc139f1a" style="width: 100.0%; height: 100.0%;">     <b>Balian</b><br>     Fun left and right beach break in West Bali.     </div>`)[0];
+                popup_a42a5ef74dca3ada8b873c6c4649798a.setContent(html_e65d778659b3a8398568b8fdbc139f1a);
+            
+        
+
+        marker_55a1a927070e583fb9aca45c98fc3c55.bindPopup(popup_a42a5ef74dca3ada8b873c6c4649798a)
+        ;
+
+        
+    
+    
+            var marker_b8440b759c5ab61e43913245e315518a = L.marker(
+                [-28.1683, 153.5451],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_1bccc082d752559caed7bd5d83098a16 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_b8440b759c5ab61e43913245e315518a.setIcon(icon_1bccc082d752559caed7bd5d83098a16);
+        
+    
+        var popup_f2eb1d97d72cabd1b49743cf263c45c4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_680e9a154499ffa12d983933d7f9039d = $(`<div id="html_680e9a154499ffa12d983933d7f9039d" style="width: 100.0%; height: 100.0%;">     <b>Greenmount</b><br>     Part of the Superbank on the Gold Coast, Australia.     </div>`)[0];
+                popup_f2eb1d97d72cabd1b49743cf263c45c4.setContent(html_680e9a154499ffa12d983933d7f9039d);
+            
+        
+
+        marker_b8440b759c5ab61e43913245e315518a.bindPopup(popup_f2eb1d97d72cabd1b49743cf263c45c4)
+        ;
+
+        
+    
+    
+            var marker_c28ab07b2ed0e1d781e2f6ee31e503d6 = L.marker(
+                [-28.1672, 153.5444],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_bd77212020412944d28cfc38e550dc61 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_c28ab07b2ed0e1d781e2f6ee31e503d6.setIcon(icon_bd77212020412944d28cfc38e550dc61);
+        
+    
+        var popup_e30906978873af4e7d89f484470ae990 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8d76214365070ed25648f5905e63f7b0 = $(`<div id="html_8d76214365070ed25648f5905e63f7b0" style="width: 100.0%; height: 100.0%;">     <b>Duranbah (D-bah)</b><br>     Punchy beach break straddling QLD/NSW border, Australia.     </div>`)[0];
+                popup_e30906978873af4e7d89f484470ae990.setContent(html_8d76214365070ed25648f5905e63f7b0);
+            
+        
+
+        marker_c28ab07b2ed0e1d781e2f6ee31e503d6.bindPopup(popup_e30906978873af4e7d89f484470ae990)
+        ;
+
+        
+    
+    
+            var marker_148bbb0cf8aa553ae0198f7ca58fb41e = L.marker(
+                [-29.5472, 31.2173],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_2e169f51d786b07cc88cefdf99b81568 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_148bbb0cf8aa553ae0198f7ca58fb41e.setIcon(icon_2e169f51d786b07cc88cefdf99b81568);
+        
+    
+        var popup_9168cd3813d46527e216d19e6a12090d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5b1216af2024035521a3f75253c978cc = $(`<div id="html_5b1216af2024035521a3f75253c978cc" style="width: 100.0%; height: 100.0%;">     <b>Ballito (Willard Beach)</b><br>     Competition-grade break in KwaZulu-Natal, South Africa.     </div>`)[0];
+                popup_9168cd3813d46527e216d19e6a12090d.setContent(html_5b1216af2024035521a3f75253c978cc);
+            
+        
+
+        marker_148bbb0cf8aa553ae0198f7ca58fb41e.bindPopup(popup_9168cd3813d46527e216d19e6a12090d)
+        ;
+
+        
+    
+    
+            var marker_32af737169c00912bbb01a11a058b7a4 = L.marker(
+                [62.142, 5.2572],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_1db49b95579175e9fdec5e8efe5c57f5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_32af737169c00912bbb01a11a058b7a4.setIcon(icon_1db49b95579175e9fdec5e8efe5c57f5);
+        
+    
+        var popup_19bd0f157bbf8ba3aad261ab5be32987 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_60a81600079521a7f3bbce9b48ba6a8e = $(`<div id="html_60a81600079521a7f3bbce9b48ba6a8e" style="width: 100.0%; height: 100.0%;">     <b>Hoddevik</b><br>     Scenic fjord surf in Norway, cold-water experience.     </div>`)[0];
+                popup_19bd0f157bbf8ba3aad261ab5be32987.setContent(html_60a81600079521a7f3bbce9b48ba6a8e);
+            
+        
+
+        marker_32af737169c00912bbb01a11a058b7a4.bindPopup(popup_19bd0f157bbf8ba3aad261ab5be32987)
+        ;
+
+        
+    
+    
+            var marker_18fd9ce40161fd60b44fd1bf0e73c98d = L.marker(
+                [69.6389, 18.0267],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_e55609475c7fac923d7ba4cdee9f2c69 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_18fd9ce40161fd60b44fd1bf0e73c98d.setIcon(icon_e55609475c7fac923d7ba4cdee9f2c69);
+        
+    
+        var popup_e1ba7622eb3fe87c9cc9eccab4ee8cea = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1dd24c848d36789a1811d689b633b7ad = $(`<div id="html_1dd24c848d36789a1811d689b633b7ad" style="width: 100.0%; height: 100.0%;">     <b>Sommarøy</b><br>     Arctic surf spot in northern Norway near Tromsø.     </div>`)[0];
+                popup_e1ba7622eb3fe87c9cc9eccab4ee8cea.setContent(html_1dd24c848d36789a1811d689b633b7ad);
+            
+        
+
+        marker_18fd9ce40161fd60b44fd1bf0e73c98d.bindPopup(popup_e1ba7622eb3fe87c9cc9eccab4ee8cea)
+        ;
+
+        
+    
+    
+            var marker_116c4f77fd3b28d8be5ac4fbb7162d9e = L.marker(
+                [64.1271, -21.9246],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_8de8e6cc0ff299b3dc75ab3d219d6234 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_116c4f77fd3b28d8be5ac4fbb7162d9e.setIcon(icon_8de8e6cc0ff299b3dc75ab3d219d6234);
+        
+    
+        var popup_526d5a0014854b6bd5cfd90476f6b715 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5b0890adc8342d29dde2a8dac22af123 = $(`<div id="html_5b0890adc8342d29dde2a8dac22af123" style="width: 100.0%; height: 100.0%;">     <b>Reykjavik (Nauthólsvík)</b><br>     Iceland’s occasional surf scene in cold waters.     </div>`)[0];
+                popup_526d5a0014854b6bd5cfd90476f6b715.setContent(html_5b0890adc8342d29dde2a8dac22af123);
+            
+        
+
+        marker_116c4f77fd3b28d8be5ac4fbb7162d9e.bindPopup(popup_526d5a0014854b6bd5cfd90476f6b715)
+        ;
+
+        
+    
+    
+            var marker_92cfc00a0c76b5bea046fd7e0c7c040e = L.marker(
+                [58.6125, -3.517],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_ff41efcfaf50389eecfa662242020013 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_92cfc00a0c76b5bea046fd7e0c7c040e.setIcon(icon_ff41efcfaf50389eecfa662242020013);
+        
+    
+        var popup_917f2635a3281cc1e27fff4c07d5d7f2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_743c032cb616fa07cc0480028b0cebd4 = $(`<div id="html_743c032cb616fa07cc0480028b0cebd4" style="width: 100.0%; height: 100.0%;">     <b>Thurso East</b><br>     Scotland’s best-known cold-water reef break.     </div>`)[0];
+                popup_917f2635a3281cc1e27fff4c07d5d7f2.setContent(html_743c032cb616fa07cc0480028b0cebd4);
+            
+        
+
+        marker_92cfc00a0c76b5bea046fd7e0c7c040e.bindPopup(popup_917f2635a3281cc1e27fff4c07d5d7f2)
+        ;
+
+        
+    
+    
+            var marker_6798ecfea32f2aad70fb9b3f447af915 = L.marker(
+                [54.4776, -8.2755],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_8e0aaa3977426c3fc28eb886b456f0a7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_6798ecfea32f2aad70fb9b3f447af915.setIcon(icon_8e0aaa3977426c3fc28eb886b456f0a7);
+        
+    
+        var popup_b21f86d7bd9f414f20d95880ef96be2c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0069782614db62b612793ff2c5ce2e5f = $(`<div id="html_0069782614db62b612793ff2c5ce2e5f" style="width: 100.0%; height: 100.0%;">     <b>Bundoran</b><br>     Ireland’s surf capital with multiple reef breaks.     </div>`)[0];
+                popup_b21f86d7bd9f414f20d95880ef96be2c.setContent(html_0069782614db62b612793ff2c5ce2e5f);
+            
+        
+
+        marker_6798ecfea32f2aad70fb9b3f447af915.bindPopup(popup_b21f86d7bd9f414f20d95880ef96be2c)
+        ;
+
+        
+    
+    
+            var marker_7d987738af00050f7d821dd872ecaf67 = L.marker(
+                [55.2046, -6.6476],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_100f346e36403d07947106d073435ed5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_7d987738af00050f7d821dd872ecaf67.setIcon(icon_100f346e36403d07947106d073435ed5);
+        
+    
+        var popup_93aee033dab1a62c96b209c35c6796b3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a418851ac627f785729884e84d762b14 = $(`<div id="html_a418851ac627f785729884e84d762b14" style="width: 100.0%; height: 100.0%;">     <b>Portrush (East Strand)</b><br>     Popular surf town in Northern Ireland.     </div>`)[0];
+                popup_93aee033dab1a62c96b209c35c6796b3.setContent(html_a418851ac627f785729884e84d762b14);
+            
+        
+
+        marker_7d987738af00050f7d821dd872ecaf67.bindPopup(popup_93aee033dab1a62c96b209c35c6796b3)
+        ;
+
+        
+    
+    
+            var marker_2706a3847540414a87dbf32562451883 = L.marker(
+                [55.0179, -1.4177],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_0876459a3c71049f2826ee01cdc3554f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_2706a3847540414a87dbf32562451883.setIcon(icon_0876459a3c71049f2826ee01cdc3554f);
+        
+    
+        var popup_a831195ed4340582a5bd2b9878a01877 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_095854210f2f71a69e6d7f68144cdd6e = $(`<div id="html_095854210f2f71a69e6d7f68144cdd6e" style="width: 100.0%; height: 100.0%;">     <b>Tynemouth (Longsands)</b><br>     Consistent beach break near Newcastle, England.     </div>`)[0];
+                popup_a831195ed4340582a5bd2b9878a01877.setContent(html_095854210f2f71a69e6d7f68144cdd6e);
+            
+        
+
+        marker_2706a3847540414a87dbf32562451883.bindPopup(popup_a831195ed4340582a5bd2b9878a01877)
+        ;
+
+        
+    
+    
+            var marker_05ae1510ddf8ca53b13482d3a0a91830 = L.marker(
+                [50.7166, -1.8754],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_a9aafc8290d35ec099b6ac1249b09aa8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_05ae1510ddf8ca53b13482d3a0a91830.setIcon(icon_a9aafc8290d35ec099b6ac1249b09aa8);
+        
+    
+        var popup_6f4ecabed9811a84325825ddb47ab885 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_aecfe914fffc11c591d8cc006911d860 = $(`<div id="html_aecfe914fffc11c591d8cc006911d860" style="width: 100.0%; height: 100.0%;">     <b>Bournemouth Pier</b><br>     South coast beach break in Dorset, England.     </div>`)[0];
+                popup_6f4ecabed9811a84325825ddb47ab885.setContent(html_aecfe914fffc11c591d8cc006911d860);
+            
+        
+
+        marker_05ae1510ddf8ca53b13482d3a0a91830.bindPopup(popup_6f4ecabed9811a84325825ddb47ab885)
+        ;
+
+        
+    
+    
+            var marker_9e5ad9b2ee7e5cc9afeda44e5fc79227 = L.marker(
+                [44.9813, -1.2005],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_3f1a6c55eb45c30b069db2bea0086ce8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_9e5ad9b2ee7e5cc9afeda44e5fc79227.setIcon(icon_3f1a6c55eb45c30b069db2bea0086ce8);
+        
+    
+        var popup_05c1454bb135265468478d222dd34467 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5dc99877053dbb0139accdf472746c3e = $(`<div id="html_5dc99877053dbb0139accdf472746c3e" style="width: 100.0%; height: 100.0%;">     <b>Lacanau</b><br>     Classic French beach break near Bordeaux.     </div>`)[0];
+                popup_05c1454bb135265468478d222dd34467.setContent(html_5dc99877053dbb0139accdf472746c3e);
+            
+        
+
+        marker_9e5ad9b2ee7e5cc9afeda44e5fc79227.bindPopup(popup_05c1454bb135265468478d222dd34467)
+        ;
+
+        
+    
+    
+            var marker_17eb4f698510ee0741507b86175be5a6 = L.marker(
+                [43.4058, -2.9978],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_fb14112c3a99c5d4c907dec68f141748 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_17eb4f698510ee0741507b86175be5a6.setIcon(icon_fb14112c3a99c5d4c907dec68f141748);
+        
+    
+        var popup_3d981050dc40249c2d29b9a78587a1f3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_462ac2e7df069e5d6800597f89896f17 = $(`<div id="html_462ac2e7df069e5d6800597f89896f17" style="width: 100.0%; height: 100.0%;">     <b>Sopelana</b><br>     Accessible surf spot near Bilbao, Spain.     </div>`)[0];
+                popup_3d981050dc40249c2d29b9a78587a1f3.setContent(html_462ac2e7df069e5d6800597f89896f17);
+            
+        
+
+        marker_17eb4f698510ee0741507b86175be5a6.bindPopup(popup_3d981050dc40249c2d29b9a78587a1f3)
+        ;
+
+        
+    
+    
+            var marker_70ca37d5664498d5fef080538c4652b3 = L.marker(
+                [43.3248, -1.9762],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_1adde43fcfe7495cfeab55c322beda1b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_70ca37d5664498d5fef080538c4652b3.setIcon(icon_1adde43fcfe7495cfeab55c322beda1b);
+        
+    
+        var popup_77928ce96e77b9f885645f026004269e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_59b1894b0b1251769ea4b2eb2a702c1b = $(`<div id="html_59b1894b0b1251769ea4b2eb2a702c1b" style="width: 100.0%; height: 100.0%;">     <b>Zurriola Beach</b><br>     Urban surf beach in San Sebastián, Spain.     </div>`)[0];
+                popup_77928ce96e77b9f885645f026004269e.setContent(html_59b1894b0b1251769ea4b2eb2a702c1b);
+            
+        
+
+        marker_70ca37d5664498d5fef080538c4652b3.bindPopup(popup_77928ce96e77b9f885645f026004269e)
+        ;
+
+        
+    
+    
+            var marker_6da927f8bd6f51275cc71c8a3dba86c6 = L.marker(
+                [43.6368, -1.436],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_cfb4dbc1936a7b74d16ff96f02fc6f46 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_6da927f8bd6f51275cc71c8a3dba86c6.setIcon(icon_cfb4dbc1936a7b74d16ff96f02fc6f46);
+        
+    
+        var popup_82d675eb9f285f757932ade9de4c66a2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0f1c42ff72eef0eda38aa9202d7de12d = $(`<div id="html_0f1c42ff72eef0eda38aa9202d7de12d" style="width: 100.0%; height: 100.0%;">     <b>Capbreton (La Piste)</b><br>     Heavy beach break near Hossegor, France.     </div>`)[0];
+                popup_82d675eb9f285f757932ade9de4c66a2.setContent(html_0f1c42ff72eef0eda38aa9202d7de12d);
+            
+        
+
+        marker_6da927f8bd6f51275cc71c8a3dba86c6.bindPopup(popup_82d675eb9f285f757932ade9de4c66a2)
+        ;
+
+        
+    
+    
+            var marker_3a32b98554771ad8aab11590e3a5f853 = L.marker(
+                [52.1097, 4.2737],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_b6cd7957ba5733cd53f16ee5eb98e0ff = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_3a32b98554771ad8aab11590e3a5f853.setIcon(icon_b6cd7957ba5733cd53f16ee5eb98e0ff);
+        
+    
+        var popup_e1a874e6817fc142d258eb1c61d376a5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3e62b759e8a8909394f7ee7448028b0d = $(`<div id="html_3e62b759e8a8909394f7ee7448028b0d" style="width: 100.0%; height: 100.0%;">     <b>Scheveningen</b><br>     Popular North Sea surf in The Hague, Netherlands.     </div>`)[0];
+                popup_e1a874e6817fc142d258eb1c61d376a5.setContent(html_3e62b759e8a8909394f7ee7448028b0d);
+            
+        
+
+        marker_3a32b98554771ad8aab11590e3a5f853.bindPopup(popup_e1a874e6817fc142d258eb1c61d376a5)
+        ;
+
+        
+    
+    
+            var marker_83ac66eec033b9c9edb2e44d138a2a7a = L.marker(
+                [50.4452, -5.0481],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_b7da9838ad2dacb1ffeb0ee8dc738860 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_83ac66eec033b9c9edb2e44d138a2a7a.setIcon(icon_b7da9838ad2dacb1ffeb0ee8dc738860);
+        
+    
+        var popup_b9fe2c56ff40ef196c8b45921e6bb5a5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_36dfa5da9b384dfc468f393c665c925e = $(`<div id="html_36dfa5da9b384dfc468f393c665c925e" style="width: 100.0%; height: 100.0%;">     <b>Watergate Bay</b><br>     Expansive surf beach near Newquay, England.     </div>`)[0];
+                popup_b9fe2c56ff40ef196c8b45921e6bb5a5.setContent(html_36dfa5da9b384dfc468f393c665c925e);
+            
+        
+
+        marker_83ac66eec033b9c9edb2e44d138a2a7a.bindPopup(popup_b9fe2c56ff40ef196c8b45921e6bb5a5)
+        ;
+
+        
+    
+    
+            var marker_57f069e395b6bfee39be885fd844b5e2 = L.marker(
+                [50.2831, -3.8731],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_bab488d04dc38aaa3094791e2f9c6718 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_57f069e395b6bfee39be885fd844b5e2.setIcon(icon_bab488d04dc38aaa3094791e2f9c6718);
+        
+    
+        var popup_6f40319b6aa7641818b64f804c77b3ca = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1421ba02dba6c8ca32dac7435cc83e56 = $(`<div id="html_1421ba02dba6c8ca32dac7435cc83e56" style="width: 100.0%; height: 100.0%;">     <b>Bantham</b><br>     Sheltered estuary break in South Devon, England.     </div>`)[0];
+                popup_6f40319b6aa7641818b64f804c77b3ca.setContent(html_1421ba02dba6c8ca32dac7435cc83e56);
+            
+        
+
+        marker_57f069e395b6bfee39be885fd844b5e2.bindPopup(popup_6f40319b6aa7641818b64f804c77b3ca)
+        ;
+
+        
+    
+    
+            var marker_d504232b32f8da98473f578988ab2e88 = L.marker(
+                [32.8628, -117.255],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_4f2c6ed9464078d3d0ee4df6bbdc6588 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_d504232b32f8da98473f578988ab2e88.setIcon(icon_4f2c6ed9464078d3d0ee4df6bbdc6588);
+        
+    
+        var popup_a2c7cefa494b5e54f7f120dff26a8ef3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ee98a4577ce575ccb748379b93f5df37 = $(`<div id="html_ee98a4577ce575ccb748379b93f5df37" style="width: 100.0%; height: 100.0%;">     <b>La Jolla Shores</b><br>     Popular San Diego surf spot for all levels, California.     </div>`)[0];
+                popup_a2c7cefa494b5e54f7f120dff26a8ef3.setContent(html_ee98a4577ce575ccb748379b93f5df37);
+            
+        
+
+        marker_d504232b32f8da98473f578988ab2e88.bindPopup(popup_a2c7cefa494b5e54f7f120dff26a8ef3)
+        ;
+
+        
+    
+    
+            var marker_4435b8001cf56e084a41bc72f88c43b3 = L.marker(
+                [33.654, -118.0009],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_7f5bd5ed7cc5233ab713bcde5ab3ece1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_4435b8001cf56e084a41bc72f88c43b3.setIcon(icon_7f5bd5ed7cc5233ab713bcde5ab3ece1);
+        
+    
+        var popup_7677107e20f05191357ffe7c3d8d2c7b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1f822620709e8464d8af3830814531f8 = $(`<div id="html_1f822620709e8464d8af3830814531f8" style="width: 100.0%; height: 100.0%;">     <b>Huntington Beach Pier</b><br>     Surf City USA, known for consistent beach breaks.     </div>`)[0];
+                popup_7677107e20f05191357ffe7c3d8d2c7b.setContent(html_1f822620709e8464d8af3830814531f8);
+            
+        
+
+        marker_4435b8001cf56e084a41bc72f88c43b3.bindPopup(popup_7677107e20f05191357ffe7c3d8d2c7b)
+        ;
+
+        
+    
+    
+            var marker_4408006f9e17d4a95c00b67af4f22701 = L.marker(
+                [36.9515, -122.028],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_eaec1390ad68fcd25325335aa37d00b6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_4408006f9e17d4a95c00b67af4f22701.setIcon(icon_eaec1390ad68fcd25325335aa37d00b6);
+        
+    
+        var popup_7762ac0a6736cfaacf9b238c0150a415 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3f16d8f438eed2549e5fca205e213114 = $(`<div id="html_3f16d8f438eed2549e5fca205e213114" style="width: 100.0%; height: 100.0%;">     <b>Steamer Lane</b><br>     Iconic right-hand point/reef in Santa Cruz, California.     </div>`)[0];
+                popup_7762ac0a6736cfaacf9b238c0150a415.setContent(html_3f16d8f438eed2549e5fca205e213114);
+            
+        
+
+        marker_4408006f9e17d4a95c00b67af4f22701.bindPopup(popup_7762ac0a6736cfaacf9b238c0150a415)
+        ;
+
+        
+    
+    
+            var marker_34242cf7a2589dc3300fb13fbedc9426 = L.marker(
+                [40.5867, -73.7963],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_f66a3b84ee4c112372284cc96f2d94b2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_34242cf7a2589dc3300fb13fbedc9426.setIcon(icon_f66a3b84ee4c112372284cc96f2d94b2);
+        
+    
+        var popup_5440da4e3c2a525c39ca66f38bf49cd2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f1fc94646dd924090b2782e8597e6876 = $(`<div id="html_f1fc94646dd924090b2782e8597e6876" style="width: 100.0%; height: 100.0%;">     <b>Rockaway Beach</b><br>     NYC’s accessible surf spot in Queens, New York.     </div>`)[0];
+                popup_5440da4e3c2a525c39ca66f38bf49cd2.setContent(html_f1fc94646dd924090b2782e8597e6876);
+            
+        
+
+        marker_34242cf7a2589dc3300fb13fbedc9426.bindPopup(popup_5440da4e3c2a525c39ca66f38bf49cd2)
+        ;
+
+        
+    
+    
+            var marker_742f7df006acbfe5a67c091de9c2358f = L.marker(
+                [28.32, -80.6076],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_b9aa43d931df9ba70c4c718288c17c96 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_742f7df006acbfe5a67c091de9c2358f.setIcon(icon_b9aa43d931df9ba70c4c718288c17c96);
+        
+    
+        var popup_03b346ee827d79a14f1ae52416084d1f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4fa4366e136925d35dd0f7fc20ad7f6d = $(`<div id="html_4fa4366e136925d35dd0f7fc20ad7f6d" style="width: 100.0%; height: 100.0%;">     <b>Cocoa Beach</b><br>     Birthplace of Kelly Slater, Florida’s surf hub.     </div>`)[0];
+                popup_03b346ee827d79a14f1ae52416084d1f.setContent(html_4fa4366e136925d35dd0f7fc20ad7f6d);
+            
+        
+
+        marker_742f7df006acbfe5a67c091de9c2358f.bindPopup(popup_03b346ee827d79a14f1ae52416084d1f)
+        ;
+
+        
+    
+    
+            var marker_05fe5e8e3aea5c77a03b4f32ccc0e822 = L.marker(
+                [29.0267, -80.9017],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_795b0e76a6ce1159a376a164c5767a61 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_05fe5e8e3aea5c77a03b4f32ccc0e822.setIcon(icon_795b0e76a6ce1159a376a164c5767a61);
+        
+    
+        var popup_a8970e5778bfacb43e4b5681d068858f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6391b853480a09918a555a2fe26c7e92 = $(`<div id="html_6391b853480a09918a555a2fe26c7e92" style="width: 100.0%; height: 100.0%;">     <b>New Smyrna Beach</b><br>     Consistent break, also known for shark encounters, Florida.     </div>`)[0];
+                popup_a8970e5778bfacb43e4b5681d068858f.setContent(html_6391b853480a09918a555a2fe26c7e92);
+            
+        
+
+        marker_05fe5e8e3aea5c77a03b4f32ccc0e822.bindPopup(popup_a8970e5778bfacb43e4b5681d068858f)
+        ;
+
+        
+    
+    
+            var marker_e2c56f51b31d9416c1e6d761972d2448 = L.marker(
+                [32.655, -79.9406],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_1c80de98d8973216be61c7a544623d32 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_e2c56f51b31d9416c1e6d761972d2448.setIcon(icon_1c80de98d8973216be61c7a544623d32);
+        
+    
+        var popup_a4c642acafe4922d6e9400334323b992 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a2d40192786a8004921d646d6b3dbd4a = $(`<div id="html_a2d40192786a8004921d646d6b3dbd4a" style="width: 100.0%; height: 100.0%;">     <b>Folly Beach</b><br>     Popular East Coast break near Charleston, South Carolina.     </div>`)[0];
+                popup_a4c642acafe4922d6e9400334323b992.setContent(html_a2d40192786a8004921d646d6b3dbd4a);
+            
+        
+
+        marker_e2c56f51b31d9416c1e6d761972d2448.bindPopup(popup_a4c642acafe4922d6e9400334323b992)
+        ;
+
+        
+    
+    
+            var marker_92f554212a43971f160faa5a480d2ddb = L.marker(
+                [35.2605, -75.525],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_fedb81235d814b871307bb1377bb6ab8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_92f554212a43971f160faa5a480d2ddb.setIcon(icon_fedb81235d814b871307bb1377bb6ab8);
+        
+    
+        var popup_d4c73b1752ab0937dd1fc777bf3b8bbf = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a656d12d4b64f5e1173d63bdb6e30878 = $(`<div id="html_a656d12d4b64f5e1173d63bdb6e30878" style="width: 100.0%; height: 100.0%;">     <b>Cape Hatteras</b><br>     Outer Banks, NC, known as 'The Graveyard of the Atlantic'.     </div>`)[0];
+                popup_d4c73b1752ab0937dd1fc777bf3b8bbf.setContent(html_a656d12d4b64f5e1173d63bdb6e30878);
+            
+        
+
+        marker_92f554212a43971f160faa5a480d2ddb.bindPopup(popup_d4c73b1752ab0937dd1fc777bf3b8bbf)
+        ;
+
+        
+    
+    
+            var marker_de16e98a8544b14e42d2f198637f5a5b = L.marker(
+                [27.8586, -80.4478],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_e6e33c6a2498c3f519615799700311a9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_de16e98a8544b14e42d2f198637f5a5b.setIcon(icon_e6e33c6a2498c3f519615799700311a9);
+        
+    
+        var popup_c68f425247405349f668dba0668c8742 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ce0c7eaeebbd8494348ef4f9324090c8 = $(`<div id="html_ce0c7eaeebbd8494348ef4f9324090c8" style="width: 100.0%; height: 100.0%;">     <b>Sebastian Inlet</b><br>     Florida’s consistent wave machine on the East Coast.     </div>`)[0];
+                popup_c68f425247405349f668dba0668c8742.setContent(html_ce0c7eaeebbd8494348ef4f9324090c8);
+            
+        
+
+        marker_de16e98a8544b14e42d2f198637f5a5b.bindPopup(popup_c68f425247405349f668dba0668c8742)
+        ;
+
+        
+    
+    
+            var marker_4c1f2ec6375a11dc63940d8a4e983211 = L.marker(
+                [41.4325, -71.45],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_c283d8965e80161933061340320f1571 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_4c1f2ec6375a11dc63940d8a4e983211.setIcon(icon_c283d8965e80161933061340320f1571);
+        
+    
+        var popup_5a51826b282d93009945b7e3e52e114d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ef55609a52a14be55f30beebf37d67cb = $(`<div id="html_ef55609a52a14be55f30beebf37d67cb" style="width: 100.0%; height: 100.0%;">     <b>Narragansett Town Beach</b><br>     Rhode Island’s popular surf beach.     </div>`)[0];
+                popup_5a51826b282d93009945b7e3e52e114d.setContent(html_ef55609a52a14be55f30beebf37d67cb);
+            
+        
+
+        marker_4c1f2ec6375a11dc63940d8a4e983211.bindPopup(popup_5a51826b282d93009945b7e3e52e114d)
+        ;
+
+        
+    
+    
+            var marker_cb231d9ba4f6eb15813eea815c57c43d = L.marker(
+                [41.0359, -71.9545],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_a643e82ce4fe8ced052423f6966e3ee1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_cb231d9ba4f6eb15813eea815c57c43d.setIcon(icon_a643e82ce4fe8ced052423f6966e3ee1);
+        
+    
+        var popup_706de51d340b234697b6ca4b233e7344 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_39e9c4ddb81de3e56139a7f689424d42 = $(`<div id="html_39e9c4ddb81de3e56139a7f689424d42" style="width: 100.0%; height: 100.0%;">     <b>Montauk</b><br>     Eastern tip of Long Island with beach and reef breaks.     </div>`)[0];
+                popup_706de51d340b234697b6ca4b233e7344.setContent(html_39e9c4ddb81de3e56139a7f689424d42);
+            
+        
+
+        marker_cb231d9ba4f6eb15813eea815c57c43d.bindPopup(popup_706de51d340b234697b6ca4b233e7344)
+        ;
+
+        
+    
+    
+            var marker_6110e8e58934742c0c5e1364a95ffad8 = L.marker(
+                [29.8579, -81.2656],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_38c66e09198526c76326b3a6f76cab8e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_6110e8e58934742c0c5e1364a95ffad8.setIcon(icon_38c66e09198526c76326b3a6f76cab8e);
+        
+    
+        var popup_4eea03e9b115ef2394f548799c8b7314 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_777f80935a3d005854b4aa53306948f7 = $(`<div id="html_777f80935a3d005854b4aa53306948f7" style="width: 100.0%; height: 100.0%;">     <b>St. Augustine Beach</b><br>     Fun breaks in Northeast Florida.     </div>`)[0];
+                popup_4eea03e9b115ef2394f548799c8b7314.setContent(html_777f80935a3d005854b4aa53306948f7);
+            
+        
+
+        marker_6110e8e58934742c0c5e1364a95ffad8.bindPopup(popup_4eea03e9b115ef2394f548799c8b7314)
+        ;
+
+        
+    
+    
+            var marker_5d3d6f1c23218506e8c8785ab8fe464b = L.marker(
+                [21.2674, -157.7134],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_7eee1a805e756f4afeccaa3ce3eefe29 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_5d3d6f1c23218506e8c8785ab8fe464b.setIcon(icon_7eee1a805e756f4afeccaa3ce3eefe29);
+        
+    
+        var popup_0eddb9fb8d5e4bdbfed38667b4989257 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_121fc74da25721e71088d436d3ba123b = $(`<div id="html_121fc74da25721e71088d436d3ba123b" style="width: 100.0%; height: 100.0%;">     <b>China Walls</b><br>     Oahu spot more known for cliff jumps, but occasional surf.     </div>`)[0];
+                popup_0eddb9fb8d5e4bdbfed38667b4989257.setContent(html_121fc74da25721e71088d436d3ba123b);
+            
+        
+
+        marker_5d3d6f1c23218506e8c8785ab8fe464b.bindPopup(popup_0eddb9fb8d5e4bdbfed38667b4989257)
+        ;
+
+        
+    
+    
+            var marker_7a338ed95420e3625e8c1d192f956d7f = L.marker(
+                [21.0167, -156.6372],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_b9812b4e1fc6795d47d3f42675dcd002 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_7a338ed95420e3625e8c1d192f956d7f.setIcon(icon_b9812b4e1fc6795d47d3f42675dcd002);
+        
+    
+        var popup_cb4a0ec27a18671228a326c41a4f038b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a6c2360a3dd3a3529742cba408b1a820 = $(`<div id="html_a6c2360a3dd3a3529742cba408b1a820" style="width: 100.0%; height: 100.0%;">     <b>Honolua Bay</b><br>     Classic right-hand point on Maui, Hawaii.     </div>`)[0];
+                popup_cb4a0ec27a18671228a326c41a4f038b.setContent(html_a6c2360a3dd3a3529742cba408b1a820);
+            
+        
+
+        marker_7a338ed95420e3625e8c1d192f956d7f.bindPopup(popup_cb4a0ec27a18671228a326c41a4f038b)
+        ;
+
+        
+    
+    
+            var marker_afaa6679005abd4a6c6e2d48cc259c1c = L.marker(
+                [13.1039, -59.4438],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_549e1c520cfd918bdbd8fd3c4baa7a23 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_afaa6679005abd4a6c6e2d48cc259c1c.setIcon(icon_549e1c520cfd918bdbd8fd3c4baa7a23);
+        
+    
+        var popup_534d7b69af4375a08a7243f1d4c1273f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0425cbcdf2b977a56a3bfe23e3bc4e5d = $(`<div id="html_0425cbcdf2b977a56a3bfe23e3bc4e5d" style="width: 100.0%; height: 100.0%;">     <b>Crane Beach</b><br>     Beautiful spot in Barbados with consistent surf.     </div>`)[0];
+                popup_534d7b69af4375a08a7243f1d4c1273f.setContent(html_0425cbcdf2b977a56a3bfe23e3bc4e5d);
+            
+        
+
+        marker_afaa6679005abd4a6c6e2d48cc259c1c.bindPopup(popup_534d7b69af4375a08a7243f1d4c1273f)
+        ;
+
+        
+    
+    
+            var marker_3b6f26a940383daca5eec825db4c6ffe = L.marker(
+                [13.2105, -59.5236],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_ced3bdff0f0b8e690a2f58742f01a152 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_3b6f26a940383daca5eec825db4c6ffe.setIcon(icon_ced3bdff0f0b8e690a2f58742f01a152);
+        
+    
+        var popup_7bcd65bd84c7064c8842f8dac9987285 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_eecb1687023fff149e3db2cf4627e0be = $(`<div id="html_eecb1687023fff149e3db2cf4627e0be" style="width: 100.0%; height: 100.0%;">     <b>Soup Bowl</b><br>     Barbados’ premier wave, a right reef break in Bathsheba.     </div>`)[0];
+                popup_7bcd65bd84c7064c8842f8dac9987285.setContent(html_eecb1687023fff149e3db2cf4627e0be);
+            
+        
+
+        marker_3b6f26a940383daca5eec825db4c6ffe.bindPopup(popup_7bcd65bd84c7064c8842f8dac9987285)
+        ;
+
+        
+    
+    
+            var marker_257e55824fd272ab36b863357e78295d = L.marker(
+                [18.3402, -67.2512],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_6f67433ff96ea99f916722d8d0917836 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_257e55824fd272ab36b863357e78295d.setIcon(icon_6f67433ff96ea99f916722d8d0917836);
+        
+    
+        var popup_abc0ac32d90c5bfe744e530d323e1760 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5f89f2a95acfdfc6bfb2109e3720b937 = $(`<div id="html_5f89f2a95acfdfc6bfb2109e3720b937" style="width: 100.0%; height: 100.0%;">     <b>Rincón, Puerto Rico</b><br>     Caribbean surf mecca with multiple breaks.     </div>`)[0];
+                popup_abc0ac32d90c5bfe744e530d323e1760.setContent(html_5f89f2a95acfdfc6bfb2109e3720b937);
+            
+        
+
+        marker_257e55824fd272ab36b863357e78295d.bindPopup(popup_abc0ac32d90c5bfe744e530d323e1760)
+        ;
+
+        
+    
+    
+            var marker_dda6397691831a3b3a2d2d5539697c94 = L.marker(
+                [18.4746, -66.1132],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_8a19a978b4ffb845865f695b6df3ff80 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_dda6397691831a3b3a2d2d5539697c94.setIcon(icon_8a19a978b4ffb845865f695b6df3ff80);
+        
+    
+        var popup_b926fe8c8e54607f06fdfa209f24bfbf = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e9c3ea0a20d4f746e0e838cc6b50e452 = $(`<div id="html_e9c3ea0a20d4f746e0e838cc6b50e452" style="width: 100.0%; height: 100.0%;">     <b>La Ocho</b><br>     San Juan reef break in Puerto Rico.     </div>`)[0];
+                popup_b926fe8c8e54607f06fdfa209f24bfbf.setContent(html_e9c3ea0a20d4f746e0e838cc6b50e452);
+            
+        
+
+        marker_dda6397691831a3b3a2d2d5539697c94.bindPopup(popup_b926fe8c8e54607f06fdfa209f24bfbf)
+        ;
+
+        
+    
+    
+            var marker_47b48720fd43c2f95cccf2ea6b2311df = L.marker(
+                [18.5121, -67.0526],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_39f5542f3781dc13130d46e1c95abf1a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_47b48720fd43c2f95cccf2ea6b2311df.setIcon(icon_39f5542f3781dc13130d46e1c95abf1a);
+        
+    
+        var popup_faa71b41673777f4515577f971f50be2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3784cd4a20085a8c7355c1b5ef37f1e4 = $(`<div id="html_3784cd4a20085a8c7355c1b5ef37f1e4" style="width: 100.0%; height: 100.0%;">     <b>Jobos Beach</b><br>     One of Isabela’s favorite surfing beaches, Puerto Rico.     </div>`)[0];
+                popup_faa71b41673777f4515577f971f50be2.setContent(html_3784cd4a20085a8c7355c1b5ef37f1e4);
+            
+        
+
+        marker_47b48720fd43c2f95cccf2ea6b2311df.bindPopup(popup_faa71b41673777f4515577f971f50be2)
+        ;
+
+        
+    
+    
+            var marker_ec616bc3c2621340a8437f60cb751378 = L.marker(
+                [0.7438, -90.3055],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_6afb5f299b7b369faaa2b3f24e8030b2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_ec616bc3c2621340a8437f60cb751378.setIcon(icon_6afb5f299b7b369faaa2b3f24e8030b2);
+        
+    
+        var popup_5c412c65e61b478165426df439d471ad = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9d188c24041c8df45ea9be11a1ff1148 = $(`<div id="html_9d188c24041c8df45ea9be11a1ff1148" style="width: 100.0%; height: 100.0%;">     <b>Tortuga Bay</b><br>     Galápagos Islands break, requires boat access.     </div>`)[0];
+                popup_5c412c65e61b478165426df439d471ad.setContent(html_9d188c24041c8df45ea9be11a1ff1148);
+            
+        
+
+        marker_ec616bc3c2621340a8437f60cb751378.bindPopup(popup_5c412c65e61b478165426df439d471ad)
+        ;
+
+        
+    
+    
+            var marker_f45b65e15e0ab4b32074631575a77bd7 = L.marker(
+                [-0.9022, -89.619],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_09d5d1dec6bbee74a7e3aee121585585 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_f45b65e15e0ab4b32074631575a77bd7.setIcon(icon_09d5d1dec6bbee74a7e3aee121585585);
+        
+    
+        var popup_ff75b2bfe9a9f16fab52a9ae52a3c107 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0231bff33d14ca63ae502f5bbb72f1fa = $(`<div id="html_0231bff33d14ca63ae502f5bbb72f1fa" style="width: 100.0%; height: 100.0%;">     <b>San Cristóbal (Tongo Reef)</b><br>     Galápagos wave, consistent but remote.     </div>`)[0];
+                popup_ff75b2bfe9a9f16fab52a9ae52a3c107.setContent(html_0231bff33d14ca63ae502f5bbb72f1fa);
+            
+        
+
+        marker_f45b65e15e0ab4b32074631575a77bd7.bindPopup(popup_ff75b2bfe9a9f16fab52a9ae52a3c107)
+        ;
+
+        
+    
+    
+            var marker_c8322493977917e4a0c645c23bc0fc0d = L.marker(
+                [-37.8132, 174.7853],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_99a8c28f9f094a1a2d165397049f84e7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_c8322493977917e4a0c645c23bc0fc0d.setIcon(icon_99a8c28f9f094a1a2d165397049f84e7);
+        
+    
+        var popup_b1b00b53951b6de409c675e36d554f5c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f8b30a764cd921ce4af06ee8cf1e28a2 = $(`<div id="html_f8b30a764cd921ce4af06ee8cf1e28a2" style="width: 100.0%; height: 100.0%;">     <b>Manu Bay</b><br>     Raglan area break, known for very long rides, New Zealand.     </div>`)[0];
+                popup_b1b00b53951b6de409c675e36d554f5c.setContent(html_f8b30a764cd921ce4af06ee8cf1e28a2);
+            
+        
+
+        marker_c8322493977917e4a0c645c23bc0fc0d.bindPopup(popup_b1b00b53951b6de409c675e36d554f5c)
+        ;
+
+        
+    
+    
+            var marker_9fe0c23db4890d0080d523479a943e97 = L.marker(
+                [32.8225, 34.9885],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_8ddc32eac438738aac7449f93b861a2c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_9fe0c23db4890d0080d523479a943e97.setIcon(icon_8ddc32eac438738aac7449f93b861a2c);
+        
+    
+        var popup_1a9dae43c8265ce9eb3244ca64d5cb36 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bdb4825b6c71c39a6f2c511a8c9e1d6c = $(`<div id="html_bdb4825b6c71c39a6f2c511a8c9e1d6c" style="width: 100.0%; height: 100.0%;">     <b>Waves in Haifa</b><br>     Israel’s largest city break, region’s surf culture hub.     </div>`)[0];
+                popup_1a9dae43c8265ce9eb3244ca64d5cb36.setContent(html_bdb4825b6c71c39a6f2c511a8c9e1d6c);
+            
+        
+
+        marker_9fe0c23db4890d0080d523479a943e97.bindPopup(popup_1a9dae43c8265ce9eb3244ca64d5cb36)
+        ;
+
+        
+    
+    
+            var marker_969b2d6bd4f85e790180351a17608575 = L.marker(
+                [32.0461, 34.7374],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_14d24868983cef1348c768d5fa77e556 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_969b2d6bd4f85e790180351a17608575.setIcon(icon_14d24868983cef1348c768d5fa77e556);
+        
+    
+        var popup_af80ff74d399e97f29e4cf48672fd720 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_91fe995c306e73c2b760b262a6a310c6 = $(`<div id="html_91fe995c306e73c2b760b262a6a310c6" style="width: 100.0%; height: 100.0%;">     <b>Jaffa Beach</b><br>     Tel Aviv’s surf spot near the ancient port of Jaffa.     </div>`)[0];
+                popup_af80ff74d399e97f29e4cf48672fd720.setContent(html_91fe995c306e73c2b760b262a6a310c6);
+            
+        
+
+        marker_969b2d6bd4f85e790180351a17608575.bindPopup(popup_af80ff74d399e97f29e4cf48672fd720)
+        ;
+
+        
+    
+    
+            var marker_afa7df4e36040e3ac1f00b85e0a821df = L.marker(
+                [-2.6745, 141.305],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_f94f5ceab6211deb587b3bdf57ed3d02 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_afa7df4e36040e3ac1f00b85e0a821df.setIcon(icon_f94f5ceab6211deb587b3bdf57ed3d02);
+        
+    
+        var popup_9f748e448dbd9daf5b968e239440710b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6755373725f149278f721c141b53e854 = $(`<div id="html_6755373725f149278f721c141b53e854" style="width: 100.0%; height: 100.0%;">     <b>Vanimo</b><br>     Remote surfing in Papua New Guinea.     </div>`)[0];
+                popup_9f748e448dbd9daf5b968e239440710b.setContent(html_6755373725f149278f721c141b53e854);
+            
+        
+
+        marker_afa7df4e36040e3ac1f00b85e0a821df.bindPopup(popup_9f748e448dbd9daf5b968e239440710b)
+        ;
+
+        
+    
+    
+            var marker_027238917dcc9b0b723065f62a400fe8 = L.marker(
+                [9.7995, 126.131],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_ec91149cbd9c84f6d8c3d8dbfef7cb5e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_027238917dcc9b0b723065f62a400fe8.setIcon(icon_ec91149cbd9c84f6d8c3d8dbfef7cb5e);
+        
+    
+        var popup_09134032ae83ff0ad1a8e472653b15b5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_665f9bc86f2c39bb9bd22fe91875431b = $(`<div id="html_665f9bc86f2c39bb9bd22fe91875431b" style="width: 100.0%; height: 100.0%;">     <b>Alegria, Siargao</b><br>     Less-crowded break on the surfing capital of the Philippines.     </div>`)[0];
+                popup_09134032ae83ff0ad1a8e472653b15b5.setContent(html_665f9bc86f2c39bb9bd22fe91875431b);
+            
+        
+
+        marker_027238917dcc9b0b723065f62a400fe8.bindPopup(popup_09134032ae83ff0ad1a8e472653b15b5)
+        ;
+
+        
+    
+    
+            var marker_f46cd73eae17571354e8af072d3c74b4 = L.marker(
+                [9.7994, 126.1615],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_96d76f2b9d697a6e8b84f201356fb073 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_f46cd73eae17571354e8af072d3c74b4.setIcon(icon_96d76f2b9d697a6e8b84f201356fb073);
+        
+    
+        var popup_3c48310b0f6960c0379a7e7ba4628be4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_57be9089d56e1603c7c3c714453a4045 = $(`<div id="html_57be9089d56e1603c7c3c714453a4045" style="width: 100.0%; height: 100.0%;">     <b>Cloud 9</b><br>     World-famous right-hand barreling reef break on Siargao Island.     </div>`)[0];
+                popup_3c48310b0f6960c0379a7e7ba4628be4.setContent(html_57be9089d56e1603c7c3c714453a4045);
+            
+        
+
+        marker_f46cd73eae17571354e8af072d3c74b4.bindPopup(popup_3c48310b0f6960c0379a7e7ba4628be4)
+        ;
+
+        
+    
+    
+            var marker_ed638e955d91b9e3858566a33ce41d9e = L.marker(
+                [9.7647, 126.1514],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_83596b60bad85589f3a096a120502750 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_ed638e955d91b9e3858566a33ce41d9e.setIcon(icon_83596b60bad85589f3a096a120502750);
+        
+    
+        var popup_fb1020fb46ee05cf459444a903d240b3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1e892020d77c74a1bb6d84cb3064c754 = $(`<div id="html_1e892020d77c74a1bb6d84cb3064c754" style="width: 100.0%; height: 100.0%;">     <b>General Luna (GL) Beach</b><br>     Multiple waves in Siargao’s prime surf zone.     </div>`)[0];
+                popup_fb1020fb46ee05cf459444a903d240b3.setContent(html_1e892020d77c74a1bb6d84cb3064c754);
+            
+        
+
+        marker_ed638e955d91b9e3858566a33ce41d9e.bindPopup(popup_fb1020fb46ee05cf459444a903d240b3)
+        ;
+
+        
+    
+    
+            var marker_f132130cfe815b59e3840b0a488dc50e = L.marker(
+                [15.7573, 121.5713],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_0fb6fcae8add761087adbfca6678e142 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_f132130cfe815b59e3840b0a488dc50e.setIcon(icon_0fb6fcae8add761087adbfca6678e142);
+        
+    
+        var popup_5ab5305e49a0d3acf14f62688783208e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f70f8dfed6d88896947536837f54a08f = $(`<div id="html_f70f8dfed6d88896947536837f54a08f" style="width: 100.0%; height: 100.0%;">     <b>Baler (Cemento Beach)</b><br>     Historic surf spot in Aurora Province, Philippines.     </div>`)[0];
+                popup_5ab5305e49a0d3acf14f62688783208e.setContent(html_f70f8dfed6d88896947536837f54a08f);
+            
+        
+
+        marker_f132130cfe815b59e3840b0a488dc50e.bindPopup(popup_5ab5305e49a0d3acf14f62688783208e)
+        ;
+
+        
+    
+    
+            var marker_e637746b776e69d16d763025df533e84 = L.marker(
+                [43.8, -69.5],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_dd46fdafec37a6d3da47e5c4074e410c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_e637746b776e69d16d763025df533e84.setIcon(icon_dd46fdafec37a6d3da47e5c4074e410c);
+        
+    
+        var popup_4ebf5c0fd9f5e67f254103e09aa8224f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bc29fafa894328999b0000a99309cadf = $(`<div id="html_bc29fafa894328999b0000a99309cadf" style="width: 100.0%; height: 100.0%;">     <b>Secret Spot, Maine</b><br>     Cold-water surf on the U.S. Northeast coast.     </div>`)[0];
+                popup_4ebf5c0fd9f5e67f254103e09aa8224f.setContent(html_bc29fafa894328999b0000a99309cadf);
+            
+        
+
+        marker_e637746b776e69d16d763025df533e84.bindPopup(popup_4ebf5c0fd9f5e67f254103e09aa8224f)
+        ;
+
+        
+    
+    
+            var marker_6cd582f4f3fbaae391f53acb06ab47ec = L.marker(
+                [18.2754, -103.4136],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_5dd86fb8d0ad32bcda943e5540b63d27 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_6cd582f4f3fbaae391f53acb06ab47ec.setIcon(icon_5dd86fb8d0ad32bcda943e5540b63d27);
+        
+    
+        var popup_1b790b9ef047e6b006eb4ff2737f2624 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bfd535d4d69696f38369c959ab9e8f21 = $(`<div id="html_bfd535d4d69696f38369c959ab9e8f21" style="width: 100.0%; height: 100.0%;">     <b>La Ticla</b><br>     A remote left point in Michoacán, Mexico.     </div>`)[0];
+                popup_1b790b9ef047e6b006eb4ff2737f2624.setContent(html_bfd535d4d69696f38369c959ab9e8f21);
+            
+        
+
+        marker_6cd582f4f3fbaae391f53acb06ab47ec.bindPopup(popup_1b790b9ef047e6b006eb4ff2737f2624)
+        ;
+
+        
+    
+    
+            var marker_27bc0f3442cd6003ee9e90fb995ab1ae = L.marker(
+                [13.1924, -88.093],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_99f2a8a9694778e11376875e7eabfb4b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_27bc0f3442cd6003ee9e90fb995ab1ae.setIcon(icon_99f2a8a9694778e11376875e7eabfb4b);
+        
+    
+        var popup_bb70e28efc5188806697af3599858e97 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ea28adbbc29c199f30107007027927ac = $(`<div id="html_ea28adbbc29c199f30107007027927ac" style="width: 100.0%; height: 100.0%;">     <b>Punta Mango</b><br>     Heavy right-hand point in eastern El Salvador.     </div>`)[0];
+                popup_bb70e28efc5188806697af3599858e97.setContent(html_ea28adbbc29c199f30107007027927ac);
+            
+        
+
+        marker_27bc0f3442cd6003ee9e90fb995ab1ae.bindPopup(popup_bb70e28efc5188806697af3599858e97)
+        ;
+
+        
+    
+    
+            var marker_22c31df0f625fdd9115315e779326c72 = L.marker(
+                [13.4886, -89.329],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_159727c5517a01aebe2f594a485385d5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_22c31df0f625fdd9115315e779326c72.setIcon(icon_159727c5517a01aebe2f594a485385d5);
+        
+    
+        var popup_6e6fe6f60cc1dffac1498f8fc8a6d6dd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_99d74058f500e4e1b5d560b6059d0a51 = $(`<div id="html_99d74058f500e4e1b5d560b6059d0a51" style="width: 100.0%; height: 100.0%;">     <b>Bocana, El Tunco</b><br>     Short, hollow wave at popular El Salvador surf town.     </div>`)[0];
+                popup_6e6fe6f60cc1dffac1498f8fc8a6d6dd.setContent(html_99d74058f500e4e1b5d560b6059d0a51);
+            
+        
+
+        marker_22c31df0f625fdd9115315e779326c72.bindPopup(popup_6e6fe6f60cc1dffac1498f8fc8a6d6dd)
+        ;
+
+        
+    
+    
+            var marker_71aaa502e0afc98c93b5f66f9fa9d5ff = L.marker(
+                [-2.9382, 99.8609],
+                {
+}
+            ).addTo(map_3e6fb2bbdbb294faea1d9a565cf7c8ed);
+        
+    
+            var icon_66d1b1bfc7df0e66a3d4a8b7a31aa537 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "surfing",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_71aaa502e0afc98c93b5f66f9fa9d5ff.setIcon(icon_66d1b1bfc7df0e66a3d4a8b7a31aa537);
+        
+    
+        var popup_8e7eecc407902062d8de066a522c5c7e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b319d1e7f52fab602549b7dc40a13ec0 = $(`<div id="html_b319d1e7f52fab602549b7dc40a13ec0" style="width: 100.0%; height: 100.0%;">     <b>Macaronis</b><br>     Mentawai reef break known for machine-like perfection.     </div>`)[0];
+                popup_8e7eecc407902062d8de066a522c5c7e.setContent(html_b319d1e7f52fab602549b7dc40a13ec0);
+            
+        
+
+        marker_71aaa502e0afc98c93b5f66f9fa9d5ff.bindPopup(popup_8e7eecc407902062d8de066a522c5c7e)
+        ;
+
+        
+    
+</script>
+</html>
