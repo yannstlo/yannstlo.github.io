@@ -42,10 +42,27 @@
                     top: 0.0%;
                 }
                 .leaflet-container { font-size: 1rem; }
+                .map-title {
+                    position: absolute;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    z-index: 999;
+                    background-color: rgba(0, 0, 0, 0.7);
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    color: white;
+                    font-family: Arial, sans-serif;
+                    font-size: 24px;
+                    font-weight: bold;
+                    text-align: center;
+                }
             </style>
 
     </head>
     <body>
+
+        <div class="map-title">World's Best Surf Spots</div>
 
         <div class="folium-map" id="map_3e6fb2bbdbb294faea1d9a565cf7c8ed"></div>
 
@@ -224,7 +241,7 @@
 
         
             
-                var html_e4b7c7a0a2e8fb23036d15a244158bdc = $(`<div id="html_e4b7c7a0a2e8fb23036d15a244158bdc" style="width: 100.0%; height: 100.0%;">     <b>Cloudbreak</b><br>     A world-class left reef pass near Tavarua Island, Fiji.     </div>`)[0];
+                var html_e4b7c7a0a2e8fb23036d15a244158bdc = $(`<div id="html_e4b7c7a0a2e8fb23036d15a244158bdc" style="width: 100.0%; height: 0.0%;">     <b>Cloudbreak</b><br>     A world-class left reef pass near Tavarua Island, Fiji.     </div>`)[0];
                 popup_a4f9f165b95ba3b6af9cd3f77ca8a3f0.setContent(html_e4b7c7a0a2e8fb23036d15a244158bdc);
             
         
