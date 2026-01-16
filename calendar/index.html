@@ -107,6 +107,51 @@
             background: rgba(255, 255, 255, 0.18);
         }
 
+        .availability {
+            margin-top: 16px;
+            font-weight: 600;
+        }
+
+        .store-badge {
+            margin-top: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .store-badge svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .store-badge span {
+            display: flex;
+            flex-direction: column;
+            font-size: 0.75rem;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .store-badge strong {
+            font-size: 0.95rem;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .store-note {
+            margin-top: 6px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
         .info {
             display: grid;
             gap: 12px;
@@ -202,12 +247,23 @@
                     <a class="cta" href="#screenshots">See screenshots</a>
                     <a class="cta secondary" href="privacy/">Privacy policy</a>
                 </div>
+                <p class="availability">Available on iPhone, iPad, and Mac.</p>
             </div>
             <div class="hero-card" aria-hidden="true">
                 <canvas id="glCanvas"></canvas>
                 <div class="hero-card-content">
                     <img class="icon" src="../images/calendar/appicon.png" alt="Photo Calendar Maker app icon">
                     <p>Simple, privacy-first calendar maker for iPhone.</p>
+                    <div class="store-badge" role="img" aria-label="App Store badge placeholder">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M17.49 12.37c-.03-3.1 2.53-4.58 2.64-4.65-1.43-2.08-3.67-2.36-4.46-2.39-1.88-.19-3.69 1.1-4.64 1.1-.98 0-2.45-1.08-4.03-1.05-2.07.03-4 1.22-5.05 3.05-2.19 3.8-.56 9.4 1.55 12.47 1.06 1.5 2.3 3.17 3.94 3.11 1.6-.06 2.2-1.02 4.12-1.02 1.9 0 2.48 1.02 4.12.99 1.72-.03 2.81-1.54 3.83-3.05 1.22-1.73 1.71-3.43 1.73-3.52-.04-.01-3.31-1.26-3.35-4.04zM15.95 4.04c.86-1.08 1.44-2.56 1.28-4.04-1.24.05-2.78.84-3.67 1.91-.8.94-1.51 2.45-1.32 3.89 1.38.1 2.84-.72 3.71-1.76z" />
+                        </svg>
+                        <span>
+                            <span>Coming soon on</span>
+                            <strong>App Store</strong>
+                        </span>
+                    </div>
+                    <div class="store-note">Listing goes live soon.</div>
                 </div>
             </div>
         </section>
