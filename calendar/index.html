@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Calendar Maker - Yann Saint-Laurent</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap">
+    <style>
+        :root {
+            color-scheme: light;
+            --text: #1e1e1e;
+            --muted: #5c5c5c;
+            --card: #ffffff;
+            --border: #e5e5e5;
+            --shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text);
+            background: #f7f7f7;
+            min-height: 100vh;
+        }
+
+        main {
+            width: min(1080px, 92vw);
+            margin: 0 auto;
+            padding: 48px 0 80px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-card {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            background: #0c111b;
+            color: #fff;
+            box-shadow: var(--shadow);
+            min-height: 240px;
+            padding: 28px;
+        }
+
+        .hero-card canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.55;
+        }
+
+        .hero-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .icon {
+            width: 96px;
+            height: 96px;
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin: 0 0 12px;
+        }
+
+        p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .cta.secondary {
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .info {
+            display: grid;
+            gap: 12px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: #f1f1f1;
+            color: var(--muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .screenshots {
+            margin-top: 56px;
+            display: grid;
+            gap: 20px;
+        }
+
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .screenshot {
+            border-radius: 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 14px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .screenshot img {
+            width: 100%;
+            border-radius: 16px;
+            display: block;
+        }
+
+        .section {
+            margin-top: 56px;
+            background: var(--card);
+            border-radius: 24px;
+            padding: 28px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+        }
+
+        .section h2 {
+            margin-top: 0;
+        }
+
+        .list {
+            margin: 16px 0 0;
+            padding-left: 20px;
+        }
+
+        .list li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links {
+            margin-top: 24px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section class="hero">
+            <div class="info">
+                <span class="tag">Photo Calendar Maker</span>
+                <h1>Turn your photos into beautiful monthly calendars.</h1>
+                <p>Create a clean, modern calendar from your favorite images. Choose layouts, add details, and export a polished calendar ready to share or print directly from your iPhone or iPad.</p>
+                <div class="cta-row">
+                    <a class="cta" href="#screenshots">See screenshots</a>
+                    <a class="cta secondary" href="privacy/">Privacy policy</a>
+                </div>
+            </div>
+            <div class="hero-card" aria-hidden="true">
+                <canvas id="glCanvas"></canvas>
+                <div class="hero-card-content">
+                    <img class="icon" src="../images/calendar/appicon.png" alt="Photo Calendar Maker app icon">
+                    <p>Simple, privacy-first calendar maker for iPhone.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="screenshots" id="screenshots">
+            <h2>Screenshots</h2>
+            <div class="screenshots-grid">
+                <div class="screenshot">
+                    <img src="../images/calendar/image1.jpg" alt="Photo Calendar Maker screenshot 1">
+                </div>
+                <div class="screenshot">
+                    <img src="../images/calendar/image2.jpg" alt="Photo Calendar Maker screenshot 2">
+                </div>
+                <div class="screenshot">
+                    <img src="../images/calendar/image3.jpg" alt="Photo Calendar Maker screenshot 3">
+                </div>
+                <div class="screenshot">
+                    <img src="../images/calendar/image4.jpg" alt="Photo Calendar Maker screenshot 4">
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>What you can do</h2>
+            <ul class="list">
+                <li>Pick photos for each month and customize the layout.</li>
+                <li>Adjust colors and typography to fit your style.</li>
+                <li>Preview the full year before exporting.</li>
+                <li>Export high-resolution pages ready for printing.</li>
+            </ul>
+            <div class="footer-links">
+                <a href="privacy/">Read the privacy policy</a>
+                <a href="/">Back to yann.ca</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="../shader.js"></script>
+</body>
+
+</html>
