@@ -25,9 +25,9 @@
       "details": "Coquihalla Summit Recreation Area, British Columbia"
     },
     {
-      "name": "Hope Peak (Little Sister)",
-      "lat": 51.02500,
-      "lon": -115.33333,
+      "name": "Hope Peak (Middle Sister)",
+      "lat": 51.02287433659226,
+      "lon": -115.34037312369695,
       "details": "The Three Sisters, Canmore, Alberta"
     },
     {
@@ -146,9 +146,9 @@
     },
     {
       "name": "Flora Peak",
-      "lat": 50.66241,
-      "lon": -125.76209,
-      "details": "British Columbia"
+      "lat": 49.11310379114773,
+      "lon": -121.42891177680751,
+      "details": "Fraser Valley, British Columbia"
     },
     {
       "name": "Mount MacFarlane",
