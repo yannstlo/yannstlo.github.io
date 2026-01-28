@@ -1,0 +1,208 @@
+{
+  "Peaks": [
+    {
+      "name": "Whistler Mountain",
+      "lat": 50.05917,
+      "lon": -122.95694,
+      "details": "Whistler, British Columbia"
+    },
+    {
+      "name": "Whirlwind Peak",
+      "lat": 50.00889,
+      "lon": -122.84167,
+      "details": "Garibaldi Provincial Park, British Columbia"
+    },
+    {
+      "name": "Overlord Mountain",
+      "lat": 50.01556,
+      "lon": -122.82083,
+      "details": "Garibaldi Provincial Park, British Columbia"
+    },
+    {
+      "name": "Needle Peak",
+      "lat": 49.57083,
+      "lon": -121.12528,
+      "details": "Coquihalla Summit Recreation Area, British Columbia"
+    },
+    {
+      "name": "Hope Peak (Little Sister)",
+      "lat": 51.02500,
+      "lon": -115.33333,
+      "details": "The Three Sisters, Canmore, Alberta"
+    },
+    {
+      "name": "East End of Rundle",
+      "lat": 51.08056,
+      "lon": -115.42111,
+      "details": "Canmore, Alberta"
+    },
+    {
+      "name": "King's Throne Peak",
+      "lat": 60.5468943,
+      "lon": -137.2601030,
+      "details": "Kluane National Park, Yukon"
+    },
+    {
+      "name": "Golden Ears",
+      "lat": 49.36278,
+      "lon": -122.50750,
+      "details": "Golden Ears Provincial Park, British Columbia"
+    },
+    {
+      "name": "Dunkeld Peak",
+      "lat": 49.607074850020915,
+      "lon": -122.87918262467726,
+      "details": "Sea-to-Sky, British Columbia"
+    },
+    {
+      "name": "Second Peak (Stawamus Chief)",
+      "lat": 49.6867,
+      "lon": -123.135,
+      "details": "Stawamus Chief, Squamish, British Columbia (approx.)"
+    },
+    {
+      "name": "First Peak (Stawamus Chief)",
+      "lat": 49.6867,
+      "lon": -123.135,
+      "details": "Stawamus Chief, Squamish, British Columbia (approx.)"
+    },
+    {
+      "name": "The Black Tusk",
+      "lat": 49.97528,
+      "lon": -123.04278,
+      "details": "Garibaldi Provincial Park, British Columbia"
+    },
+    {
+      "name": "Three Stooges",
+      "lat": 50.4879940,
+      "lon": -123.4451360,
+      "details": "Southwest British Columbia"
+    },
+    {
+      "name": "Mount Rohr",
+      "lat": 50.39778,
+      "lon": -122.40889,
+      "details": "Cayoosh Range, British Columbia"
+    },
+    {
+      "name": "Mount Beautiful",
+      "lat": 49.3763610,
+      "lon": -122.8264175,
+      "details": "Metro Vancouver, British Columbia"
+    },
+    {
+      "name": "Mount Fromme",
+      "lat": 49.38333,
+      "lon": -123.05639,
+      "details": "North Vancouver, British Columbia"
+    },
+    {
+      "name": "Saint Marks Summit",
+      "lat": 49.4281079,
+      "lon": -123.2058112,
+      "details": "Howe Sound Crest Trail, British Columbia"
+    },
+    {
+      "name": "Mount Harvey",
+      "lat": 49.47528,
+      "lon": -123.20000,
+      "details": "Lions Bay, British Columbia"
+    },
+    {
+      "name": "Anvil Island",
+      "lat": 49.530000,
+      "lon": -123.309000,
+      "details": "Howe Sound, British Columbia"
+    },
+    {
+      "name": "Blackcomb Peak",
+      "lat": 50.08139,
+      "lon": -122.87083,
+      "details": "Whistler, British Columbia"
+    },
+    {
+      "name": "Tricouni Peak",
+      "lat": 50.0137330,
+      "lon": -123.244738833,
+      "details": "Southwest British Columbia"
+    },
+    {
+      "name": "Mount Brew",
+      "lat": 50.04361,
+      "lon": -123.18861,
+      "details": "Southwest British Columbia"
+    },
+    {
+      "name": "Round Top",
+      "lat": 45.0808658,
+      "lon": -72.5465083,
+      "details": "Sutton, Quebec"
+    },
+    {
+      "name": "Mount Geoffrey Summit",
+      "lat": 49.51833,
+      "lon": -124.68417,
+      "details": "Hornby Island, British Columbia"
+    },
+    {
+      "name": "Flora Peak",
+      "lat": 50.66241,
+      "lon": -125.76209,
+      "details": "British Columbia"
+    },
+    {
+      "name": "Mount MacFarlane",
+      "lat": 49.0505,
+      "lon": -121.6176,
+      "details": "Fraser Valley, British Columbia"
+    },
+    {
+      "name": "Mount St. Benedict",
+      "lat": 49.3013084,
+      "lon": -122.2031590,
+      "details": "Fraser Valley, British Columbia"
+    },
+    {
+      "name": "Cheam Peak",
+      "lat": 49.18667,
+      "lon": -121.68167,
+      "details": "Chilliwack, British Columbia"
+    },
+    {
+      "name": "Camelback Mountain",
+      "lat": 33.514723847,
+      "lon": -111.961604211,
+      "details": "Phoenix, Arizona"
+    },
+    {
+      "name": "Tom's Thumb",
+      "lat": 33.6818210,
+      "lon": -111.8113990,
+      "details": "McDowell Mountains, Arizona"
+    },
+    {
+      "name": "Elk Mountain",
+      "lat": 49.1133583,
+      "lon": -121.8033889,
+      "details": "Chilliwack, British Columbia"
+    },
+    {
+      "name": "Three Brothers Mountain",
+      "lat": 49.1633328,
+      "lon": -120.7748079,
+      "details": "Manning Park, British Columbia"
+    },
+    {
+      "name": "Frosty Mountain",
+      "lat": 49.01333,
+      "lon": -120.84778,
+      "details": "Manning Park, British Columbia"
+    },
+    {
+      "name": "Eastern Lookout",
+      "lat": 49.118990,
+      "lon": -122.131420,
+      "details": "Sumas Mountain, British Columbia"
+    }
+  ]
+}
