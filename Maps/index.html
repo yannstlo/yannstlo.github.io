@@ -36,6 +36,31 @@
         font-weight: 600;
         color: #222;
       }
+      .leaflet-popup-content {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+      .popup-actions {
+        margin-top: 8px;
+        display: flex;
+        gap: 6px;
+      }
+      .popup-button {
+        appearance: none;
+        border: 1px solid #1e5b93;
+        background: #1e5b93;
+        color: #fff;
+        border-radius: 6px;
+        padding: 4px 8px;
+        font-size: 0.8rem;
+        cursor: pointer;
+      }
+      .popup-button:hover {
+        background: #174a78;
+      }
+      .popup-button:disabled {
+        opacity: 0.7;
+        cursor: default;
+      }
     </style>
   </head>
   <body>
@@ -72,7 +97,15 @@
             }
             const marker = L.marker([peak.lat, peak.lon]).addTo(map);
             const details = peak.details ? `<br>${peak.details}` : "";
-            marker.bindPopup(`<b>${peak.name}</b>${details}`);
+            const popupContent = `
+              <div>
+                <b>${peak.name}</b>${details}
+                <div class="popup-actions">
+                  <button class="popup-button copy-peak" data-peak-name="${peak.name}">Copy name</button>
+                </div>
+              </div>
+            `;
+            marker.bindPopup(popupContent);
             bounds.push([peak.lat, peak.lon]);
           });
 
@@ -85,6 +118,34 @@
         .catch((error) => {
           console.error("Failed to load peaks.json", error);
         });
+
+      map.on("popupopen", (event) => {
+        const popupElement = event.popup.getElement();
+        if (!popupElement) {
+          return;
+        }
+        const copyButton = popupElement.querySelector(".copy-peak");
+        if (!copyButton) {
+          return;
+        }
+        copyButton.addEventListener("click", async () => {
+          const peakName = copyButton.getAttribute("data-peak-name") || "";
+          if (!peakName) {
+            return;
+          }
+          try {
+            await navigator.clipboard.writeText(peakName);
+            copyButton.textContent = "Copied!";
+            copyButton.disabled = true;
+            window.setTimeout(() => {
+              copyButton.textContent = "Copy name";
+              copyButton.disabled = false;
+            }, 1200);
+          } catch (error) {
+            console.error("Failed to copy peak name", error);
+          }
+        });
+      });
     </script>
   </body>
 </html>
