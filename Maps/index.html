@@ -210,9 +210,37 @@
 
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
     <script>
+      // Persist map view + overlay toggles (per-user, per-browser)
+      const STORAGE_KEY = "yann-maps-state-v1";
+
+      function loadMapState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return null;
+          return JSON.parse(raw);
+        } catch {
+          return null;
+        }
+      }
+
+      function saveMapState(nextState) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(nextState));
+        } catch {
+          // ignore (privacy mode / quota)
+        }
+      }
+
+      const savedState = loadMapState();
+      const defaultView = { center: [50.05917, -122.95694], zoom: 11 };
+      const initialView =
+        savedState?.center && typeof savedState?.zoom === "number"
+          ? { center: savedState.center, zoom: savedState.zoom }
+          : defaultView;
+
       const map = L.map("map", { zoomControl: true }).setView(
-        [50.05917, -122.95694],
-        11
+        initialView.center,
+        initialView.zoom
       );
 
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -226,6 +254,31 @@
       const layerControl = L.control
         .layers(null, overlays, { collapsed: true })
         .addTo(map);
+
+      // Restore overlays (on/off) from prior session, if available
+      const savedEnabledOverlays = Array.isArray(savedState?.enabledOverlays)
+        ? savedState.enabledOverlays
+        : null;
+
+      function getEnabledOverlayLabels() {
+        return Object.entries(overlays)
+          .filter(([, layer]) => map.hasLayer(layer))
+          .map(([label]) => label);
+      }
+
+      function persistCurrentState() {
+        const center = map.getCenter();
+        saveMapState({
+          center: [center.lat, center.lng],
+          zoom: map.getZoom(),
+          enabledOverlays: getEnabledOverlayLabels(),
+        });
+      }
+
+      map.on("moveend", persistCurrentState);
+      map.on("zoomend", persistCurrentState);
+      map.on("overlayadd", persistCurrentState);
+      map.on("overlayremove", persistCurrentState);
 
       function addRoute({ url, label, color }) {
         fetch(url)
@@ -250,7 +303,15 @@
 
             overlays[label] = routeLayer;
             layerControl.addOverlay(routeLayer, label);
-            routeLayer.addTo(map);
+
+            const shouldShowByDefault = savedEnabledOverlays
+              ? savedEnabledOverlays.includes(label)
+              : true;
+            if (shouldShowByDefault) {
+              routeLayer.addTo(map);
+            }
+
+            persistCurrentState();
 
             // (route stats removed)
           })
