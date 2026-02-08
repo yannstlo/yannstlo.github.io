@@ -188,6 +188,38 @@
           "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors",
       }).addTo(map);
 
+      // Routes (GeoJSON overlays)
+      const overlays = {};
+      const layerControl = L.control
+        .layers(null, overlays, { collapsed: true })
+        .addTo(map);
+
+      function addRoute({ url, label, color }) {
+        fetch(url)
+          .then((r) => r.json())
+          .then((geojson) => {
+            const routeLayer = L.geoJSON(geojson, {
+              style: {
+                color: color || "#d23f31",
+                weight: 4,
+                opacity: 0.9,
+              },
+            });
+            overlays[label] = routeLayer;
+            layerControl.addOverlay(routeLayer, label);
+            routeLayer.addTo(map);
+          })
+          .catch((err) => {
+            console.error(`Failed to load route ${label}`, err);
+          });
+      }
+
+      addRoute({
+        url: "routes/fromme.geojson",
+        label: "Fromme route",
+        color: "#d23f31",
+      });
+
       const visibleCounterEl = document.getElementById("visibleCounter");
       let allMarkers = [];
 
