@@ -61,6 +61,50 @@
         opacity: 0.7;
         cursor: default;
       }
+
+      /* Floating "home" button */
+      .floating-home {
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        z-index: 1100;
+        width: 48px;
+        height: 48px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #111;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .floating-home:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.24);
+      }
+      .floating-home:active {
+        transform: translateY(0px);
+      }
+      .floating-home svg {
+        width: 22px;
+        height: 22px;
+        display: block;
+      }
+      .floating-home:focus-visible {
+        outline: 3px solid rgba(30, 91, 147, 0.5);
+        outline-offset: 3px;
+      }
+
+      /* Avoid overlapping Leaflet's bottom-right controls */
+      @media (max-width: 480px) {
+        .floating-home {
+          right: 12px;
+          bottom: 72px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -68,6 +112,15 @@
       <h2>Peaks I Have Bagged</h2>
     </div>
     <div id="map"></div>
+
+    <a class="floating-home" href="../index.html" aria-label="Back to home" title="Back to home">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          fill="currentColor"
+          d="M12 3.2 2.6 11h1.9v9.3c0 .9.7 1.7 1.7 1.7h4.7v-6.6h2.2V22h4.7c.9 0 1.7-.7 1.7-1.7V11h1.9L12 3.2Zm6 17.1c0 .1-.1.2-.2.2h-3.2v-6.6H9.4v6.6H6.2c-.1 0-.2-.1-.2-.2v-10l6-5 6 5v10Z"
+        />
+      </svg>
+    </a>
 
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
     <script>
