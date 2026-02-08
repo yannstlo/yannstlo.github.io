@@ -39,17 +39,27 @@
 
       .visible-counter {
         position: fixed;
-        top: 12px;
-        left: 12px;
-        z-index: 1000;
-        background-color: rgba(255, 255, 255, 0.9);
+        right: 16px;
+        bottom: 72px; /* sits above the home button */
+        z-index: 1100;
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
         padding: 8px 12px;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        border-radius: 999px;
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 0.9rem;
-        color: #222;
+        color: #111;
         user-select: none;
+        line-height: 1;
+        pointer-events: none; /* don't block map interactions */
+      }
+
+      @media (max-width: 480px) {
+        .visible-counter {
+          right: 12px;
+          bottom: 128px;
+        }
       }
       .leaflet-popup-content {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
