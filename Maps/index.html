@@ -43,23 +43,50 @@
         margin-top: 8px;
         display: flex;
         gap: 6px;
+        align-items: center;
       }
-      .popup-button {
+
+      /* Icon-only copy button inside popup */
+      .popup-icon-button {
         appearance: none;
-        border: 1px solid #1e5b93;
-        background: #1e5b93;
-        color: #fff;
-        border-radius: 6px;
-        padding: 4px 8px;
-        font-size: 0.8rem;
+        border: 1px solid rgba(0, 0, 0, 0.18);
+        background: rgba(255, 255, 255, 0.95);
+        color: #111;
+        border-radius: 8px;
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         cursor: pointer;
       }
-      .popup-button:hover {
-        background: #174a78;
+      .popup-icon-button:hover {
+        background: #fff;
+        border-color: rgba(0, 0, 0, 0.28);
       }
-      .popup-button:disabled {
-        opacity: 0.7;
+      .popup-icon-button:active {
+        transform: translateY(0.5px);
+      }
+      .popup-icon-button svg {
+        width: 16px;
+        height: 16px;
+        display: block;
+      }
+      .popup-icon-button:focus-visible {
+        outline: 3px solid rgba(30, 91, 147, 0.45);
+        outline-offset: 2px;
+      }
+      .popup-icon-button:disabled {
+        opacity: 0.6;
         cursor: default;
+      }
+
+      /* Optional tiny feedback text */
+      .popup-copied {
+        font-size: 0.75rem;
+        color: #1e5b93;
+        margin-left: 4px;
       }
 
       /* Floating "home" button */
@@ -154,7 +181,15 @@
               <div>
                 <b>${peak.name}</b>${details}
                 <div class="popup-actions">
-                  <button class="popup-button copy-peak" data-peak-name="${peak.name}">Copy name</button>
+                  <button class="popup-icon-button copy-peak" data-peak-name="${peak.name}" aria-label="Copy peak name" title="Copy peak name">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path
+                        fill="currentColor"
+                        d="M16 1H6c-1.1 0-2 .9-2 2v12h2V3h10V1Zm3 4H10c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2Zm0 16H10V7h9v14Z"
+                      />
+                    </svg>
+                  </button>
+                  <span class="popup-copied" style="display:none;">Copied</span>
                 </div>
               </div>
             `;
@@ -177,10 +212,13 @@
         if (!popupElement) {
           return;
         }
+
         const copyButton = popupElement.querySelector(".copy-peak");
+        const copiedLabel = popupElement.querySelector(".popup-copied");
         if (!copyButton) {
           return;
         }
+
         copyButton.addEventListener("click", async () => {
           const peakName = copyButton.getAttribute("data-peak-name") || "";
           if (!peakName) {
@@ -188,12 +226,16 @@
           }
           try {
             await navigator.clipboard.writeText(peakName);
-            copyButton.textContent = "Copied!";
             copyButton.disabled = true;
+            if (copiedLabel) {
+              copiedLabel.style.display = "inline";
+            }
             window.setTimeout(() => {
-              copyButton.textContent = "Copy name";
               copyButton.disabled = false;
-            }, 1200);
+              if (copiedLabel) {
+                copiedLabel.style.display = "none";
+              }
+            }, 900);
           } catch (error) {
             console.error("Failed to copy peak name", error);
           }
