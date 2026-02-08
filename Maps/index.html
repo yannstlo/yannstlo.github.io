@@ -194,58 +194,10 @@
         .layers(null, overlays, { collapsed: true })
         .addTo(map);
 
-      function haversineMeters(a, b) {
-        // a/b are [lat, lon]
-        const R = 6371000;
-        const toRad = (d) => (d * Math.PI) / 180;
-        const dLat = toRad(b[0] - a[0]);
-        const dLon = toRad(b[1] - a[1]);
-        const lat1 = toRad(a[0]);
-        const lat2 = toRad(b[0]);
-        const s1 = Math.sin(dLat / 2);
-        const s2 = Math.sin(dLon / 2);
-        const h = s1 * s1 + Math.cos(lat1) * Math.cos(lat2) * s2 * s2;
-        return 2 * R * Math.asin(Math.min(1, Math.sqrt(h)));
-      }
-
-      function computeRouteStats(lineStringCoords) {
-        // coords are [lon,lat] or [lon,lat,ele]
-        let distM = 0;
-        let gainM = 0;
-        let lossM = 0;
-        for (let i = 1; i < lineStringCoords.length; i++) {
-          const prev = lineStringCoords[i - 1];
-          const curr = lineStringCoords[i];
-          distM += haversineMeters([prev[1], prev[0]], [curr[1], curr[0]]);
-
-          const prevEle = prev.length >= 3 ? prev[2] : null;
-          const currEle = curr.length >= 3 ? curr[2] : null;
-          if (typeof prevEle === "number" && typeof currEle === "number") {
-            const d = currEle - prevEle;
-            if (d > 0) gainM += d;
-            else lossM += -d;
-          }
-        }
-        return { distM, gainM, lossM };
-      }
-
-      function formatKm(m) {
-        return `${(m / 1000).toFixed(1)} km`;
-      }
-      function formatM(m) {
-        return `${Math.round(m)} m`;
-      }
-
       function addRoute({ url, label, color }) {
         fetch(url)
           .then((r) => r.json())
           .then((geojson) => {
-            // Pre-compute stats (first LineString only, for now)
-            const feature = geojson?.features?.[0];
-            const coords = feature?.geometry?.type === "LineString" ? feature.geometry.coordinates : null;
-            const props = feature?.properties || {};
-            const stats = Array.isArray(coords) ? computeRouteStats(coords) : null;
-
             const routeLayer = L.geoJSON(geojson, {
               style: {
                 color: color || "#d23f31",
@@ -254,20 +206,11 @@
               },
               onEachFeature: (feature, layer) => {
                 const title = feature?.properties?.name || label;
-                const c = feature?.geometry?.type === "LineString" ? feature.geometry.coordinates : null;
-                const s = Array.isArray(c) ? computeRouteStats(c) : null;
-                const parts = [];
-                if (s) {
-                  parts.push(`<div><b>Distance:</b> ${formatKm(s.distM)}</div>`);
-                  if (s.gainM || s.lossM) {
-                    parts.push(
-                      `<div><b>Elevation:</b> +${formatM(s.gainM)} / -${formatM(s.lossM)}</div>`
-                    );
-                  }
-                }
                 const source = feature?.properties?.source;
-                const sourceLine = source ? `<div style=\"opacity:0.75; font-size:0.8rem; margin-top:6px;\">${source}</div>` : "";
-                const html = `<div><b>${title}</b>${parts.length ? `<div style=\"margin-top:6px;\">${parts.join("")}</div>` : ""}${sourceLine}</div>`;
+                const sourceLine = source
+                  ? `<div style=\"opacity:0.75; font-size:0.8rem; margin-top:6px;\">${source}</div>`
+                  : "";
+                const html = `<div><b>${title}</b>${sourceLine}</div>`;
                 layer.bindPopup(html);
               },
             });
@@ -276,11 +219,7 @@
             layerControl.addOverlay(routeLayer, label);
             routeLayer.addTo(map);
 
-            // If we have stats, also update overlay label with distance (nice touch)
-            if (stats) {
-              // Note: Leaflet doesn't let us rename an existing overlay entry cleanly,
-              // so we keep label as-is for now.
-            }
+            // (route stats removed)
           })
           .catch((err) => {
             console.error(`Failed to load route ${label}`, err);
