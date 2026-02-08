@@ -36,6 +36,21 @@
         font-weight: 600;
         color: #222;
       }
+
+      .visible-counter {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 1000;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 8px 12px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 0.9rem;
+        color: #222;
+        user-select: none;
+      }
       .leaflet-popup-content {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       }
@@ -138,6 +153,7 @@
     <div class="custom-map-title">
       <h2>Peaks I Have Bagged</h2>
     </div>
+    <div class="visible-counter" id="visibleCounter">0/0 visible</div>
     <div id="map"></div>
 
     <a class="floating-home" href="../index.html" aria-label="Back to home" title="Back to home">
@@ -162,6 +178,29 @@
           "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors",
       }).addTo(map);
 
+      const visibleCounterEl = document.getElementById("visibleCounter");
+      let allMarkers = [];
+
+      function updateVisibleCounter() {
+        if (!visibleCounterEl) {
+          return;
+        }
+        const total = allMarkers.length;
+        if (!total) {
+          visibleCounterEl.textContent = "0/0 visible";
+          return;
+        }
+        const bounds = map.getBounds();
+        let visible = 0;
+        for (const marker of allMarkers) {
+          const ll = marker.getLatLng();
+          if (bounds.contains(ll)) {
+            visible += 1;
+          }
+        }
+        visibleCounterEl.textContent = `${visible}/${total} visible`;
+      }
+
       fetch("peaks.json")
         .then((response) => response.json())
         .then((data) => {
@@ -171,6 +210,7 @@
           }
 
           const bounds = [];
+          const markers = [];
           peaks.forEach((peak) => {
             if (typeof peak.lat !== "number" || typeof peak.lon !== "number") {
               return;
@@ -195,17 +235,28 @@
             `;
             marker.bindPopup(popupContent);
             bounds.push([peak.lat, peak.lon]);
+            markers.push(marker);
           });
+
+          allMarkers = markers;
 
           if (bounds.length === 1) {
             map.setView(bounds[0], 12);
           } else if (bounds.length > 1) {
             map.fitBounds(bounds, { padding: [30, 30] });
           }
+
+          // initial counter render after the map has settled
+          map.whenReady(() => {
+            updateVisibleCounter();
+          });
         })
         .catch((error) => {
           console.error("Failed to load peaks.json", error);
         });
+
+      map.on("moveend", updateVisibleCounter);
+      map.on("zoomend", updateVisibleCounter);
 
       map.on("popupopen", (event) => {
         const popupElement = event.popup.getElement();
