@@ -298,6 +298,15 @@
       // Keep all routes the same color for visual consistency
       const ROUTE_COLOR = "#d23f31";
 
+      // Peaks that have an associated route overlay: style their marker to match
+      // the route color so it's visually obvious.
+      const ROUTE_PEAK_NAMES = new Set([
+        "Eastern Lookout",
+        "Hope Peak (Middle Sister)",
+        "East End of Rundle (EEOR)",
+        "Mount Harvey",
+      ]);
+
       function addRoute({ url, label, gpxUrl }) {
         fetch(url)
           .then((r) => r.json())
@@ -426,7 +435,18 @@
             if (typeof peak.lat !== "number" || typeof peak.lon !== "number") {
               return;
             }
-            const marker = L.marker([peak.lat, peak.lon]).addTo(map);
+            const isRoutePeak = ROUTE_PEAK_NAMES.has(peak.name);
+
+            const marker = isRoutePeak
+              ? L.circleMarker([peak.lat, peak.lon], {
+                  radius: 7,
+                  color: ROUTE_COLOR,
+                  weight: 2,
+                  opacity: 1,
+                  fillColor: ROUTE_COLOR,
+                  fillOpacity: 0.85,
+                }).addTo(map)
+              : L.marker([peak.lat, peak.lon]).addTo(map);
             const details = peak.details ? `<br>${peak.details}` : "";
             const popupContent = `
               <div>
