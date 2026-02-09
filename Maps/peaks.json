@@ -227,6 +227,12 @@
       "lat": 49.53889,
       "lon": -123.30426,
       "details": "Anvil Island, British Columbia"
+    },
+    {
+      "name": "Mount MacFarlane",
+      "lat": 49.05306,
+      "lon": -121.62481,
+      "details": "Chilliwack River Valley, British Columbia"
     }
   ]
 }
