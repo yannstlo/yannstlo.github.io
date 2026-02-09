@@ -280,13 +280,16 @@
       map.on("overlayadd", persistCurrentState);
       map.on("overlayremove", persistCurrentState);
 
-      function addRoute({ url, label, color }) {
+      // Keep all routes the same color for visual consistency
+      const ROUTE_COLOR = "#d23f31";
+
+      function addRoute({ url, label, gpxUrl }) {
         fetch(url)
           .then((r) => r.json())
           .then((geojson) => {
             const routeLayer = L.geoJSON(geojson, {
               style: {
-                color: color || "#d23f31",
+                color: ROUTE_COLOR,
                 weight: 4,
                 opacity: 0.9,
               },
@@ -296,7 +299,10 @@
                 const sourceLine = source
                   ? `<div style=\"opacity:0.75; font-size:0.8rem; margin-top:6px;\">${source}</div>`
                   : "";
-                const html = `<div><b>${title}</b>${sourceLine}</div>`;
+                const downloadLine = gpxUrl
+                  ? `<div style="margin-top:8px;"><a href="${gpxUrl}" download>Download GPX</a></div>`
+                  : "";
+                const html = `<div><b>${title}</b>${sourceLine}${downloadLine}</div>`;
                 layer.bindPopup(html);
               },
             });
@@ -323,49 +329,49 @@
       addRoute({
         url: "routes/fromme.geojson",
         label: "Fromme route",
-        color: "#d23f31",
+        gpxUrl: "routes-gpx/fromme.gpx",
       });
 
       addRoute({
         url: "routes/elk.geojson",
         label: "Elk Mountain route",
-        color: "#2d7dd2",
+        gpxUrl: "routes-gpx/elk.gpx",
       });
 
       addRoute({
         url: "routes/flora.geojson",
         label: "Flora Peak route",
-        color: "#2f9e44",
+        gpxUrl: "routes-gpx/flora.gpx",
       });
 
       addRoute({
         url: "routes/sumas.geojson",
         label: "Sumas Super Grind route",
-        color: "#f59f00",
+        gpxUrl: "routes-gpx/sumas.gpx",
       });
 
       addRoute({
         url: "routes/middle-sister.geojson",
         label: "Middle Sister Trail route",
-        color: "#9c36b5",
+        gpxUrl: "routes-gpx/middle-sister.gpx",
       });
 
       addRoute({
         url: "routes/eeor.geojson",
         label: "East End of Rundle (EEOR) route",
-        color: "#e03131",
+        gpxUrl: "routes-gpx/eeor.gpx",
       });
 
       addRoute({
         url: "routes/russet-to-overlord.geojson",
         label: "Russet Lake → Overlord (via Whirlwind) route",
-        color: "#0b7285",
+        gpxUrl: "routes-gpx/russet-to-overlord.gpx",
       });
 
       addRoute({
         url: "routes/mount-harvey.geojson",
         label: "Mount Harvey route",
-        color: "#c2255c",
+        gpxUrl: "routes-gpx/mount-harvey.gpx",
       });
 
       const visibleCounterEl = document.getElementById("visibleCounter");
