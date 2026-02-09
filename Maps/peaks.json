@@ -221,6 +221,12 @@
       "lat": 49.36288,
       "lon": -122.50743,
       "details": "Golden Ears Provincial Park, British Columbia"
+    },
+    {
+      "name": "Mount Frosty",
+      "lat": 49.01063,
+      "lon": -120.83751,
+      "details": "Manning Provincial Park, British Columbia"
     }
   ]
 }
