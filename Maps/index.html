@@ -365,13 +365,29 @@
               onEachFeature: (feature, layer) => {
                 const title = feature?.properties?.name || label;
                 const source = feature?.properties?.source;
+                const startTime = feature?.properties?.startTime;
+                const endTime = feature?.properties?.endTime;
+
                 const sourceLine = source
                   ? `<div style=\"opacity:0.75; font-size:0.8rem; margin-top:6px;\">${source}</div>`
                   : "";
+
+                let dateLine = "";
+                if (startTime) {
+                  const startDate = startTime.slice(0, 10);
+                  const endDate = endTime ? endTime.slice(0, 10) : null;
+                  const dateText =
+                    endDate && endDate !== startDate
+                      ? `${startDate}–${endDate}`
+                      : startDate;
+                  dateLine = `<div style=\"opacity:0.75; font-size:0.8rem; margin-top:4px;\">${dateText}</div>`;
+                }
+
                 const downloadLine = gpxUrl
                   ? `<div style="margin-top:8px;"><a href="${gpxUrl}" download>Download GPX</a></div>`
                   : "";
-                const html = `<div><b>${title}</b>${sourceLine}${downloadLine}</div>`;
+
+                const html = `<div><b>${title}</b>${sourceLine}${dateLine}${downloadLine}</div>`;
                 layer.bindPopup(html);
               },
             });
