@@ -39,13 +39,13 @@
     {
       "name": "King's Throne Peak",
       "lat": 60.5468943,
-      "lon": -137.2601030,
+      "lon": -137.260103,
       "details": "Kluane National Park, Yukon"
     },
     {
       "name": "Golden Ears",
       "lat": 49.36278,
-      "lon": -122.50750,
+      "lon": -122.5075,
       "details": "Golden Ears Provincial Park, British Columbia"
     },
     {
@@ -74,8 +74,8 @@
     },
     {
       "name": "Three Stooges",
-      "lat": 50.4879940,
-      "lon": -123.4451360,
+      "lat": 50.487994,
+      "lon": -123.445136,
       "details": "Southwest British Columbia"
     },
     {
@@ -86,7 +86,7 @@
     },
     {
       "name": "Mount Beautiful",
-      "lat": 49.3763610,
+      "lat": 49.376361,
       "lon": -122.8264175,
       "details": "Metro Vancouver, British Columbia"
     },
@@ -111,7 +111,7 @@
     {
       "name": "Mount Harvey",
       "lat": 49.47528,
-      "lon": -123.20000,
+      "lon": -123.2,
       "details": "Lions Bay, British Columbia"
     },
     {
@@ -122,8 +122,8 @@
     },
     {
       "name": "Anvil Island",
-      "lat": 49.530000,
-      "lon": -123.309000,
+      "lat": 49.53,
+      "lon": -123.309,
       "details": "Howe Sound, British Columbia"
     },
     {
@@ -134,7 +134,7 @@
     },
     {
       "name": "Tricouni Peak",
-      "lat": 50.0137330,
+      "lat": 50.013733,
       "lon": -123.244738833,
       "details": "Southwest British Columbia"
     },
@@ -171,7 +171,7 @@
     {
       "name": "Mount St. Benedict",
       "lat": 49.3013084,
-      "lon": -122.2031590,
+      "lon": -122.203159,
       "details": "Fraser Valley, British Columbia"
     },
     {
@@ -188,8 +188,8 @@
     },
     {
       "name": "Tom's Thumb",
-      "lat": 33.6818210,
-      "lon": -111.8113990,
+      "lat": 33.681821,
+      "lon": -111.811399,
       "details": "McDowell Mountains, Arizona"
     },
     {
@@ -200,8 +200,8 @@
     },
     {
       "name": "Three Brothers Mountain",
-      "lat": 49.1633328,
-      "lon": -120.7748079,
+      "lat": 49.1661,
+      "lon": -120.76833,
       "details": "Manning Park, British Columbia"
     },
     {
