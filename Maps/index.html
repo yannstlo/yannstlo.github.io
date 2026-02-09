@@ -266,6 +266,12 @@
         ? savedState.enabledOverlays
         : null;
 
+      // Track what overlays existed at the time we last saved state.
+      // This lets us default *new* overlays to ON for returning visitors.
+      const savedKnownOverlays = Array.isArray(savedState?.knownOverlays)
+        ? savedState.knownOverlays
+        : null;
+
       function getEnabledOverlayLabels() {
         return Object.entries(overlays)
           .filter(([, layer]) => map.hasLayer(layer))
@@ -287,6 +293,7 @@
           center: [center.lat, center.lng],
           zoom: map.getZoom(),
           enabledOverlays,
+          knownOverlays: Object.keys(overlays),
         });
       }
 
@@ -370,7 +377,8 @@
             layerControl.addOverlay(routeLayer, label);
 
             const shouldShowByDefault = savedEnabledOverlays
-              ? savedEnabledOverlays.includes(label)
+              ? savedEnabledOverlays.includes(label) ||
+                !(savedKnownOverlays || []).includes(label)
               : true;
             if (shouldShowByDefault) {
               routeLayer.addTo(map);
