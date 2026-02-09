@@ -73,12 +73,6 @@
       "details": "Garibaldi Provincial Park, British Columbia"
     },
     {
-      "name": "Three Stooges",
-      "lat": 50.487994,
-      "lon": -123.445136,
-      "details": "Southwest British Columbia"
-    },
-    {
       "name": "Mount Rohr",
       "lat": 50.39778,
       "lon": -122.40889,
@@ -215,6 +209,12 @@
       "lat": 49.12064,
       "lon": -122.12762,
       "details": "Sumas Mountain, British Columbia"
+    },
+    {
+      "name": "Three Stooges",
+      "lat": 50.48777,
+      "lon": -123.44533,
+      "details": "Duffey Lake / Pemberton area, British Columbia"
     }
   ]
 }
