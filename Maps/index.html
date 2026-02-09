@@ -354,6 +354,38 @@
 
       const routePeakIcon = makeColoredMarkerIcon(ROUTE_COLOR);
 
+      // If a route GeoJSON includes timestamps, we surface the date range in
+      // the corresponding peak marker popup (when names match).
+      const routeDatesByPeakName = {};
+
+      function formatDateRange(startTime, endTime) {
+        if (!startTime) {
+          return "";
+        }
+        const startDate = startTime.slice(0, 10);
+        const endDate = endTime ? endTime.slice(0, 10) : null;
+        return endDate && endDate !== startDate ? `${startDate}–${endDate}` : startDate;
+      }
+
+      function maybeStoreRouteDateForPeak(feature) {
+        const name = feature?.properties?.name;
+        const startTime = feature?.properties?.startTime;
+        const endTime = feature?.properties?.endTime;
+        if (!name || !startTime) {
+          return;
+        }
+        // Normalize things like "Mount MacFarlane (2022-07-24)" → "Mount MacFarlane"
+        const baseName = String(name).split(" (")[0];
+        const prev = routeDatesByPeakName[baseName];
+        // If multiple routes map to the same peak, keep the most recent one.
+        if (!prev || (endTime && endTime > prev.endTime)) {
+          routeDatesByPeakName[baseName] = {
+            startTime,
+            endTime: endTime || startTime,
+          };
+        }
+      }
+
       function addRoute({ url, label, gpxUrl }) {
         fetch(url)
           .then((r) => r.json())
@@ -365,6 +397,8 @@
                 opacity: 0.9,
               },
               onEachFeature: (feature, layer) => {
+                maybeStoreRouteDateForPeak(feature);
+
                 const title = feature?.properties?.name || label;
                 const source = feature?.properties?.source;
                 const startTime = feature?.properties?.startTime;
@@ -374,16 +408,10 @@
                   ? `<div style=\"opacity:0.75; font-size:0.8rem; margin-top:6px;\">${source}</div>`
                   : "";
 
-                let dateLine = "";
-                if (startTime) {
-                  const startDate = startTime.slice(0, 10);
-                  const endDate = endTime ? endTime.slice(0, 10) : null;
-                  const dateText =
-                    endDate && endDate !== startDate
-                      ? `${startDate}–${endDate}`
-                      : startDate;
-                  dateLine = `<div style=\"opacity:0.75; font-size:0.8rem; margin-top:4px;\">${dateText}</div>`;
-                }
+                const dateText = formatDateRange(startTime, endTime);
+                const dateLine = dateText
+                  ? `<div style=\"opacity:0.75; font-size:0.8rem; margin-top:4px;\">${dateText}</div>`
+                  : "";
 
                 const downloadLine = gpxUrl
                   ? `<div style="margin-top:8px;"><a href="${gpxUrl}" download>Download GPX</a></div>`
@@ -553,9 +581,19 @@
               ? L.marker([peak.lat, peak.lon], { icon: routePeakIcon }).addTo(map)
               : L.marker([peak.lat, peak.lon]).addTo(map);
             const details = peak.details ? `<br>${peak.details}` : "";
+
+            const routeDate = routeDatesByPeakName[peak.name];
+            const dateText = routeDate
+              ? formatDateRange(routeDate.startTime, routeDate.endTime)
+              : "";
+            const dateLine = dateText
+              ? `<div style="opacity:0.75; font-size:0.8rem; margin-top:4px;">${dateText}</div>`
+              : "";
+
             const popupContent = `
               <div>
                 <b>${peak.name}</b>${details}
+                ${dateLine}
                 <div class="popup-actions">
                   <button class="popup-icon-button copy-peak" data-peak-name="${peak.name}" aria-label="Copy peak name" title="Copy peak name">
                     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
