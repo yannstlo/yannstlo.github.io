@@ -268,10 +268,19 @@
 
       function persistCurrentState() {
         const center = map.getCenter();
+
+        // Leaflet fires move/zoom events during initial load.
+        // If we persist before overlays are registered, we can accidentally wipe
+        // the saved enabledOverlays list. So keep the previous list until at
+        // least one overlay is known.
+        const enabledOverlays = Object.keys(overlays).length
+          ? getEnabledOverlayLabels()
+          : savedEnabledOverlays || [];
+
         saveMapState({
           center: [center.lat, center.lng],
           zoom: map.getZoom(),
-          enabledOverlays: getEnabledOverlayLabels(),
+          enabledOverlays,
         });
       }
 
