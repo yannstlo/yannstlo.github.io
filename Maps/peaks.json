@@ -215,6 +215,12 @@
       "lat": 50.48777,
       "lon": -123.44533,
       "details": "Duffey Lake / Pemberton area, British Columbia"
+    },
+    {
+      "name": "Golden Ears Summit",
+      "lat": 49.36288,
+      "lon": -122.50743,
+      "details": "Golden Ears Provincial Park, British Columbia"
     }
   ]
 }
