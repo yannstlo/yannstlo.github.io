@@ -262,7 +262,12 @@ const captureOverlayState = () => {
     isActivityVisible(markerId)
   );
 
-  return { visibleOvernights, visibleRouteLegs, visibleMarkers };
+  const visibleGroups = Object.keys(overlayConfig).reduce((acc, key) => {
+    acc[key] = Boolean(overlayConfig[key] && overlayConfig[key].visible);
+    return acc;
+  }, {});
+
+  return { visibleGroups, visibleOvernights, visibleRouteLegs, visibleMarkers };
 };
 
 const captureLegendState = () => {
@@ -294,9 +299,22 @@ const restoreOverlayState = (state) => {
     return;
   }
 
+  // Group-level overlays (fallback; helps when marker IDs change across builds)
+  if (state.visibleGroups && typeof state.visibleGroups === 'object') {
+    Object.entries(state.visibleGroups).forEach(([key, visible]) => {
+      if (overlayConfig[key]) {
+        setGroupVisibility(key, Boolean(visible));
+      }
+    });
+  }
+
   // Route legs
   if (Array.isArray(state.visibleRouteLegs)) {
-    const visible = new Set(state.visibleRouteLegs);
+    const matchCount = state.visibleRouteLegs.filter((legId) => routeLegLayers[legId]).length;
+    if (matchCount === 0 && state.visibleRouteLegs.length > 0) {
+      // Likely stale IDs from an older build; keep group-level visibility.
+    } else {
+      const visible = new Set(state.visibleRouteLegs);
     Object.entries(routeLegLayers).forEach(([legId, layer]) => {
       if (visible.has(legId)) {
         map.addLayer(layer);
@@ -309,20 +327,30 @@ const restoreOverlayState = (state) => {
       overlayConfig.route.visible = total > 0 && state.visibleRouteLegs.length === total;
     }
   }
+  }
 
   // Overnight stops
   if (Array.isArray(state.visibleOvernights)) {
-    const visible = new Set(state.visibleOvernights.map((n) => Number(n)));
+    const total = Object.keys(overnightMarkersByNight).length;
+    const matchCount = state.visibleOvernights.filter((n) => overnightMarkersByNight[Number(n)]).length;
+    if (matchCount === 0 && state.visibleOvernights.length > 0 && total > 0) {
+      // Likely stale IDs from an older build; keep group-level visibility.
+    } else {
+      const visible = new Set(state.visibleOvernights.map((n) => Number(n)));
     Object.keys(overnightMarkersByNight).forEach((night) => {
       setOvernightVisibility(Number(night), visible.has(Number(night)));
     });
-    const total = Object.keys(overnightMarkersByNight).length;
     overlayConfig.overnight.visible = total > 0 && state.visibleOvernights.length === total;
+  }
   }
 
   // Activity markers
   if (Array.isArray(state.visibleMarkers)) {
-    const visible = new Set(state.visibleMarkers);
+    const matchCount = state.visibleMarkers.filter((markerId) => activityMarkerLookup[markerId]).length;
+    if (matchCount === 0 && state.visibleMarkers.length > 0) {
+      // Likely stale IDs from an older build; keep group-level visibility.
+    } else {
+      const visible = new Set(state.visibleMarkers);
     Object.keys(activityMarkerLookup).forEach((markerId) => {
       setActivityVisibility(markerId, visible.has(markerId));
     });
@@ -335,6 +363,7 @@ const restoreOverlayState = (state) => {
       const visibleCount = markerIds.filter((markerId) => visible.has(markerId)).length;
       overlayConfig[groupKey].visible = visibleCount === markerIds.length;
     });
+  }
   }
 };
 
