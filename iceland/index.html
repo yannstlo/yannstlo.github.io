@@ -205,11 +205,68 @@ const buildPopupContent = (feature) => `
   ${formatActivities(feature.properties.activities)}
 `;
 
+
+const ICELAND_MAP_STATE_KEY = 'yann-iceland-map-state-v1';
+
+const setCookie = (name, value, days = 365) => {
+  const expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString();
+  document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
+};
+
+const getCookie = (name) => {
+  const prefix = `${name}=`;
+  const parts = document.cookie.split(';').map((c) => c.trim());
+  for (const part of parts) {
+    if (part.startsWith(prefix)) {
+      return decodeURIComponent(part.slice(prefix.length));
+    }
+  }
+  return null;
+};
+
+const loadMapState = () => {
+  try {
+    const fromLocal = localStorage.getItem(ICELAND_MAP_STATE_KEY);
+    if (fromLocal) return JSON.parse(fromLocal);
+  } catch (err) {}
+
+  try {
+    const fromCookie = getCookie(ICELAND_MAP_STATE_KEY);
+    if (fromCookie) return JSON.parse(fromCookie);
+  } catch (err) {}
+
+  return null;
+};
+
+const saveMapState = (state) => {
+  const serialized = JSON.stringify(state);
+  try {
+    localStorage.setItem(ICELAND_MAP_STATE_KEY, serialized);
+  } catch (err) {}
+  try {
+    setCookie(ICELAND_MAP_STATE_KEY, serialized);
+  } catch (err) {}
+};
+
 const map = L.map('map');
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 18,
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
+
+const savedMapState = loadMapState();
+const hasSavedView = Boolean(savedMapState && savedMapState.center && Number.isFinite(savedMapState.zoom));
+if (hasSavedView) {
+  map.setView(savedMapState.center, savedMapState.zoom, { animate: false });
+}
+
+let hasFinishedInitialLoad = false;
+map.on('moveend zoomend', () => {
+  if (!hasFinishedInitialLoad) return;
+  const center = map.getCenter();
+  saveMapState({ center: [center.lat, center.lng], zoom: map.getZoom() });
+});
+
 
 const routeLegLayers = {};
 routeSegments.forEach((segment) => {
@@ -427,6 +484,7 @@ Object.entries(overlayConfig).forEach(([key, config]) => {
 let legendContainer = null;
 
 const updateMapView = () => {
+  if (hasSavedView) return;
   const bounds = markers.getBounds();
   Object.values(routeLegLayers).forEach((layer) => {
     if (map.hasLayer(layer)) {
@@ -736,6 +794,7 @@ legend.onAdd = () => {
       }
       section.classList.toggle('collapsed');
       updateMapView();
+  hasFinishedInitialLoad = true;
     });
   });
   legendContainer = div;
