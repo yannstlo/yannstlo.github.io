@@ -248,6 +248,113 @@ const saveMapState = (state) => {
   } catch (err) {}
 };
 
+
+const captureOverlayState = () => {
+  const visibleOvernights = Object.keys(overnightMarkersByNight)
+    .map((night) => Number(night))
+    .filter((night) => isOvernightVisible(night));
+
+  const visibleRouteLegs = Object.entries(routeLegLayers)
+    .filter(([, layer]) => map.hasLayer(layer))
+    .map(([legId]) => legId);
+
+  const visibleMarkers = Object.keys(activityMarkerLookup).filter((markerId) =>
+    isActivityVisible(markerId)
+  );
+
+  return { visibleOvernights, visibleRouteLegs, visibleMarkers };
+};
+
+const captureLegendState = () => {
+  if (!legendContainer) {
+    return { collapsedSections: [] };
+  }
+  const sections = Array.from(legendContainer.querySelectorAll('.legend-section[data-section]'));
+  const collapsedSections = sections
+    .filter((section) => section.classList.contains('collapsed'))
+    .map((section) => section.getAttribute('data-section'))
+    .filter(Boolean);
+  return { collapsedSections };
+};
+
+const persistCurrentState = () => {
+  const center = map.getCenter();
+  const overlayState = captureOverlayState();
+  const legendState = captureLegendState();
+  saveMapState({
+    center: [center.lat, center.lng],
+    zoom: map.getZoom(),
+    ...overlayState,
+    ...legendState
+  });
+};
+
+const restoreOverlayState = (state) => {
+  if (!state) {
+    return;
+  }
+
+  // Route legs
+  if (Array.isArray(state.visibleRouteLegs)) {
+    const visible = new Set(state.visibleRouteLegs);
+    Object.entries(routeLegLayers).forEach(([legId, layer]) => {
+      if (visible.has(legId)) {
+        map.addLayer(layer);
+      } else {
+        map.removeLayer(layer);
+      }
+    });
+    if (overlayConfig.route) {
+      const total = Object.keys(routeLegLayers).length;
+      overlayConfig.route.visible = total > 0 && state.visibleRouteLegs.length === total;
+    }
+  }
+
+  // Overnight stops
+  if (Array.isArray(state.visibleOvernights)) {
+    const visible = new Set(state.visibleOvernights.map((n) => Number(n)));
+    Object.keys(overnightMarkersByNight).forEach((night) => {
+      setOvernightVisibility(Number(night), visible.has(Number(night)));
+    });
+    const total = Object.keys(overnightMarkersByNight).length;
+    overlayConfig.overnight.visible = total > 0 && state.visibleOvernights.length === total;
+  }
+
+  // Activity markers
+  if (Array.isArray(state.visibleMarkers)) {
+    const visible = new Set(state.visibleMarkers);
+    Object.keys(activityMarkerLookup).forEach((markerId) => {
+      setActivityVisibility(markerId, visible.has(markerId));
+    });
+
+    activityOrder.forEach((groupKey) => {
+      const markerIds = activityMarkersByGroup[groupKey] || [];
+      if (!markerIds.length) {
+        return;
+      }
+      const visibleCount = markerIds.filter((markerId) => visible.has(markerId)).length;
+      overlayConfig[groupKey].visible = visibleCount === markerIds.length;
+    });
+  }
+};
+
+const restoreLegendState = (state) => {
+  if (!legendContainer || !state) {
+    return;
+  }
+  if (!Array.isArray(state.collapsedSections)) {
+    return;
+  }
+  const collapsed = new Set(state.collapsedSections);
+  legendContainer.querySelectorAll('.legend-section[data-section]').forEach((section) => {
+    const key = section.getAttribute('data-section');
+    if (!key) {
+      return;
+    }
+    section.classList.toggle('collapsed', collapsed.has(key));
+  });
+};
+
 const map = L.map('map');
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 18,
@@ -263,8 +370,7 @@ if (hasSavedView) {
 let hasFinishedInitialLoad = false;
 map.on('moveend zoomend', () => {
   if (!hasFinishedInitialLoad) return;
-  const center = map.getCenter();
-  saveMapState({ center: [center.lat, center.lng], zoom: map.getZoom() });
+  persistCurrentState();
 });
 
 
@@ -480,6 +586,8 @@ Object.values(activityLayers).forEach((layer) => {
 Object.entries(overlayConfig).forEach(([key, config]) => {
   setGroupVisibility(key, config.visible);
 });
+
+restoreOverlayState(savedMapState);
 
 let legendContainer = null;
 
@@ -714,6 +822,7 @@ legend.onAdd = () => {
           setGroupVisibility(overlayKey, visible);
         });
         refreshCheckboxes();
+        if (hasFinishedInitialLoad) persistCurrentState();
       });
       return;
     }
@@ -722,6 +831,7 @@ legend.onAdd = () => {
       updateGroupCheckbox(key);
       updateItemCheckboxes(key);
       updateAllCheckbox();
+      if (hasFinishedInitialLoad) persistCurrentState();
     });
   });
   getItemCheckboxes().forEach((input) => {
@@ -780,6 +890,7 @@ legend.onAdd = () => {
         updateGroupCheckbox('route');
       }
       updateAllCheckbox();
+      if (hasFinishedInitialLoad) persistCurrentState();
     });
   });
   div.querySelectorAll('[data-section-toggle]').forEach((toggle) => {
@@ -794,9 +905,11 @@ legend.onAdd = () => {
       }
       section.classList.toggle('collapsed');
       updateMapView();
+      if (hasFinishedInitialLoad) persistCurrentState();
     });
   });
   legendContainer = div;
+  restoreLegendState(savedMapState);
   return div;
 };
 legend.addTo(map);
