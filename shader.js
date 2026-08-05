@@ -40,6 +40,27 @@ void main(){
 }
 `;
 
+const fragmentMatrix = commonPrelude + `
+void main(){
+    vec2 uv = gl_FragCoord.xy / uResolution.xy;
+    vec2 cells = vec2(68.0, 88.0);
+    vec2 moving = uv * cells;
+    moving.y += uTime * (7.0 + mod(floor(moving.x), 5.0));
+    vec2 id = floor(moving);
+    vec2 cell = fract(moving);
+    float seed = hash(vec2(id.x, floor(id.y / 9.0)));
+    float glyph = step(0.72, hash(id))
+        * step(0.18, cell.x)
+        * step(cell.x, 0.82)
+        * step(0.15, cell.y)
+        * step(cell.y, 0.85);
+    float fade = pow(1.0 - cell.y, 2.0) * (0.35 + seed);
+    vec3 color = vec3(0.002, 0.018, 0.006)
+        + vec3(0.04, 1.0, 0.25) * glyph * fade;
+    gl_FragColor = vec4(color, 1.0);
+}
+`;
+
 
 function main() {
     const canvas = document.getElementById('glCanvas');
@@ -67,24 +88,39 @@ function main() {
     window.addEventListener('resize', resizeCanvas);
 
     const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
-    const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentLava);
-    const program = createProgram(gl, vertexShader, fragmentShader);
-    const attrib = gl.getAttribLocation(program, 'aVertexPosition');
-    const uRes = gl.getUniformLocation(program, 'uResolution');
-    const uTime = gl.getUniformLocation(program, 'uTime');
+    const programs = [fragmentLava, fragmentMatrix].map(source => {
+        const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, source);
+        const program = createProgram(gl, vertexShader, fragmentShader);
+        return {
+            program,
+            attrib: gl.getAttribLocation(program, 'aVertexPosition'),
+            uRes: gl.getUniformLocation(program, 'uResolution'),
+            uTime: gl.getUniformLocation(program, 'uTime'),
+        };
+    });
 
     const positionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
     setRectangle(gl, -1, -1, 2, 2);
 
     gl.clearColor(0, 0, 0, 0);
-    gl.useProgram(program);
+
+    let activeProgram = 0;
+    window.addEventListener('keydown', event => {
+        const isDelete = event.key === 'Delete' || event.key === 'Backspace';
+        if (!isDelete || event.repeat) return;
+
+        event.preventDefault();
+        activeProgram = activeProgram === 0 ? 1 : 0;
+    });
 
     function render(timeMs) {
         const t = timeMs * 0.001;
         resizeCanvas();
         gl.clear(gl.COLOR_BUFFER_BIT);
 
+        const { program, attrib, uRes, uTime } = programs[activeProgram];
+        gl.useProgram(program);
         gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
         gl.enableVertexAttribArray(attrib);
         gl.vertexAttribPointer(attrib, 2, gl.FLOAT, false, 0, 0);
