@@ -40,7 +40,7 @@
       .visible-counter {
         position: fixed;
         right: 16px;
-        bottom: 128px; /* sits above the floating buttons */
+        bottom: 184px; /* sits above the floating buttons */
         z-index: 1100;
         background: rgba(255, 255, 255, 0.95);
         border: 1px solid rgba(0, 0, 0, 0.12);
@@ -58,7 +58,7 @@
       @media (max-width: 480px) {
         .visible-counter {
           right: 12px;
-          bottom: 184px;
+          bottom: 240px;
         }
       }
       .leaflet-popup-content {
@@ -116,7 +116,8 @@
 
       /* Floating buttons */
       .floating-home,
-      .floating-alltrails {
+      .floating-alltrails,
+      .floating-share {
         position: fixed;
         right: 16px;
         z-index: 1100;
@@ -134,6 +135,13 @@
         -webkit-tap-highlight-color: transparent;
       }
 
+      .floating-share {
+        appearance: none;
+        padding: 0;
+        cursor: pointer;
+        bottom: 128px;
+      }
+
       .floating-home {
         bottom: 16px;
       }
@@ -143,22 +151,26 @@
       }
 
       .floating-home:hover,
-      .floating-alltrails:hover {
+      .floating-alltrails:hover,
+      .floating-share:hover {
         transform: translateY(-1px);
         box-shadow: 0 8px 22px rgba(0, 0, 0, 0.24);
       }
       .floating-home:active,
-      .floating-alltrails:active {
+      .floating-alltrails:active,
+      .floating-share:active {
         transform: translateY(0px);
       }
       .floating-home svg,
-      .floating-alltrails svg {
+      .floating-alltrails svg,
+      .floating-share svg {
         width: 22px;
         height: 22px;
         display: block;
       }
       .floating-home:focus-visible,
-      .floating-alltrails:focus-visible {
+      .floating-alltrails:focus-visible,
+      .floating-share:focus-visible {
         outline: 3px solid rgba(30, 91, 147, 0.5);
         outline-offset: 3px;
       }
@@ -173,7 +185,12 @@
           right: 12px;
           bottom: 128px;
         }
+        .floating-share {
+          right: 12px;
+          bottom: 184px;
+        }
       }
+
     </style>
   </head>
   <body>
@@ -182,6 +199,21 @@
     </div>
     <div class="visible-counter" id="visibleCounter">0/0 visible</div>
     <div id="map"></div>
+
+    <button
+      class="floating-share"
+      id="shareView"
+      type="button"
+      aria-label="Copy link to current map view"
+      title="Copy link to current map view"
+    >
+      <svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          fill="currentColor"
+          d="M18 16a3 3 0 0 0-2.1.86l-7.05-4.11a3.2 3.2 0 0 0 0-1.5l7.05-4.11A3 3 0 1 0 15 5c0 .16.01.31.04.46L7.91 9.62a3 3 0 1 0 0 4.76l7.13 4.16A3 3 0 1 0 18 16Zm0-12a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM6 13a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm12 7a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"
+        />
+      </svg>
+    </button>
 
     <a
       class="floating-alltrails"
@@ -233,6 +265,33 @@
 
       const savedState = loadMapState();
       const defaultView = { center: [50.05917, -122.95694], zoom: 11 };
+      function loadSharedView() {
+        const params = new URLSearchParams(window.location.search);
+        const latValue = params.get("lat");
+        const lngValue = params.get("lng");
+        const zoomValue = params.get("z");
+        if (latValue === null || lngValue === null || zoomValue === null) {
+          return null;
+        }
+
+        const lat = Number(latValue);
+        const lng = Number(lngValue);
+        const zoom = Number(zoomValue);
+        const isValid =
+          Number.isFinite(lat) &&
+          Number.isFinite(lng) &&
+          Number.isFinite(zoom) &&
+          lat >= -90 &&
+          lat <= 90 &&
+          lng >= -180 &&
+          lng <= 180 &&
+          zoom >= 0 &&
+          zoom <= 19;
+
+        return isValid ? { center: [lat, lng], zoom } : null;
+      }
+
+      const sharedView = loadSharedView();
       const hasSavedView =
         Array.isArray(savedState?.center) &&
         savedState.center.length === 2 &&
@@ -240,9 +299,12 @@
         typeof savedState.center[1] === "number" &&
         typeof savedState?.zoom === "number";
 
-      const initialView = hasSavedView
-        ? { center: savedState.center, zoom: savedState.zoom }
-        : defaultView;
+      const initialView =
+        sharedView ||
+        (hasSavedView
+          ? { center: savedState.center, zoom: savedState.zoom }
+          : defaultView);
+      const hasInitialView = Boolean(sharedView) || hasSavedView;
 
       const map = L.map("map", { zoomControl: true }).setView(
         initialView.center,
@@ -301,6 +363,45 @@
       map.on("zoomend", persistCurrentState);
       map.on("overlayadd", persistCurrentState);
       map.on("overlayremove", persistCurrentState);
+
+      const shareViewButton = document.getElementById("shareView");
+
+      function currentViewUrl() {
+        const center = map.getCenter();
+        const url = new URL(window.location.origin + window.location.pathname);
+        url.searchParams.set("lat", center.lat.toFixed(5));
+        url.searchParams.set("lng", center.lng.toFixed(5));
+        url.searchParams.set("z", String(map.getZoom()));
+        return url.toString();
+      }
+
+      async function copyText(text) {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(text);
+          return;
+        }
+
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        textarea.remove();
+      }
+
+      shareViewButton.addEventListener("click", async () => {
+        try {
+          await copyText(currentViewUrl());
+          shareViewButton.setAttribute("aria-label", "Map link copied");
+          window.setTimeout(() => {
+            shareViewButton.setAttribute("aria-label", "Copy link to current map view");
+          }, 1600);
+        } catch (error) {
+          console.error("Failed to copy map link", error);
+        }
+      });
 
       // Keep all routes the same color for visual consistency
       const ROUTE_COLOR = "#d23f31";
@@ -641,9 +742,8 @@
 
           allMarkers = markers;
 
-          // Only auto-zoom to show all pins if we *don't* already have a saved view.
-          // Otherwise this overrides the persisted zoom/center on every refresh.
-          if (!hasSavedView) {
+          // Only auto-zoom if there is no saved or shared view to preserve.
+          if (!hasInitialView) {
             if (bounds.length === 1) {
               map.setView(bounds[0], 12);
             } else if (bounds.length > 1) {
