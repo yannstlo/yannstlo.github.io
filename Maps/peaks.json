@@ -221,6 +221,12 @@
       "lat": 49.05306,
       "lon": -121.62481,
       "details": "Chilliwack River Valley, British Columbia"
+    },
+    {
+      "name": "Mount Webb",
+      "lat": 49.05086,
+      "lon": -121.4561,
+      "details": "Chilliwack Lake Provincial Park, British Columbia"
     }
   ]
 }
