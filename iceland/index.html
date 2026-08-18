@@ -265,6 +265,22 @@ const activityMarkers = [{"type": "town_walks", "name": "Reykjavik downtown walk
 
 const featuredHikes = [
   {
+    matchName: 'Reykjadalur geothermal river hike',
+    type: 'hikes',
+    name: 'Reykjadalur Hot Spring Thermal River',
+    lat: 64.1663,
+    lon: -20.2645,
+    night: 2,
+    routeType: 'Out and back',
+    distance: '9.2 km',
+    elevation: '379 m',
+    time: '3–3.5 hr',
+    difficulty: 'Moderate',
+    summary: 'Geothermal valley hike from Hveragerði to a naturally warm river where you can stop for a soak.',
+    note: 'The common hot-river turnaround is shorter than the complete AllTrails route. Add soaking time, bring a towel and dry clothes, and stay on the trail around boiling springs and fragile ground.',
+    url: 'https://www.alltrails.com/trail/iceland/southern/reykjadalur-hot-spring-thermal-river'
+  },
+  {
     matchName: 'Glymur waterfall hike',
     type: 'hikes',
     name: 'Glymur Waterfall Trail',
@@ -346,6 +362,13 @@ const nightActivities = (night) =>
 
 const skaftafellActivities = nightActivities(4);
 skaftafellActivities.hikes = ['S3 Skaftafellsheiði — 16.6 km, 5–6 hr'];
+
+const selfossActivities = nightActivities(2);
+selfossActivities.hikes = selfossActivities.hikes.map((activity) =>
+  activity === 'Reykjadalur geothermal river hike (optional soak)'
+    ? 'Reykjadalur Hot Spring Thermal River — 9.2 km, 3–3.5 hr'
+    : activity
+);
 
 const egilsstadirActivities = nightActivities(6);
 egilsstadirActivities.hikes = ['Stórurð via Vatnsskarð — 13.4 km, 3.5–4.5 hr'];
