@@ -22,6 +22,23 @@
   .legend.collapsed .legend-body {
     display: none;
   }
+  .legend-menu-toggle {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 6px;
+    color: #111827;
+    cursor: pointer;
+    display: none;
+    height: 40px;
+    justify-content: center;
+    padding: 0;
+    width: 40px;
+  }
+  .legend-menu-toggle:focus-visible {
+    outline: 3px solid rgba(31, 111, 235, 0.45);
+    outline-offset: 1px;
+  }
   .legend-header {
     display: flex;
     align-items: center;
@@ -158,6 +175,41 @@
     margin-right: 6px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     vertical-align: middle;
+  }
+  @media (max-width: 700px) {
+    .legend {
+      max-height: calc(100vh - 32px);
+      max-width: calc(100vw - 32px);
+      overflow: auto;
+      padding: 0;
+      width: min(320px, calc(100vw - 32px));
+    }
+    .legend-header {
+      padding: 6px 8px 6px 12px;
+    }
+    .legend-heading {
+      margin-bottom: 0;
+    }
+    .legend-body {
+      padding: 4px 12px 12px;
+    }
+    .legend-menu-toggle {
+      display: inline-flex;
+      flex: 0 0 auto;
+    }
+    .legend.collapsed {
+      height: 44px;
+      overflow: hidden;
+      width: 44px;
+    }
+    .legend.collapsed .legend-header {
+      height: 44px;
+      justify-content: center;
+      padding: 0;
+    }
+    .legend.collapsed .legend-heading {
+      display: none;
+    }
   }
 </style>
 </head>
@@ -734,9 +786,14 @@ legend.onAdd = () => {
 
   div.innerHTML = `
     <div class='legend-header'>
-      <div class='legend-heading'>Legend</div>
+      <div class='legend-heading' id='legend-heading'>Map layers</div>
+      <button class='legend-menu-toggle' type='button' aria-controls='legend-body' aria-expanded='false' aria-label='Show map layers'>
+        <svg width='24' height='24' viewBox='0 0 24 24' aria-hidden='true'>
+          <path d='M4 7h16M4 12h16M4 17h16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round'/>
+        </svg>
+      </button>
     </div>
-    <div class='legend-body'>
+    <div class='legend-body' id='legend-body' aria-labelledby='legend-heading'>
       <label class='legend-toggle-item'>
         <input class='legend-checkbox' type='checkbox' data-layer='all' />
         <span class='legend-section-title' data-section-toggle='all'>All overlays</span>
@@ -744,6 +801,24 @@ legend.onAdd = () => {
       ${activitySections}
     </div>
   `;
+  const mobileLegendQuery = window.matchMedia('(max-width: 700px)');
+  const menuToggle = div.querySelector('.legend-menu-toggle');
+  const setLegendCollapsed = (collapsed) => {
+    div.classList.toggle('collapsed', collapsed);
+    menuToggle.setAttribute('aria-expanded', String(!collapsed));
+    menuToggle.setAttribute('aria-label', collapsed ? 'Show map layers' : 'Hide map layers');
+  };
+  setLegendCollapsed(mobileLegendQuery.matches);
+  menuToggle.addEventListener('click', () => {
+    setLegendCollapsed(!div.classList.contains('collapsed'));
+    updateMapView();
+  });
+  const handleViewportChange = (event) => setLegendCollapsed(event.matches);
+  if (mobileLegendQuery.addEventListener) {
+    mobileLegendQuery.addEventListener('change', handleViewportChange);
+  } else {
+    mobileLegendQuery.addListener(handleViewportChange);
+  }
   L.DomEvent.disableClickPropagation(div);
   L.DomEvent.disableScrollPropagation(div);
   const getGroupState = (key) => {
