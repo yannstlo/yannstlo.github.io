@@ -360,6 +360,23 @@ const featuredHikes = [
     url: 'https://www.alltrails.com/trail/iceland/eastern/stutro'
   },
   {
+    name: 'Stuðlagil Canyon',
+    type: 'hikes',
+    lat: 65.175401,
+    lon: -15.270034,
+    night: 6,
+    location: 'Stuðlagil Canyon / Jökuldalur, Iceland',
+    recommendedAccess: 'East side via Klaustursel',
+    routeType: 'Out and back',
+    distance: 'about 5 km',
+    elevation: 'Minimal',
+    time: '1.5–2 hr',
+    difficulty: 'Moderate',
+    summary: 'Hike into the basalt-column canyon along the east side, with access near the river and a better canyon experience than the short west-side viewpoint.',
+    note: 'This is a good stop on the Mývatn → Egilsstaðir driving day. Use the east-side trail via Klaustursel rather than only the west viewpoint.',
+    url: 'https://studlagil.is/activities/'
+  },
+  {
     matchName: 'Skaftafell hikes (Svartifoss)',
     name: 'S3 Skaftafellsheiði',
     type: 'hikes',
@@ -404,7 +421,10 @@ selfossActivities.hikes = selfossActivities.hikes.map((activity) =>
 );
 
 const egilsstadirActivities = nightActivities(6);
-egilsstadirActivities.hikes = ['Stórurð via Vatnsskarð — 13.4 km, 3.5–4.5 hr'];
+egilsstadirActivities.hikes = [
+  'Stórurð via Vatnsskarð — 13.4 km, 3.5–4.5 hr',
+  'Stuðlagil Canyon — ~5 km, 1.5–2 hr'
+];
 
 const myvatnActivities = nightActivities(7);
 myvatnActivities.hikes = ['Hverfjall Crater via Dimmuborgir — 8.9 km, 2.5–3 hr'];
