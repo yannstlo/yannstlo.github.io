@@ -20,6 +20,31 @@
     line-height: 1.35;
   }
   .popup-title { font-weight: 600; }
+  .popup-font-control {
+    border-bottom: 1px solid rgba(17, 24, 39, 0.14);
+    margin-bottom: 8px;
+    padding-bottom: 10px;
+  }
+  .popup-font-control-row {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+  }
+  .popup-font-control label {
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .popup-font-control input[type='range'] {
+    accent-color: #1f6feb;
+    flex: 1;
+    min-width: 110px;
+  }
+  .popup-font-value {
+    font-size: 13px;
+    min-width: 36px;
+    text-align: right;
+  }
   .legend {
     background: rgba(255, 255, 255, 0.94);
     border-radius: 8px;
@@ -508,6 +533,7 @@ const persistCurrentState = () => {
   saveMapState({
     center: [center.lat, center.lng],
     zoom: map.getZoom(),
+    popupFontSize,
     ...overlayState,
     ...legendState
   });
@@ -610,6 +636,22 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 const savedMapState = loadMapState();
+const DEFAULT_POPUP_FONT_SIZE = 16;
+const MIN_POPUP_FONT_SIZE = 12;
+const MAX_POPUP_FONT_SIZE = 22;
+const clampPopupFontSize = (value) => {
+  const parsed = Number(value);
+  return Number.isFinite(parsed)
+    ? Math.min(MAX_POPUP_FONT_SIZE, Math.max(MIN_POPUP_FONT_SIZE, Math.round(parsed)))
+    : DEFAULT_POPUP_FONT_SIZE;
+};
+let popupFontSize = clampPopupFontSize(savedMapState?.popupFontSize);
+const applyPopupFontSize = (value) => {
+  popupFontSize = clampPopupFontSize(value);
+  document.documentElement.style.setProperty('--map-popup-font-size', `${popupFontSize}px`);
+};
+applyPopupFontSize(popupFontSize);
+
 const hasSavedView = Boolean(savedMapState && savedMapState.center && Number.isFinite(savedMapState.zoom));
 if (hasSavedView) {
   map.setView(savedMapState.center, savedMapState.zoom, { animate: false });
@@ -976,6 +1018,21 @@ legend.onAdd = () => {
       </button>
     </div>
     <div class='legend-body' id='legend-body' aria-labelledby='legend-heading'>
+      <div class='popup-font-control'>
+        <div class='popup-font-control-row'>
+          <label for='popup-font-size'>Popup text</label>
+          <input
+            id='popup-font-size'
+            type='range'
+            min='${MIN_POPUP_FONT_SIZE}'
+            max='${MAX_POPUP_FONT_SIZE}'
+            step='1'
+            value='${popupFontSize}'
+            aria-describedby='popup-font-value'
+          />
+          <output class='popup-font-value' id='popup-font-value' for='popup-font-size'>${popupFontSize}px</output>
+        </div>
+      </div>
       <label class='legend-toggle-item'>
         <input class='legend-checkbox' type='checkbox' data-layer='all' />
         <span class='legend-section-title' data-section-toggle='all'>All overlays</span>
@@ -983,6 +1040,16 @@ legend.onAdd = () => {
       ${activitySections}
     </div>
   `;
+  const popupFontInput = div.querySelector('#popup-font-size');
+  const popupFontValue = div.querySelector('#popup-font-value');
+  popupFontInput.addEventListener('input', () => {
+    applyPopupFontSize(popupFontInput.value);
+    popupFontInput.value = String(popupFontSize);
+    popupFontValue.value = `${popupFontSize}px`;
+    popupFontValue.textContent = `${popupFontSize}px`;
+    if (hasFinishedInitialLoad) persistCurrentState();
+  });
+
   const mobileLegendQuery = window.matchMedia('(max-width: 700px)');
   const menuToggle = div.querySelector('.legend-menu-toggle');
   const setLegendCollapsed = (collapsed) => {
