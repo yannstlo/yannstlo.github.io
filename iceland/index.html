@@ -406,6 +406,21 @@ const featuredHikes = [
     url: 'https://studlagil.is/activities/'
   },
   {
+    name: 'Hangandifoss Waterfall & Múlagljúfur Canyon',
+    type: 'hikes',
+    lat: 63.99299,
+    lon: -16.43641,
+    night: 5,
+    routeType: 'Out and back',
+    distance: '5.8 km',
+    elevation: '367 m',
+    time: '2–3 hr',
+    difficulty: 'Moderate',
+    summary: 'Climb above Múlagljúfur Canyon for views of Hangandifoss and Múlafoss, with glaciers and the south coast behind you.',
+    note: 'Access is from Route 1 via a short gravel road. Paid parking; the trail can be steep, narrow and slippery when wet.',
+    url: 'https://www.alltrails.com/trail/iceland/eastern/hangandifoss-waterfall-mulagljufur-canyon'
+  },
+  {
     matchName: 'Skaftafell hikes (Svartifoss)',
     name: 'S3 Skaftafellsheiði',
     type: 'hikes',
@@ -441,6 +456,9 @@ const nightActivities = (night) =>
 
 const skaftafellActivities = nightActivities(4);
 skaftafellActivities.hikes = ['S3 Skaftafellsheiði — 16.6 km, 5–6 hr'];
+
+const hofnActivities = nightActivities(5);
+hofnActivities.hikes = ['Hangandifoss & Múlagljúfur Canyon — 5.8 km, 2–3 hr'];
 
 const selfossActivities = nightActivities(2);
 selfossActivities.hikes = selfossActivities.hikes.map((activity) =>
