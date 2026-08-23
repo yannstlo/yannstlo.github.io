@@ -1173,6 +1173,11 @@ legend.onAdd = () => {
     }
   });
   initializeOfflineControl();
+  navigator.serviceWorker?.addEventListener('controllerchange', () => {
+    offlineCheckbox.disabled = false;
+    offlineStatus.textContent = 'Checking…';
+    initializeOfflineControl();
+  });
 
   const mobileLegendQuery = window.matchMedia('(max-width: 700px)');
   const menuToggle = div.querySelector('.legend-menu-toggle');
