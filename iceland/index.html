@@ -698,11 +698,29 @@ routeSegments.forEach((segment) => {
   if (!segment.coordinates || !segment.coordinates.length) {
     return;
   }
-  routeLegLayers[segment.id] = L.polyline(segment.coordinates, {
+
+  const blueRouteStyle = {
     color: '#1f6feb',
     weight: 3,
     opacity: 0.8
-  });
+  };
+
+  if (segment.id === '2-3') {
+    // F225/F208 excursion to Landmannalaugar and back. Keep the paved portions blue.
+    const fRoadStart = 697;
+    const fRoadEnd = 4188;
+    const pavedBefore = L.polyline(segment.coordinates.slice(0, fRoadStart + 1), blueRouteStyle);
+    const fRoad = L.polyline(segment.coordinates.slice(fRoadStart, fRoadEnd + 1), {
+      color: '#f97316',
+      weight: 5,
+      opacity: 0.95
+    }).bindTooltip('F225 / F208 · F-road · 4×4 required');
+    const pavedAfter = L.polyline(segment.coordinates.slice(fRoadEnd), blueRouteStyle);
+    routeLegLayers[segment.id] = L.featureGroup([pavedBefore, fRoad, pavedAfter]);
+    return;
+  }
+
+  routeLegLayers[segment.id] = L.polyline(segment.coordinates, blueRouteStyle);
 });
 
 const overnightMarkersByNight = {};
