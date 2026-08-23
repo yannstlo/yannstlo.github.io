@@ -177,6 +177,22 @@
     min-width: 18px;
     text-align: right;
   }
+  .activity-marker-icon {
+    align-items: center;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+  }
+  .activity-marker-dot {
+    background: var(--marker-color);
+    border: 2px solid var(--marker-color);
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: block;
+    height: 12px;
+    opacity: 0.85;
+    width: 12px;
+  }
   .marker-label {
     background: rgba(255, 255, 255, 0.92);
     border-radius: 6px;
@@ -847,12 +863,15 @@ activityMarkers.forEach((marker) => {
           iconAnchor: [9, 9]
         })
       })
-    : L.circleMarker([marker.lat, marker.lon], {
-        radius: 6,
-        color,
-        fillColor: color,
-        fillOpacity: 0.85,
-        weight: 2
+    : L.marker([marker.lat, marker.lon], {
+        icon: L.divIcon({
+          className: 'activity-marker-icon',
+          html: `<span class='activity-marker-dot' style='--marker-color:${color}'></span>`,
+          iconSize: [32, 32],
+          iconAnchor: [16, 16]
+        }),
+        keyboard: true,
+        title: marker.name
       });
   activityLayer.bindPopup(popup).addTo(group);
   activityMarkerLookup[markerId] = { layer: activityLayer, groupKey: marker.type };
