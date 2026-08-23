@@ -1314,6 +1314,12 @@ legend.onAdd = () => {
 };
 legend.addTo(map);
 
+// First-stage offline support: cache only Leaflet assets and map tiles.
+// The HTML page is deliberately never intercepted or cached.
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' }).catch(() => {});
+}
+
 updateMapView();
 hasFinishedInitialLoad = true;
 </script>
