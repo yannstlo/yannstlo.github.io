@@ -45,6 +45,26 @@
     min-width: 36px;
     text-align: right;
   }
+  .offline-save-control {
+    border-bottom: 1px solid rgba(17, 24, 39, 0.14);
+    margin-bottom: 8px;
+    padding-bottom: 10px;
+  }
+  .offline-save-label {
+    align-items: center;
+    display: flex;
+    font-size: 13px;
+    font-weight: 600;
+    gap: 7px;
+  }
+  .offline-save-label input {
+    accent-color: #1f6feb;
+  }
+  .offline-save-status {
+    color: #4b5563;
+    font-size: 11px;
+    margin: 4px 0 0 24px;
+  }
   .legend {
     background: rgba(255, 255, 255, 0.94);
     border-radius: 8px;
@@ -1080,6 +1100,13 @@ legend.onAdd = () => {
           <output class='popup-font-value' id='popup-font-value' for='popup-font-size'>${popupFontSize}px</output>
         </div>
       </div>
+      <div class='offline-save-control'>
+        <label class='offline-save-label' for='offline-map-enabled'>
+          <input id='offline-map-enabled' type='checkbox' />
+          <span>Make overview available offline</span>
+        </label>
+        <div class='offline-save-status' id='offline-map-status' aria-live='polite'>Checking…</div>
+      </div>
       <label class='legend-toggle-item'>
         <input class='legend-checkbox' type='checkbox' data-layer='all' />
         <span class='legend-section-title' data-section-toggle='all'>All overlays</span>
@@ -1096,6 +1123,56 @@ legend.onAdd = () => {
     popupFontValue.textContent = `${popupFontSize}px`;
     if (hasFinishedInitialLoad) persistCurrentState();
   });
+
+  const offlineCheckbox = div.querySelector('#offline-map-enabled');
+  const offlineStatus = div.querySelector('#offline-map-status');
+  const sendOfflineMessage = async (type) => {
+    if (!('serviceWorker' in navigator)) {
+      throw new Error('Service workers unavailable');
+    }
+    const registration = await navigator.serviceWorker.ready;
+    const worker = navigator.serviceWorker.controller || registration.active;
+    if (!worker) {
+      throw new Error('Offline worker unavailable');
+    }
+    return new Promise((resolve, reject) => {
+      const channel = new MessageChannel();
+      const timeout = window.setTimeout(() => reject(new Error('Offline request timed out')), 15000);
+      channel.port1.onmessage = (event) => {
+        window.clearTimeout(timeout);
+        resolve(event.data);
+      };
+      worker.postMessage({ type }, [channel.port2]);
+    });
+  };
+  const setOfflineControlState = (enabled, message) => {
+    offlineCheckbox.checked = enabled;
+    offlineStatus.textContent = message;
+  };
+  const initializeOfflineControl = async () => {
+    try {
+      const result = await sendOfflineMessage('GET_OFFLINE_STATUS');
+      setOfflineControlState(Boolean(result.enabled), result.enabled ? 'Available offline' : 'Not saved');
+    } catch (error) {
+      offlineCheckbox.disabled = true;
+      offlineStatus.textContent = 'Offline saving unavailable';
+    }
+  };
+  offlineCheckbox.addEventListener('change', async () => {
+    const shouldEnable = offlineCheckbox.checked;
+    offlineCheckbox.disabled = true;
+    offlineStatus.textContent = shouldEnable ? 'Saving overview…' : 'Removing saved map…';
+    try {
+      const result = await sendOfflineMessage(shouldEnable ? 'SAVE_OFFLINE' : 'REMOVE_OFFLINE');
+      const enabled = Boolean(result.enabled);
+      setOfflineControlState(enabled, enabled ? 'Available offline' : shouldEnable ? 'Could not save offline' : 'Not saved');
+    } catch (error) {
+      setOfflineControlState(!shouldEnable, 'Offline setting could not be changed');
+    } finally {
+      offlineCheckbox.disabled = false;
+    }
+  });
+  initializeOfflineControl();
 
   const mobileLegendQuery = window.matchMedia('(max-width: 700px)');
   const menuToggle = div.querySelector('.legend-menu-toggle');
