@@ -511,7 +511,7 @@ activityMarkers.push(
     lat: 64.1495,
     lon: -19.7365,
     night: 2,
-    note: 'Deanna must-do: a green sunken valley with waterfalls. The closest approach is rough; the Stöng walking access is easier on the vehicle.'
+    note: 'Deanna must-do: a green sunken valley with waterfalls. This is a substantial detour, not a direct stop on the blue route. Approach via Route 32 and Road 327—do not follow a straight line across the Þjórsá. Road 327 is rough; park at Stöng and walk in for the easier vehicle approach.'
   }
 );
 
@@ -1195,6 +1195,9 @@ activityMarkers.forEach((marker) => {
       ${marker.url ? `<a class='trail-link' href='${marker.url}' target='_blank' rel='noopener noreferrer'>Open in AllTrails ↗</a>` : ''}
     `
     : '';
+  const generalNote = !marker.distance && marker.note
+    ? `<div class='trail-note'>${marker.note}</div>`
+    : '';
   const popup = `
     <div class='popup-title'>${marker.name}</div>
     <div>Type: ${label}</div>
@@ -1202,6 +1205,7 @@ activityMarkers.forEach((marker) => {
     ${marker.destination ? `<div><strong>Area:</strong> ${marker.destination}</div>` : ''}
     ${marker.bookingSite ? `<div><strong>Booked with:</strong> ${marker.bookingSite}</div>` : ''}
     ${marker.approximate ? `<div class='trail-note'>Approximate placement—the spreadsheet address does not include a precise building number.</div>` : ''}
+    ${generalNote}
     ${trailDetails}
   `;
   const markerId = marker.id || `${marker.type}-${activityMarkersByGroup[marker.type].length}`;
@@ -1253,7 +1257,6 @@ const accessConnectors = L.featureGroup();
 const connectorNames = new Set([
   'Hangandifoss Waterfall & Múlagljúfur Canyon',
   'Hjörleifshöfði & Gígjagjá (Yoda Cave)',
-  'Gjáin valley',
   'Látrabjarg bird cliffs'
 ]);
 const routePoints = routeSegments.flatMap((segment) => (segment.coordinates || []).filter((_, index) => index % 8 === 0));
