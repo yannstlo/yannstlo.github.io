@@ -82,24 +82,29 @@
     padding: 7px 9px;
     width: 100%;
   }
-  .location-tool-row {
+  .location-map-control {
+    margin-bottom: 24px !important;
+    margin-right: 14px !important;
+  }
+  .location-map-button {
     align-items: center;
-    display: grid;
-    gap: 6px;
-    grid-template-columns: auto 1fr;
-  }
-  .location-tool-button {
-    background: #1f6feb;
+    background: #fff;
     border: 0;
-    border-radius: 7px;
-    color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .32);
+    color: #1a73e8;
     cursor: pointer;
-    font: 700 12px/1.2 system-ui, sans-serif;
-    min-height: 38px;
-    padding: 8px 11px;
+    display: flex;
+    height: 46px;
+    justify-content: center;
+    padding: 0;
+    width: 46px;
   }
-  .location-tool-button:disabled { cursor: wait; opacity: .65; }
-  .location-tool-status { color: #4b5563; font-size: 11px; line-height: 1.25; }
+  .location-map-button:hover { background: #f8f9fa; }
+  .location-map-button:focus-visible { outline: 3px solid rgba(26, 115, 232, .35); outline-offset: 2px; }
+  .location-map-button.is-locating { cursor: wait; opacity: .65; }
+  .location-map-button.has-error { color: #b3261e; }
+  .location-map-button svg { height: 25px; width: 25px; }
   .map-search-results {
     background: #fff;
     border: 1px solid #dbe2ea;
@@ -974,6 +979,48 @@ if (navigator.geolocation) {
   });
 }
 
+let locationMapButton = null;
+const locationControl = L.control({ position: 'bottomright' });
+locationControl.onAdd = () => {
+  const container = L.DomUtil.create('div', 'leaflet-control location-map-control');
+  locationMapButton = L.DomUtil.create('button', 'location-map-button', container);
+  locationMapButton.type = 'button';
+  locationMapButton.title = 'Center map on my location';
+  locationMapButton.setAttribute('aria-label', 'Center map on my location');
+  locationMapButton.innerHTML = `
+    <svg viewBox='0 0 24 24' aria-hidden='true'>
+      <path d='M20.4 3.6 3.8 10.5c-.9.4-.8 1.7.2 1.9l7.1 1.5 1.5 7.1c.2 1 1.5 1.1 1.9.2l6.9-16.6c.3-.7-.4-1.4-1-1z' fill='currentColor'/>
+      <path d='m11.1 13.9 4.8-4.8' fill='none' stroke='#fff' stroke-linecap='round' stroke-width='1.5'/>
+    </svg>`;
+  L.DomEvent.disableClickPropagation(container);
+  L.DomEvent.on(locationMapButton, 'click', () => {
+    if (currentLocationLatLng) {
+      map.setView(currentLocationLatLng, Math.max(14, map.getZoom()));
+      currentLocationMarker?.openTooltip();
+      return;
+    }
+    locationMapButton.classList.add('is-locating');
+    locationMapButton.classList.remove('has-error');
+    locationMapButton.title = 'Finding your location…';
+    requestCurrentLocation();
+  });
+  return container;
+};
+locationControl.addTo(map);
+document.addEventListener('map-location-updated', () => {
+  if (!locationMapButton) return;
+  locationMapButton.classList.remove('is-locating', 'has-error');
+  locationMapButton.title = 'Center map on my location';
+});
+document.addEventListener('map-location-error', (event) => {
+  if (!locationMapButton) return;
+  locationMapButton.classList.remove('is-locating');
+  locationMapButton.classList.add('has-error');
+  locationMapButton.title = event.detail.code === 1
+    ? 'Location permission is off'
+    : 'Location unavailable — tap to retry';
+});
+
 const savedMapState = loadMapState();
 const DEFAULT_POPUP_FONT_SIZE = 16;
 const MIN_POPUP_FONT_SIZE = 12;
@@ -1442,10 +1489,6 @@ legend.onAdd = () => {
     </div>
     <div class='legend-body' id='legend-body' aria-labelledby='legend-heading'>
       <div class='map-tools'>
-        <div class='location-tool-row'>
-          <button class='location-tool-button' id='center-current-location' type='button'>◎ Center on me</button>
-          <span class='location-tool-status' id='current-location-status' aria-live='polite'>Finding your location…</span>
-        </div>
         <input class='map-tool-input' id='map-search' type='search' placeholder='Search places, stops, routes…' aria-label='Search map places' autocomplete='off' />
         <div class='map-search-results' id='map-search-results' role='listbox'></div>
         <select class='map-tool-select' id='day-focus' aria-label='Focus on a trip day'>
@@ -1559,31 +1602,6 @@ legend.onAdd = () => {
   const dayFocus = div.querySelector('#day-focus');
   const deannaFilter = div.querySelector('#deanna-filter');
   const connectorToggle = div.querySelector('#access-connectors');
-  const centerLocationButton = div.querySelector('#center-current-location');
-  const currentLocationStatus = div.querySelector('#current-location-status');
-  if (currentLocationLatLng) currentLocationStatus.textContent = 'Location found';
-  else if (!navigator.geolocation) currentLocationStatus.textContent = 'Location unavailable';
-  centerLocationButton.addEventListener('click', () => {
-    if (currentLocationLatLng) {
-      map.setView(currentLocationLatLng, Math.max(14, map.getZoom()));
-      currentLocationMarker?.openTooltip();
-      return;
-    }
-    centerLocationButton.disabled = true;
-    currentLocationStatus.textContent = 'Finding your location…';
-    requestCurrentLocation();
-  });
-  document.addEventListener('map-location-updated', (event) => {
-    centerLocationButton.disabled = false;
-    const accuracy = Math.round(event.detail.accuracy);
-    currentLocationStatus.textContent = accuracy ? `Location found · ±${accuracy} m` : 'Location found';
-  });
-  document.addEventListener('map-location-error', (event) => {
-    centerLocationButton.disabled = false;
-    currentLocationStatus.textContent = event.detail.code === 1
-      ? 'Location permission is off'
-      : 'Location unavailable · tap to retry';
-  });
   let daySnapshot = null;
   let deannaSnapshot = null;
 
