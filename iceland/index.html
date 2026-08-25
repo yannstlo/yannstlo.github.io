@@ -477,6 +477,22 @@ if (nightOneRoute) {
   nightOneRoute.to = 'Sóltún';
 }
 
+const airportArrivalRoute = [[63.978369,-22.585857],[63.97864,-22.5851],[63.977758,-22.582402],[63.978151,-22.580484],[63.978221,-22.575975],[63.978171,-22.570049],[63.978181,-22.565595],[63.978103,-22.564744],[63.978804,-22.563506],[63.979864,-22.562462],[63.980078,-22.561716],[63.979584,-22.560628],[63.9765,-22.556077],[63.973866,-22.551618],[63.972613,-22.547075],[63.972068,-22.542677],[63.971734,-22.541527],[63.9717,-22.540993],[63.971082,-22.534214],[63.969044,-22.51376],[63.967616,-22.49899],[63.966148,-22.484222],[63.964998,-22.475755],[63.963894,-22.467929],[63.962887,-22.460781],[63.962061,-22.45485],[63.961507,-22.449183],[63.961409,-22.44363],[63.961621,-22.43087],[63.961977,-22.425118],[63.962562,-22.417634],[63.963303,-22.407414],[63.963838,-22.401244],[63.965356,-22.391281],[63.967164,-22.38137],[63.969164,-22.373228],[63.97167,-22.365736],[63.973845,-22.359295],[63.975467,-22.353626],[63.979264,-22.338836],[63.984767,-22.317081],[63.986807,-22.308104],[63.989338,-22.296512],[63.993019,-22.282581],[63.99604,-22.270512],[63.997444,-22.262773],[63.998628,-22.25412],[64.001344,-22.233597],[64.003985,-22.219971],[64.007128,-22.205244],[64.010455,-22.189525],[64.011561,-22.184958],[64.012982,-22.181434],[64.015044,-22.177911],[64.016375,-22.174224],[64.017117,-22.170549],[64.019174,-22.147941],[64.020501,-22.137223],[64.021961,-22.130988],[64.023851,-22.125227],[64.02513,-22.120761],[64.025908,-22.116163],[64.02734,-22.103256],[64.028153,-22.09919],[64.029802,-22.094128],[64.03143,-22.089058],[64.033166,-22.08082],[64.034074,-22.077294],[64.036206,-22.072512],[64.037376,-22.066396],[64.038984,-22.048469],[64.039934,-22.042415],[64.041931,-22.034524],[64.043665,-22.028609],[64.046671,-22.018398],[64.047969,-22.0137],[64.049164,-22.008269],[64.049934,-22.003848],[64.051326,-21.994697],[64.053304,-21.98125],[64.05494,-21.970787],[64.056941,-21.957528],[64.058889,-21.946759],[64.059429,-21.942251],[64.060018,-21.940505],[64.060874,-21.939246],[64.063501,-21.938124],[64.065426,-21.937537],[64.066637,-21.937487],[64.066981,-21.937248],[64.067192,-21.937251],[64.067524,-21.937682],[64.073318,-21.939412],[64.075799,-21.940206],[64.076047,-21.939958],[64.076223,-21.94002],[64.076476,-21.94042],[64.079896,-21.941389],[64.081385,-21.941953],[64.082955,-21.942461],[64.083598,-21.943236],[64.083828,-21.943395],[64.084594,-21.94163],[64.08583,-21.938672],[64.087601,-21.935832],[64.088426,-21.934394],[64.089781,-21.931125],[64.090378,-21.92941],[64.0909,-21.927944],[64.091549,-21.926685],[64.092497,-21.925459],[64.095167,-21.922536],[64.09718,-21.920257],[64.098403,-21.918353],[64.099652,-21.915494],[64.100468,-21.912875],[64.101834,-21.907401],[64.103755,-21.903981],[64.105277,-21.903573],[64.106809,-21.904567],[64.109908,-21.907613],[64.110708,-21.907784],[64.111607,-21.907517],[64.112384,-21.906709],[64.112962,-21.905703],[64.113813,-21.903191],[64.11482,-21.90024],[64.115515,-21.899024],[64.116226,-21.898326],[64.117306,-21.897986],[64.119897,-21.898416],[64.126268,-21.899622],[64.128667,-21.900033],[64.129266,-21.900046],[64.130546,-21.899733],[64.13177,-21.89899],[64.132988,-21.897998],[64.133348,-21.899049],[64.134284,-21.905389],[64.135049,-21.910366],[64.135349,-21.911965],[64.135938,-21.915927],[64.136279,-21.919062],[64.13648,-21.921552],[64.136831,-21.922894],[64.137839,-21.922239],[64.138077,-21.923063],[64.138751,-21.924113],[64.140267,-21.926206],[64.139911,-21.927552],[64.139695,-21.928365]];
+routeSegments.unshift({
+  id: 'airport-1',
+  from_night: 0,
+  to_night: 1,
+  day: 1,
+  from: 'Keflavík International Airport',
+  to: '#6 Private room · NO.1 location',
+  km: 46.2,
+  coordinates: airportArrivalRoute,
+  note: 'Arrival drive from KEF to downtown Reykjavík.'
+});
+routeSegments.forEach((segment) => {
+  if (!segment.day) segment.day = segment.id === '13-1' ? 14 : Number(segment.to_night);
+});
+
 const nightTwoRoute = routeSegments.find((segment) => segment.id === '2-3');
 const nightTwoStayConnector = routeAddressConnectors.find((connector) => connector.id === '2-3');
 if (nightTwoRoute && nightTwoStayConnector) {
@@ -1139,7 +1155,7 @@ routeSegments.forEach((segment) => {
   };
 
   if (segment.id === '2-3') {
-    // F225/F208 excursion to Landmannalaugar and back. Keep the paved portions blue.
+    // Northern 208 excursion to Landmannalaugar and back. Keep the paved portions blue.
     const fRoadStart = segment.fRoadStart || 697;
     const fRoadEnd = segment.fRoadEnd || 4188;
     const pavedBefore = L.polyline(segment.coordinates.slice(0, fRoadStart + 1), blueRouteStyle);
@@ -1147,7 +1163,7 @@ routeSegments.forEach((segment) => {
       color: '#f97316',
       weight: 5,
       opacity: 0.95
-    }).bindTooltip('F225 / F208 · F-road · 4×4 required');
+    }).bindTooltip('Northern 208 · highland road · 4×4 recommended');
     const pavedAfter = L.polyline(segment.coordinates.slice(fRoadEnd), blueRouteStyle);
     routeLegLayers[segment.id] = L.featureGroup([pavedBefore, fRoad, pavedAfter]);
     return;
@@ -1163,11 +1179,11 @@ routeSegments.forEach((segment) => {
   const timeLabel = estimatedHours < 2 ? `${estimatedHours} hr` : `${estimatedHours} hrs`;
   const routeNote = segment.note ? `<div><strong>Plan:</strong> ${segment.note}</div>` : '';
   const fRoadNote = segment.id === '2-3'
-    ? '<div style="color:#c2410c"><strong>F-road:</strong> F225/F208 requires a suitable 4×4; verify road and river conditions.</div>'
+    ? '<div style="color:#c2410c"><strong>Highland road:</strong> Use northern 208 and park before the final river crossings; verify current conditions.</div>'
     : '';
   layer.bindPopup(`
     <div class='route-popup'>
-      <strong>${segment.from} → ${segment.to}</strong>
+      <strong>Day ${segment.day}: ${segment.from} → ${segment.to}</strong>
       <div>${segment.km} km · about ${timeLabel} driving</div>
       ${routeNote}${fRoadNote}
       <div style="font-size:.8em;color:#6b7280">Planning estimate only; stops and conditions add time.</div>
@@ -1520,7 +1536,7 @@ legend.onAdd = () => {
                   <li class='legend-item legend-item-toggle'>
                     <label class='legend-toggle-item'>
                       <input class='legend-checkbox' type='checkbox' data-route='${segment.id}' ${checked} />
-                      <span>${segment.from_night}. ${segment.from} → ${segment.to_night}. ${segment.to} (${segment.km} km)${note}</span>
+                      <span>Day ${segment.day}: ${segment.from} → ${segment.to} (${segment.km} km)${note}</span>
                     </label>
                   </li>`;
               })
@@ -1573,6 +1589,7 @@ legend.onAdd = () => {
         <select class='map-tool-select' id='day-focus' aria-label='Focus on a trip day'>
           <option value=''>Full trip · all days</option>
           ${sortedStops.map((feature) => `<option value='${feature.properties.night}'>Day ${feature.properties.night} · ${feature.properties.title}</option>`).join('')}
+          <option value='14'>Day 14 · Return to Reykjavík</option>
         </select>
         <label class='map-tool-check'><input id='deanna-filter' type='checkbox' /> ★ Deanna’s must-dos only</label>
         <label class='map-tool-check'><input id='access-connectors' type='checkbox' checked /> Show approximate access spurs</label>
@@ -1769,15 +1786,23 @@ legend.onAdd = () => {
       };
     }
     Object.entries(activityMarkerData).forEach(([id, marker]) => setActivityVisibility(id, Number(marker.night) === selectedNight));
-    Object.keys(overnightMarkersByNight).forEach((night) => setOvernightVisibility(Number(night), Number(night) === selectedNight || Number(night) === selectedNight - 1));
+    Object.keys(overnightMarkersByNight).forEach((night) => {
+      const nightNumber = Number(night);
+      const visible = selectedNight === 14
+        ? nightNumber === 13 || nightNumber === 1
+        : nightNumber === selectedNight || nightNumber === selectedNight - 1;
+      setOvernightVisibility(nightNumber, visible);
+    });
     Object.entries(routeLegLayers).forEach(([id, layer]) => {
       const segment = routeSegments.find((item) => item.id === id);
-      if (segment && Number(segment.to_night) === selectedNight) map.addLayer(layer); else map.removeLayer(layer);
+      if (segment && Number(segment.day) === selectedNight) map.addLayer(layer); else map.removeLayer(layer);
     });
     const selectedLayers = [
-      overnightMarkersByNight[selectedNight],
+      ...(selectedNight === 14
+        ? [overnightMarkersByNight[13], overnightMarkersByNight[1]]
+        : [overnightMarkersByNight[selectedNight]]),
       ...Object.entries(activityMarkerData).filter(([, marker]) => Number(marker.night) === selectedNight).map(([id]) => activityMarkerLookup[id].layer),
-      ...Object.entries(routeLegLayers).filter(([id]) => Number(routeSegments.find((item) => item.id === id)?.to_night) === selectedNight).map(([, layer]) => layer)
+      ...Object.entries(routeLegLayers).filter(([id]) => Number(routeSegments.find((item) => item.id === id)?.day) === selectedNight).map(([, layer]) => layer)
     ].filter(Boolean);
     const bounds = L.featureGroup(selectedLayers).getBounds();
     if (bounds.isValid()) map.fitBounds(bounds.pad(0.15), { padding: [30, 30] });
