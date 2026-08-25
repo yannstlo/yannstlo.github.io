@@ -83,10 +83,13 @@
     width: 100%;
   }
   .location-map-control {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     margin-bottom: 24px !important;
     margin-right: 14px !important;
   }
-  .location-map-button {
+  .map-action-button {
     align-items: center;
     background: #fff;
     border: 0;
@@ -100,11 +103,15 @@
     padding: 0;
     width: 46px;
   }
-  .location-map-button:hover { background: #f8f9fa; }
-  .location-map-button:focus-visible { outline: 3px solid rgba(26, 115, 232, .35); outline-offset: 2px; }
+  .map-action-button:hover { background: #f8f9fa; }
+  .map-action-button:focus-visible { outline: 3px solid rgba(26, 115, 232, .35); outline-offset: 2px; }
   .location-map-button.is-locating { cursor: wait; opacity: .65; }
   .location-map-button.has-error { color: #b3261e; }
-  .location-map-button svg { height: 25px; width: 25px; }
+  .map-action-button svg { height: 25px; width: 25px; }
+  .labels-toggle-button.is-off { color: #5f6368; }
+  .labels-off-slash { opacity: 0; }
+  .labels-toggle-button.is-off .labels-off-slash { opacity: 1; }
+  .labels-hidden .marker-label { display: none; }
   .map-search-results {
     background: #fff;
     border: 1px solid #dbe2ea;
@@ -829,6 +836,7 @@ const persistCurrentState = () => {
     center: [center.lat, center.lng],
     zoom: map.getZoom(),
     popupFontSize,
+    labelsVisible: mapLabelsVisible,
     ...overlayState,
     ...legendState
   });
@@ -980,10 +988,35 @@ if (navigator.geolocation) {
 }
 
 let locationMapButton = null;
+let labelsMapButton = null;
+let mapLabelsVisible = loadMapState()?.labelsVisible !== false;
+map.getContainer().classList.toggle('labels-hidden', !mapLabelsVisible);
 const locationControl = L.control({ position: 'bottomright' });
 locationControl.onAdd = () => {
   const container = L.DomUtil.create('div', 'leaflet-control location-map-control');
-  locationMapButton = L.DomUtil.create('button', 'location-map-button', container);
+  labelsMapButton = L.DomUtil.create('button', 'map-action-button labels-toggle-button', container);
+  labelsMapButton.type = 'button';
+  labelsMapButton.innerHTML = `
+    <svg viewBox='0 0 24 24' aria-hidden='true'>
+      <path d='M4 6.5A2.5 2.5 0 0 1 6.5 4H17l3 3v10.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5z' fill='none' stroke='currentColor' stroke-width='1.8'/>
+      <path d='M8 9h8M8 13h6' fill='none' stroke='currentColor' stroke-linecap='round' stroke-width='1.8'/>
+      <path class='labels-off-slash' d='M4.5 4.5 19.5 19.5' fill='none' stroke='#b3261e' stroke-linecap='round' stroke-width='2.2'/>
+    </svg>`;
+  const updateLabelsButton = () => {
+    labelsMapButton.classList.toggle('is-off', !mapLabelsVisible);
+    labelsMapButton.setAttribute('aria-pressed', String(mapLabelsVisible));
+    labelsMapButton.setAttribute('aria-label', mapLabelsVisible ? 'Hide map labels' : 'Show map labels');
+    labelsMapButton.title = mapLabelsVisible ? 'Hide map labels' : 'Show map labels';
+  };
+  updateLabelsButton();
+  L.DomEvent.on(labelsMapButton, 'click', () => {
+    mapLabelsVisible = !mapLabelsVisible;
+    map.getContainer().classList.toggle('labels-hidden', !mapLabelsVisible);
+    updateLabelsButton();
+    if (hasFinishedInitialLoad) persistCurrentState();
+  });
+
+  locationMapButton = L.DomUtil.create('button', 'map-action-button location-map-button', container);
   locationMapButton.type = 'button';
   locationMapButton.title = 'Center map on my location';
   locationMapButton.setAttribute('aria-label', 'Center map on my location');
