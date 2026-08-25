@@ -82,6 +82,24 @@
     padding: 7px 9px;
     width: 100%;
   }
+  .location-tool-row {
+    align-items: center;
+    display: grid;
+    gap: 6px;
+    grid-template-columns: auto 1fr;
+  }
+  .location-tool-button {
+    background: #1f6feb;
+    border: 0;
+    border-radius: 7px;
+    color: #fff;
+    cursor: pointer;
+    font: 700 12px/1.2 system-ui, sans-serif;
+    min-height: 38px;
+    padding: 8px 11px;
+  }
+  .location-tool-button:disabled { cursor: wait; opacity: .65; }
+  .location-tool-status { color: #4b5563; font-size: 11px; line-height: 1.25; }
   .map-search-results {
     background: #fff;
     border: 1px solid #dbe2ea;
@@ -866,6 +884,55 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+let currentLocationMarker = null;
+let currentLocationAccuracy = null;
+let currentLocationLatLng = null;
+const updateCurrentLocation = (position) => {
+  currentLocationLatLng = L.latLng(position.coords.latitude, position.coords.longitude);
+  const accuracy = Math.max(0, position.coords.accuracy || 0);
+  if (!currentLocationMarker) {
+    currentLocationAccuracy = L.circle(currentLocationLatLng, {
+      radius: accuracy,
+      color: '#2563eb',
+      fillColor: '#60a5fa',
+      fillOpacity: 0.12,
+      weight: 1
+    }).addTo(map);
+    currentLocationMarker = L.circleMarker(currentLocationLatLng, {
+      radius: 8,
+      color: '#fff',
+      fillColor: '#2563eb',
+      fillOpacity: 1,
+      weight: 3
+    }).bindTooltip('Your current location').addTo(map);
+  } else {
+    currentLocationMarker.setLatLng(currentLocationLatLng);
+    currentLocationAccuracy.setLatLng(currentLocationLatLng).setRadius(accuracy);
+  }
+  document.dispatchEvent(new CustomEvent('map-location-updated', { detail: { accuracy } }));
+};
+const reportLocationError = (error) => {
+  document.dispatchEvent(new CustomEvent('map-location-error', { detail: { code: error.code } }));
+};
+const requestCurrentLocation = () => {
+  if (!navigator.geolocation) {
+    reportLocationError({ code: 0 });
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(updateCurrentLocation, reportLocationError, {
+    enableHighAccuracy: true,
+    maximumAge: 30000,
+    timeout: 15000
+  });
+};
+if (navigator.geolocation) {
+  navigator.geolocation.watchPosition(updateCurrentLocation, reportLocationError, {
+    enableHighAccuracy: true,
+    maximumAge: 30000,
+    timeout: 20000
+  });
+}
+
 const savedMapState = loadMapState();
 const DEFAULT_POPUP_FONT_SIZE = 16;
 const MIN_POPUP_FONT_SIZE = 12;
@@ -1331,6 +1398,10 @@ legend.onAdd = () => {
     </div>
     <div class='legend-body' id='legend-body' aria-labelledby='legend-heading'>
       <div class='map-tools'>
+        <div class='location-tool-row'>
+          <button class='location-tool-button' id='center-current-location' type='button'>◎ Center on me</button>
+          <span class='location-tool-status' id='current-location-status' aria-live='polite'>Finding your location…</span>
+        </div>
         <input class='map-tool-input' id='map-search' type='search' placeholder='Search places, stops, routes…' aria-label='Search map places' autocomplete='off' />
         <div class='map-search-results' id='map-search-results' role='listbox'></div>
         <select class='map-tool-select' id='day-focus' aria-label='Focus on a trip day'>
@@ -1444,6 +1515,31 @@ legend.onAdd = () => {
   const dayFocus = div.querySelector('#day-focus');
   const deannaFilter = div.querySelector('#deanna-filter');
   const connectorToggle = div.querySelector('#access-connectors');
+  const centerLocationButton = div.querySelector('#center-current-location');
+  const currentLocationStatus = div.querySelector('#current-location-status');
+  if (currentLocationLatLng) currentLocationStatus.textContent = 'Location found';
+  else if (!navigator.geolocation) currentLocationStatus.textContent = 'Location unavailable';
+  centerLocationButton.addEventListener('click', () => {
+    if (currentLocationLatLng) {
+      map.setView(currentLocationLatLng, Math.max(14, map.getZoom()));
+      currentLocationMarker?.openTooltip();
+      return;
+    }
+    centerLocationButton.disabled = true;
+    currentLocationStatus.textContent = 'Finding your location…';
+    requestCurrentLocation();
+  });
+  document.addEventListener('map-location-updated', (event) => {
+    centerLocationButton.disabled = false;
+    const accuracy = Math.round(event.detail.accuracy);
+    currentLocationStatus.textContent = accuracy ? `Location found · ±${accuracy} m` : 'Location found';
+  });
+  document.addEventListener('map-location-error', (event) => {
+    centerLocationButton.disabled = false;
+    currentLocationStatus.textContent = event.detail.code === 1
+      ? 'Location permission is off'
+      : 'Location unavailable · tap to retry';
+  });
   let daySnapshot = null;
   let deannaSnapshot = null;
 
