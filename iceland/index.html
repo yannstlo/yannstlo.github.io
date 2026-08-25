@@ -512,6 +512,15 @@ activityMarkers.push(
     lon: -19.7365,
     night: 2,
     note: 'Deanna must-do: a green sunken valley with waterfalls. This is a substantial detour, not a direct stop on the blue route. Approach via Route 32 and Road 327—do not follow a straight line across the Þjórsá. Road 327 is rough; park at Stöng and walk in for the easier vehicle approach.'
+  },
+  {
+    id: 'hrunalaug',
+    type: 'thermal_baths',
+    name: 'Hrunalaug Hot Spring',
+    lat: 64.1332992,
+    lon: -20.2614987,
+    night: 2,
+    note: 'Natural hot spring near Flúðir with three small pools. Summer hours are 09:00–22:00, visits are limited to 90 minutes, and the pools are about a five-minute walk from the parking area. Follow Route 30 and Road 344; access outside opening hours is prohibited.'
   }
 );
 
@@ -700,6 +709,7 @@ selfossActivities.hikes = selfossActivities.hikes.map((activity) =>
     ? 'Reykjadalur Hot Spring Thermal River — 9.2 km, 3–3.5 hr'
     : activity
 );
+selfossActivities.thermal_baths = ['Hrunalaug Hot Spring — natural pools, open until 22:00 in summer'];
 
 const egilsstadirActivities = nightActivities(6);
 egilsstadirActivities.hikes = [
