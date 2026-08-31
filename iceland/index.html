@@ -112,19 +112,6 @@
   .labels-off-slash { opacity: 0; }
   .labels-toggle-button.is-off .labels-off-slash { opacity: 1; }
   .labels-hidden .marker-label { display: none; }
-  .main-town-label {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(31, 41, 55, 0.3);
-    border-radius: 4px;
-    box-shadow: none;
-    color: #1f2937;
-    font: 600 11px/1.2 system-ui, sans-serif;
-    padding: 2px 4px;
-  }
-  .main-town-label::before { display: none; }
-  .towns-map-button.is-off { color: #5f6368; }
-  .towns-map-button .towns-off-slash { opacity: 0; }
-  .towns-map-button.is-off .towns-off-slash { opacity: 1; }
   .map-search-results {
     background: #fff;
     border: 1px solid #dbe2ea;
@@ -1018,32 +1005,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-const mainTownsLayer = L.featureGroup([
-  ['Keflavík', 63.9998, -22.5583],
-  ['Reykjavík', 64.1466, -21.9426],
-  ['Selfoss', 63.933, -21.001],
-  ['Vík', 63.4189, -19.006],
-  ['Höfn', 64.2539, -15.208],
-  ['Egilsstaðir', 65.266, -14.394],
-  ['Akureyri', 65.6885, -18.1262],
-  ['Hólmavík', 65.7042, -21.6772],
-  ['Ísafjörður', 66.0727, -23.1194],
-  ['Patreksfjörður', 65.5973, -24.0009],
-  ['Stykkishólmur', 65.075, -22.73],
-  ['Borgarnes', 64.538, -21.92]
-].map(([name, lat, lon]) => L.circleMarker([lat, lon], {
-  radius: 4,
-  color: '#374151',
-  fillColor: '#ffffff',
-  fillOpacity: 0.95,
-  weight: 2
-}).bindTooltip(name, {
-  className: 'main-town-label',
-  direction: 'top',
-  offset: [0, -5],
-  permanent: true
-})));
-
 let currentLocationMarker = null;
 let currentLocationAccuracy = null;
 let currentLocationLatLng = null;
@@ -1095,35 +1056,11 @@ if (navigator.geolocation) {
 
 let locationMapButton = null;
 let labelsMapButton = null;
-let townsMapButton = null;
 let mapLabelsVisible = loadMapState()?.labelsVisible !== false;
 map.getContainer().classList.toggle('labels-hidden', !mapLabelsVisible);
 const locationControl = L.control({ position: 'bottomright' });
 locationControl.onAdd = () => {
   const container = L.DomUtil.create('div', 'leaflet-control location-map-control');
-  townsMapButton = L.DomUtil.create('button', 'map-action-button towns-map-button is-off', container);
-  townsMapButton.type = 'button';
-  townsMapButton.setAttribute('aria-pressed', 'false');
-  townsMapButton.setAttribute('aria-label', 'Show main towns');
-  townsMapButton.title = 'Show main towns';
-  townsMapButton.innerHTML = `
-    <svg viewBox='0 0 24 24' aria-hidden='true'>
-      <path d='M4 20V9h6v11M10 20V4h6v16M16 20v-7h4v7M3 20h18M6.5 12h1M6.5 15h1M12.5 7.5h1M12.5 11h1M12.5 14.5h1M18.5 16h1' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8'/>
-      <path class='towns-off-slash' d='M4.5 4.5 19.5 19.5' fill='none' stroke='#b3261e' stroke-linecap='round' stroke-width='2.2'/>
-    </svg>`;
-  L.DomEvent.on(townsMapButton, 'click', () => {
-    const visible = map.hasLayer(mainTownsLayer);
-    if (visible) {
-      map.removeLayer(mainTownsLayer);
-    } else {
-      mainTownsLayer.addTo(map);
-    }
-    townsMapButton.classList.toggle('is-off', visible);
-    townsMapButton.setAttribute('aria-pressed', String(!visible));
-    townsMapButton.setAttribute('aria-label', visible ? 'Show main towns' : 'Hide main towns');
-    townsMapButton.title = visible ? 'Show main towns' : 'Hide main towns';
-  });
-
   labelsMapButton = L.DomUtil.create('button', 'map-action-button labels-toggle-button', container);
   labelsMapButton.type = 'button';
   labelsMapButton.innerHTML = `
