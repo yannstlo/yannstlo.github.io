@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refreshing Iceland Trip Map</title>
+<style>
+  body { align-items: center; background: #f8fafc; color: #111827; display: flex; font: 16px/1.45 system-ui, sans-serif; justify-content: center; margin: 0; min-height: 100vh; }
+  main { max-width: 28rem; padding: 24px; text-align: center; }
+</style>
+<main>Refreshing the Iceland Trip Map…</main>
+<script>
+  (async () => {
+    try {
+      const registrations = await navigator.serviceWorker?.getRegistrations?.() || [];
+      await Promise.all(registrations.map((registration) => registration.unregister()));
+      const cacheNames = await globalThis.caches?.keys?.() || [];
+      await Promise.all(cacheNames.filter((name) => name.startsWith('iceland-map-')).map((name) => globalThis.caches.delete(name)));
+      Object.keys(localStorage).filter((key) => key.startsWith('yann-iceland-map-')).forEach((key) => localStorage.removeItem(key));
+    } catch (error) {}
+    location.replace('./');
+  })();
+</script>
+</html>
