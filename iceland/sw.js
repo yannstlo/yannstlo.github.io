@@ -1,6 +1,6 @@
-const APP_CACHE = 'iceland-map-offline-shell-v1';
-const ASSET_CACHE = 'iceland-map-assets-v1';
-const TILE_CACHE = 'iceland-map-tiles-v1';
+const APP_CACHE = 'iceland-map-offline-shell-v2';
+const ASSET_CACHE = 'iceland-map-assets-v2';
+const TILE_CACHE = 'iceland-map-tiles-v2';
 const MAX_CACHED_TILES = 1200;
 const APP_URL = new URL('./', self.registration.scope).href;
 const APP_ASSETS = [
