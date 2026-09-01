@@ -1248,8 +1248,17 @@ routeSegments.forEach((segment) => {
     opacity: 0.8,
     noClip: true
   };
-
-  routeLegLayers[segment.id] = L.polyline(segment.coordinates, blueRouteStyle);
+  const routeLayers = [L.polyline(segment.coordinates, blueRouteStyle)];
+  const fRoadCoordinates = segment.coordinates.slice(segment.fRoadStart, segment.fRoadEnd + 1);
+  if (fRoadCoordinates.length > 1) {
+    routeLayers.push(L.polyline(fRoadCoordinates, {
+      color: '#dc2626',
+      weight: 4,
+      opacity: 0.9,
+      noClip: true
+    }));
+  }
+  routeLegLayers[segment.id] = L.featureGroup(routeLayers);
 });
 
 routeSegments.forEach((segment) => {
@@ -1259,7 +1268,7 @@ routeSegments.forEach((segment) => {
   const timeLabel = estimatedHours < 2 ? `${estimatedHours} hr` : `${estimatedHours} hrs`;
   const routeNote = segment.note ? `<div><strong>Plan:</strong> ${segment.note}</div>` : '';
   const fRoadNote = segment.id === '2-3'
-    ? '<div style="color:#c2410c"><strong>Highland road:</strong> Use northern 208 and park before the final river crossings; verify current conditions.</div>'
+    ? '<div style="color:#b91c1c"><strong>Highland road:</strong> Use northern 208 and park before the final river crossings; verify current conditions.</div>'
     : '';
   layer.bindPopup(`
     <div class='route-popup'>
@@ -1687,7 +1696,7 @@ legend.onAdd = () => {
         <label class='map-tool-check'><input id='access-connectors' type='checkbox' /> Show approximate access spurs</label>
         <div class='route-key'>
           <span class='route-key-swatch' style='background:#1f6feb'></span>main route
-          <span class='route-key-swatch' style='background:#f97316'></span>F-road
+          <span class='route-key-swatch' style='background:#dc2626'></span>F-road
           <span class='route-key-swatch' style='background:#7c3aed;border-top:2px dashed white'></span>access
         </div>
       </div>
