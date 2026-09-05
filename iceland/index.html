@@ -1352,16 +1352,18 @@ routeSegments.forEach((segment) => {
   const fRoadNote = segment.id === '2-3'
     ? '<div style="color:#b91c1c"><strong>Highland road:</strong> Use northern 208 and park before the final river crossings; verify current conditions.</div>'
     : '';
-  layer.bindPopup(`
+  const dayPopup = `
     <div class='route-popup'>
       <strong>Day ${segment.day}: ${segment.from} → ${segment.to}</strong>
       <div>${segment.km} km · about ${timeLabel} driving</div>
       ${routeNote}${fRoadNote}
       <div style="font-size:.8em;color:#6b7280">Planning estimate only; stops and conditions add time.</div>
-    </div>`);
+    </div>`;
+  layer.eachLayer((part) => part.bindPopup(dayPopup));
+  layer.dayPopup = dayPopup;
 });
 
-// Bind after the day popups, so tunnel details are not overwritten by the group.
+// Bind on individual paths so feature-group clicks cannot replace tunnel details.
 tunnelInteractiveLayers.forEach(({ tunnel, layers }) => layers.forEach((layer) => {
   const title = `${tunnel.name} · ${tunnel.length}`;
   layer.bindTooltip(title, { sticky: true, direction: 'top' });
@@ -1932,7 +1934,7 @@ legend.onAdd = () => {
           const layer = routeLegLayers[entry.id];
           map.addLayer(layer);
           map.fitBounds(layer.getBounds(), { padding: [35, 35] });
-          layer.openPopup();
+          L.popup().setLatLng(layer.getBounds().getCenter()).setContent(layer.dayPopup).openOn(map);
         }
         searchInput.value = entry.label;
         clearSearchResults();
