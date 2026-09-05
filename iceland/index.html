@@ -817,6 +817,18 @@ activityMarkers.push(
 borgarnesActivities.viewpoints.push('Saxhóll crater', 'Vatnshellir lava cave');
 borgarnesActivities.scenic_drives = ['West around Snæfellsnes: Grundarfjörður → Saxhóll → Djúpalónssandur → Vatnshellir'];
 
+// Eldborg stop on the south-coast drive from Vatnshellir.
+activityMarkers.push({
+  id: 'eldborg-crater',
+  type: 'hikes',
+  name: 'Eldborg crater',
+  lat: 64.7962564,
+  lon: -22.3223869,
+  night: 13,
+  note: 'Visited after Vatnshellir on the south-coast drive. Approach on foot from Snorrastaðir; the marker is at the crater, not vehicle parking.'
+});
+borgarnesActivities.hikes.push('Eldborg crater — walk from Snorrastaðir');
+
 const activityLabels = {"town_walks": "Town walks", "scenic_drives": "Scenic drives", "ferries": "Ferries", "hikes": "Hikes", "waterfalls": "Waterfalls", "geothermal_areas": "Geothermal areas", "thermal_baths": "Thermal baths", "canyons": "Canyons", "lagoons": "Lagoons", "beaches": "Beaches", "viewpoints": "Viewpoints"};
 const activityOrder = ["town_walks", "scenic_drives", "ferries", "hikes", "waterfalls", "geothermal_areas", "thermal_baths", "canyons", "lagoons", "beaches", "viewpoints"];
 const activityColors = {"town_walks": "#10b981", "scenic_drives": "#6e7781", "ferries": "#0f766e", "hikes": "#2da44e", "waterfalls": "#1f6feb", "geothermal_areas": "#d29922", "thermal_baths": "#f0883e", "canyons": "#7c3f00", "lagoons": "#2563eb", "beaches": "#0ea5e9", "viewpoints": "#c05621"};
