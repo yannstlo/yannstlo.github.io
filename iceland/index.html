@@ -829,6 +829,18 @@ activityMarkers.push({
 });
 borgarnesActivities.hikes.push('Eldborg crater — walk from Snorrastaðir');
 
+activityMarkers.push({
+  id: 'pollurinn-hot-pool',
+  type: 'thermal_baths',
+  name: 'Pollurinn Hot Pool',
+  lat: 65.64908,
+  lon: -23.89448,
+  night: 11,
+  note: 'Visited during the Tálknafjörður stay. Geothermal pools overlooking the fjord, just above Route 617 northwest of town.'
+});
+const talknafjordurActivities = nightActivities(11);
+talknafjordurActivities.thermal_baths = [...(talknafjordurActivities.thermal_baths || []), 'Pollurinn Hot Pool'];
+
 const activityLabels = {"town_walks": "Town walks", "scenic_drives": "Scenic drives", "ferries": "Ferries", "hikes": "Hikes", "waterfalls": "Waterfalls", "geothermal_areas": "Geothermal areas", "thermal_baths": "Thermal baths", "canyons": "Canyons", "lagoons": "Lagoons", "beaches": "Beaches", "viewpoints": "Viewpoints"};
 const activityOrder = ["town_walks", "scenic_drives", "ferries", "hikes", "waterfalls", "geothermal_areas", "thermal_baths", "canyons", "lagoons", "beaches", "viewpoints"];
 const activityColors = {"town_walks": "#10b981", "scenic_drives": "#6e7781", "ferries": "#0f766e", "hikes": "#2da44e", "waterfalls": "#1f6feb", "geothermal_areas": "#d29922", "thermal_baths": "#f0883e", "canyons": "#7c3f00", "lagoons": "#2563eb", "beaches": "#0ea5e9", "viewpoints": "#c05621"};
@@ -1258,6 +1270,31 @@ map.on('moveend zoomend', () => {
 });
 
 
+// Portal locations are matched to the existing route; no driving geometry is changed.
+const tripTunnels = [
+  { name: 'Hvalfjarðargöng', length: '5.77 km', expectedKm: 5.77, portals: [[64.309722,-21.90386],[64.282444,-21.838972]], description: 'Under Hvalfjörður fjord, reaching about 165 m below sea level. Opened in 1998.', source: 'https://en.wikipedia.org/wiki/Hvalfj%C3%B6r%C3%B0ur_Tunnel' },
+  { name: 'Dýrafjarðargöng', length: '5.6 km', expectedKm: 5.6, portals: [[65.78717,-23.20567],[65.8345,-23.232]], description: 'Connects Dýrafjörður and Arnarfjörður beneath the mountains. Opened in 2020.', source: 'https://www.vegagerdin.is/en/the-transportation-system/the-road-system/tunnels' },
+  { name: 'Vestfjarðagöng', length: 'about 6.3 km on this route', expectedKm: 6.3, portals: [[66.056275,-23.2312333],[66.0275306,-23.3469556]], description: 'The Ísafjörður–Breiðadalur passage. The three-branch tunnel system totals about 9.1 km, with a junction underground. Opened in 1996.', source: 'https://en.wikipedia.org/wiki/Vestfjar%C3%B0ag%C3%B6ng' },
+  { name: 'Vaðlaheiðargöng', length: 'about 7.5 km', expectedKm: 7.5, portals: [[65.69367,-18.05367],[65.7285,-17.918]], description: 'Runs beneath Vaðlaheiði just east of Akureyri, bypassing the Víkurskarð mountain pass.', source: 'https://www.northiceland.is/en/service/vadlaheidi-tunnel' }
+];
+const tunnelDistanceKm = (a, b) => Math.hypot(
+  (a[0] - b[0]) * 111.195,
+  (a[1] - b[1]) * 111.195 * Math.cos((a[0] + b[0]) * Math.PI / 360)
+);
+const tunnelRangesForRoute = (coordinates) => tripTunnels.flatMap((tunnel) => {
+  const matches = tunnel.portals.map((portal) => coordinates.reduce((best, point, index) => {
+    const distance = tunnelDistanceKm(portal, point);
+    return distance < best.distance ? { index, distance } : best;
+  }, { index: -1, distance: Infinity }));
+  if (matches.some((match) => match.distance > 0.15)) return [];
+  const [start, end] = matches.map((match) => match.index).sort((a, b) => a - b);
+  const km = coordinates.slice(start + 1, end + 1).reduce((sum, point, offset) =>
+    sum + tunnelDistanceKm(coordinates[start + offset], point), 0);
+  // Reject nearby surface roads or a changed itinerary that does not use the tunnel.
+  if (start === end || km < tunnel.expectedKm * 0.75 || km > tunnel.expectedKm * 1.25) return [];
+  return [{ start, end, tunnel }];
+}).sort((a, b) => a.start - b.start);
+const tunnelInteractiveLayers = [];
 const routeLegLayers = {};
 routeSegments.forEach((segment) => {
   if (!segment.coordinates || !segment.coordinates.length) {
@@ -1274,7 +1311,19 @@ routeSegments.forEach((segment) => {
   const drivenCoordinates = hasPlannedContinuation
     ? segment.coordinates.slice(0, segment.plannedStart + 1)
     : segment.coordinates;
-  const routeLayers = [L.polyline(drivenCoordinates, blueRouteStyle)];
+  const tunnelRanges = tunnelRangesForRoute(drivenCoordinates);
+  const routeLayers = [];
+  let surfaceStart = 0;
+  tunnelRanges.forEach(({ start, end, tunnel }) => {
+    if (start > surfaceStart) routeLayers.push(L.polyline(drivenCoordinates.slice(surfaceStart, start + 1), blueRouteStyle));
+    const points = drivenCoordinates.slice(start, end + 1);
+    const dotted = L.polyline(points, { ...blueRouteStyle, color: '#153e90', weight: 4, opacity: 1, dashArray: '1 9', lineCap: 'round', bubblingMouseEvents: false });
+    const hitTarget = L.polyline(points, { ...blueRouteStyle, weight: 18, opacity: 0, bubblingMouseEvents: false });
+    routeLayers.push(dotted, hitTarget);
+    tunnelInteractiveLayers.push({ tunnel, layers: [dotted, hitTarget] });
+    surfaceStart = end;
+  });
+  if (surfaceStart < drivenCoordinates.length - 1) routeLayers.push(L.polyline(drivenCoordinates.slice(surfaceStart), blueRouteStyle));
   if (hasPlannedContinuation) {
     routeLayers.push(L.polyline(segment.coordinates.slice(segment.plannedStart), {
       ...blueRouteStyle,
@@ -1311,6 +1360,13 @@ routeSegments.forEach((segment) => {
       <div style="font-size:.8em;color:#6b7280">Planning estimate only; stops and conditions add time.</div>
     </div>`);
 });
+
+// Bind after the day popups, so tunnel details are not overwritten by the group.
+tunnelInteractiveLayers.forEach(({ tunnel, layers }) => layers.forEach((layer) => {
+  const title = `${tunnel.name} · ${tunnel.length}`;
+  layer.bindTooltip(title, { sticky: true, direction: 'top' });
+  layer.bindPopup(`<div class='route-popup'><strong>${title}</strong><p>${tunnel.description}</p><a href='${tunnel.source}' target='_blank' rel='noopener noreferrer'>Tunnel information ↗</a></div>`);
+}));
 
 const overnightMarkersByNight = {};
 
@@ -1729,6 +1785,7 @@ legend.onAdd = () => {
         <label class='map-tool-check'><input id='access-connectors' type='checkbox' /> Show approximate access spurs</label>
         <div class='route-key'>
           <span class='route-key-swatch' style='background:#1f6feb'></span>main route
+          <span class='route-key-swatch' style='background:none;border-top:4px dotted #153e90;height:0'></span>tunnel (hover/tap)
           <span class='route-key-swatch' style='background:#dc2626'></span>F-road
           <span class='route-key-swatch' style='background:#7c3aed;border-top:2px dashed white'></span>access
         </div>
@@ -2194,6 +2251,3 @@ hasFinishedInitialLoad = true;
 </script>
 </body>
 </html>
-
-
-
