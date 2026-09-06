@@ -967,6 +967,21 @@ activityMarkers.forEach((marker) => {
   marker.visitStatus = visitedStopNames.has(marker.name) ? 'visited'
     : notVisitedStopNames.has(marker.name) ? 'not-visited' : 'unconfirmed';
 });
+// Combine nearby highlights into one visited recommendation per stop.
+[
+  { keep: 'Strokkur eruptions', remove: 'Geysir eruptions', name: 'Geysir & Strokkur',
+    note: 'Visited both Great Geysir and Strokkur in the same geothermal area. Strokkur is the regularly erupting geyser.' },
+  { keep: 'Kirkjufellsfoss', remove: 'Kirkjufell mountain', name: 'Kirkjufell & Kirkjufellsfoss',
+    note: 'Visited the waterfalls and enjoyed views of Kirkjufell. The marker is at the waterfall viewpoint; no mountain climb is implied.' }
+].forEach(({ keep, remove, name, note }) => {
+  const marker = activityMarkers.find((entry) => entry.name === keep);
+  const removedIndex = activityMarkers.findIndex((entry) => entry.name === remove);
+  if (marker && removedIndex !== -1) {
+    marker.name = name;
+    marker.note = note;
+    activityMarkers.splice(removedIndex, 1);
+  }
+});
 const visitStatusLabel = (marker) => ({
   visited: '✓ Visited', 'not-visited': '○ Not visited', unconfirmed: 'Visit unconfirmed'
 }[marker.visitStatus]);
