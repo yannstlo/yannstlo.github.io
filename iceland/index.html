@@ -599,7 +599,7 @@ activityMarkers.push(
     lat: 63.417,
     lon: -18.766,
     night: 4,
-    note: 'Deanna must-do: Yoda Cave plus the hike over Hjörleifshöfði for broad Mýrdalssandur views.'
+    note: 'Deanna must-do: Gígjagjá (Yoda Cave), visited on this trip. The optional hike over Hjörleifshöfði, the hill above the cave, is not confirmed. Dyrhólaey arch and Reynisfjara beach are separate stops west of Vík.'
   },
   {
     id: 'katla-geopark',
@@ -922,13 +922,50 @@ activityMarkers.push({
   note: 'Visited crater stop. The driving route ends at the parking area; continue on foot to the crater rim.'
 });
 const visitedStopNames = new Set([
-  'Hverfjall Crater', 'Hvitserkur sea stack', 'Dettifoss waterfall',
-  'Dynjandi waterfall', 'Látrabjarg bird cliffs', 'Pollurinn Hot Pool',
-  'Saxhóll crater', 'Djupalonssandur beach', 'Vatnshellir lava cave', 'Eldborg crater'
+  "Hverfjall Crater",
+  "Hvitserkur sea stack",
+  "Dettifoss waterfall",
+  "Dynjandi waterfall",
+  "Látrabjarg bird cliffs",
+  "Pollurinn Hot Pool",
+  "Saxhóll crater",
+  "Djupalonssandur beach",
+  "Vatnshellir lava cave",
+  "Eldborg crater",
+  "Reykjavik downtown walk (Hallgrímskirkja, harbor)",
+  "Geysir eruptions",
+  "Strokkur eruptions",
+  "Gullfoss waterfall",
+  "Landmannalaugar Highlands — 4×4/F-road access",
+  "Seljalandsfoss",
+  "Katla UNESCO Global Geopark Visitor Centre",
+  "Hjörleifshöfði & Gígjagjá (Yoda Cave)",
+  "Hangandifoss Waterfall & Múlagljúfur Canyon",
+  "Stokksnes & Vestrahorn mountain views",
+  "Scenic Eastfjords coastal drive",
+  "Vok Baths geothermal spa",
+  "Godafoss waterfall",
+  "Gerduberg basalt cliffs",
+  "Kirkjufellsfoss",
+  "Kirkjufell mountain",
+  "Raudfeldsgja gorge",
+  "Reynisfjara black sand beach",
+  "Dyrholaey arch & viewpoints"
+]);
+const notVisitedStopNames = new Set([
+  "Sky Lagoon",
+  "Reykjadalur Hot Spring Thermal River",
+  "Gjáin valley",
+  "Gljufrabui",
+  "Asbyrgi Canyon",
+  "Scenic Route 68 coastal drive",
+  "Hvammsvik Hot Springs",
+  "Glymur Waterfall Trail",
+  "Drangsnes hot pots"
 ]);
 activityMarkers.forEach((marker) => {
   marker.visitStatus = visitedStopNames.has(marker.name) ? 'visited'
-    : marker.name === 'Drangsnes hot pots' ? 'not-visited' : 'unconfirmed';
+    : notVisitedStopNames.has(marker.name) ? 'not-visited' : 'unconfirmed';
 });
 const visitStatusLabel = (marker) => ({
   visited: '✓ Visited', 'not-visited': '○ Not visited', unconfirmed: 'Visit unconfirmed'
