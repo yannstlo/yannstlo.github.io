@@ -194,7 +194,7 @@
     border-radius: 6px;
     color: #111827;
     cursor: pointer;
-    display: none;
+    display: inline-flex;
     height: 40px;
     justify-content: center;
     padding: 0;
@@ -204,6 +204,15 @@
     outline: 3px solid rgba(31, 111, 235, 0.45);
     outline-offset: 1px;
   }
+  .legend.collapsed { width: 44px; height: 44px; padding: 0; overflow: hidden; }
+  .legend.collapsed .legend-header { height: 44px; justify-content: center; padding: 0; }
+  .legend.collapsed .legend-heading { display: none; }
+  .visit-pin { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; box-sizing: border-box; font: bold 19px/1 sans-serif; box-shadow: 0 1px 4px #0006; }
+  .visit-pin.visited { background: #15803d; color: white; border: 2px solid white; }
+  .visit-pin.not-visited { background: white; color: #64748b; border: 3px solid #64748b; }
+  .visit-star { position: absolute; right: -3px; top: -6px; color: #a16207; background: white; border-radius: 50%; font-size: 14px; line-height: 16px; }
+  .visit-status { display: inline-block; font-size: 12px; padding: 2px 6px; border-radius: 5px; background: #f1f5f9; color: #475569; }
+  .visit-status.visited { background: #dcfce7; color: #166534; }
   .legend-header {
     display: flex;
     align-items: center;
@@ -866,6 +875,39 @@ if (dettifossStop) {
   dettifossStop.note = 'Visited from the east via Route 864. Marker at the east-side parking area; walk down to Dettifoss from here.';
 }
 
+// Hverfjall parking detour; retain the separate Dimmuborgir hike recommendation.
+const hverfjallSpur = [[65.64194,-16.91201],[65.641582,-16.911776],[65.641406,-16.911662],[65.640899,-16.911331],[65.640713,-16.91121],[65.639934,-16.910702],[65.639492,-16.910555],[65.639348,-16.910544],[65.639234,-16.910555],[65.639056,-16.910633],[65.63885,-16.910782],[65.638695,-16.910931],[65.638554,-16.911065],[65.638463,-16.911204],[65.638384,-16.91135],[65.638264,-16.911592],[65.637788,-16.912711],[65.63773,-16.912841],[65.637517,-16.913291],[65.637199,-16.913892],[65.636848,-16.914498],[65.636206,-16.91559],[65.636104,-16.915761],[65.636034,-16.915878],[65.635966,-16.916017],[65.635821,-16.916439],[65.635578,-16.917314],[65.635331,-16.917955],[65.635124,-16.91833],[65.634811,-16.918704],[65.634334,-16.918978],[65.631996,-16.919564],[65.631468,-16.919702],[65.631107,-16.919662],[65.63072,-16.919443],[65.62935,-16.917979],[65.629129,-16.917775],[65.628977,-16.917654],[65.628837,-16.917576],[65.628726,-16.917531],[65.628543,-16.91752],[65.628349,-16.917541],[65.62814,-16.91761],[65.627157,-16.918189],[65.626064,-16.918824],[65.625688,-16.919003],[65.625434,-16.919108],[65.625063,-16.919216],[65.624717,-16.919285],[65.624506,-16.919326],[65.62423,-16.919344],[65.623902,-16.919348],[65.623482,-16.91932],[65.622831,-16.919236],[65.622668,-16.919227],[65.622537,-16.919225],[65.622475,-16.919224],[65.622222,-16.919245],[65.621789,-16.919314],[65.621483,-16.919377],[65.621329,-16.919397],[65.621176,-16.919409],[65.621025,-16.919408],[65.620878,-16.919393],[65.620729,-16.919364],[65.620566,-16.919302],[65.62041,-16.91925],[65.620143,-16.919116],[65.619845,-16.918941],[65.619706,-16.918848],[65.619597,-16.918766],[65.619495,-16.918697],[65.619049,-16.918326],[65.618831,-16.918134],[65.618687,-16.917996],[65.61855,-16.917851],[65.618411,-16.917693],[65.618139,-16.917362],[65.617397,-16.916449],[65.617203,-16.916286],[65.61698,-16.916196],[65.616499,-16.91611],[65.614125,-16.915489],[65.613736,-16.915465],[65.613356,-16.915519],[65.612825,-16.915664],[65.612265,-16.915998],[65.610718,-16.917398],[65.61064,-16.917077],[65.610618,-16.91698],[65.610533,-16.916665],[65.610411,-16.916378],[65.610285,-16.916144],[65.610173,-16.915898],[65.610073,-16.915609],[65.609992,-16.915354],[65.609935,-16.91507],[65.609903,-16.91482],[65.609822,-16.914056],[65.609761,-16.913149],[65.609726,-16.912873],[65.609673,-16.91266],[65.609608,-16.912489],[65.609527,-16.912361],[65.609479,-16.912235],[65.609454,-16.912138],[65.609437,-16.912025],[65.609439,-16.911866],[65.6095,-16.910247],[65.609546,-16.908718],[65.609566,-16.907841],[65.60962,-16.906311],[65.609627,-16.905955],[65.609609,-16.905717],[65.609583,-16.905553],[65.609519,-16.905271],[65.609409,-16.904873],[65.609317,-16.904451],[65.609229,-16.904041],[65.609159,-16.903748],[65.609093,-16.903523],[65.609015,-16.903292],[65.608752,-16.902675],[65.60856,-16.902224],[65.608511,-16.902055],[65.608477,-16.901873],[65.608297,-16.90084],[65.608127,-16.899927],[65.608058,-16.899499],[65.608042,-16.899408],[65.608003,-16.899273],[65.607981,-16.899202],[65.607933,-16.899124],[65.607838,-16.898968],[65.607786,-16.898853],[65.607742,-16.898731],[65.607609,-16.898284],[65.607528,-16.898038],[65.607483,-16.897893],[65.607325,-16.897056],[65.607301,-16.896847],[65.607283,-16.896544],[65.607259,-16.896343],[65.607237,-16.896214],[65.607183,-16.896045],[65.607048,-16.895672],[65.606975,-16.895417],[65.606918,-16.895187],[65.606727,-16.89461],[65.60663,-16.894368],[65.606578,-16.894204],[65.606551,-16.894025],[65.60655,-16.893698],[65.606534,-16.893518],[65.606494,-16.893365],[65.606374,-16.893037],[65.606339,-16.892839],[65.606335,-16.892661],[65.606358,-16.892454],[65.606382,-16.892319],[65.606416,-16.892243],[65.606494,-16.892154],[65.606608,-16.892067],[65.606709,-16.891972],[65.606792,-16.89184],[65.606875,-16.89167],[65.607031,-16.891297],[65.607162,-16.890898],[65.607261,-16.89058],[65.607319,-16.890329],[65.607407,-16.889951],[65.607757,-16.889044],[65.607972,-16.888636],[65.608241,-16.888288],[65.608556,-16.887821],[65.608959,-16.887247],[65.609358,-16.886753],[65.609531,-16.886483],[65.609742,-16.886048],[65.609953,-16.885479],[65.610137,-16.884897],[65.610363,-16.884141],[65.610472,-16.883851],[65.610721,-16.883336],[65.610865,-16.88295],[65.611048,-16.882331],[65.611166,-16.881821],[65.611273,-16.881472],[65.611431,-16.881089],[65.6117,-16.880509],[65.611893,-16.88022],[65.612119,-16.879968],[65.612202,-16.879809],[65.612262,-16.879654],[65.612336,-16.879375],[65.61243,-16.878873],[65.612653,-16.877658]];
+const hverfjallDrive = routeSegments.find((segment) => segment.id === '6-7');
+if (hverfjallDrive) {
+  const junction = hverfjallSpur[0];
+  const index = hverfjallDrive.coordinates.findIndex((point) =>
+    Math.abs(point[0] - junction[0]) < 0.000001 && Math.abs(point[1] - junction[1]) < 0.000001);
+  if (index >= 0) {
+    hverfjallDrive.coordinates.splice(index + 1, 0,
+      ...hverfjallSpur.slice(1), ...hverfjallSpur.slice(0, -1).reverse());
+    hverfjallDrive.km = Math.round((hverfjallDrive.km + 12.036800000000001) * 10) / 10;
+    hverfjallDrive.note += ' Also drove to Hverfjall crater parking and returned to the main road.';
+  }
+}
+activityMarkers.push({
+  id: 'hverfjall-crater-visited', type: 'viewpoints', name: 'Hverfjall Crater',
+  lat: 65.612653, lon: -16.877658, night: 7,
+  note: 'Visited crater stop. The driving route ends at the parking area; continue on foot to the crater rim.'
+});
+const visitedStopNames = new Set([
+  'Hverfjall Crater', 'Hvitserkur sea stack', 'Dettifoss waterfall',
+  'Dynjandi waterfall', 'Látrabjarg bird cliffs', 'Pollurinn Hot Pool',
+  'Saxhóll crater', 'Djupalonssandur beach', 'Vatnshellir lava cave', 'Eldborg crater'
+]);
+activityMarkers.forEach((marker) => {
+  marker.visitStatus = visitedStopNames.has(marker.name) ? 'visited'
+    : marker.name === 'Drangsnes hot pots' ? 'not-visited' : 'unconfirmed';
+});
+const visitStatusLabel = (marker) => ({
+  visited: '✓ Visited', 'not-visited': '○ Not visited', unconfirmed: 'Visit unconfirmed'
+}[marker.visitStatus]);
+let visitFilterValue = '';
+
 const formatActivities = (activities = {}) => {
   const entries = activityOrder
     .filter((key) => activities[key] && activities[key].length)
@@ -1460,6 +1502,7 @@ activityMarkers.forEach((marker) => {
     : '';
   const popup = `
     <div class='popup-title'>${marker.name}</div>
+    <div class='visit-status ${marker.visitStatus}'>${visitStatusLabel(marker)}</div>
     <div>Type: ${label}</div>
     <div>Night: ${marker.night}</div>
     ${marker.destination ? `<div><strong>Area:</strong> ${marker.destination}</div>` : ''}
@@ -1470,7 +1513,9 @@ activityMarkers.forEach((marker) => {
   `;
   const markerId = marker.id || `${marker.type}-${activityMarkersByGroup[marker.type].length}`;
   marker.id = markerId;
-  const iconMarkup = marker.icon
+  const iconMarkup = marker.visitStatus !== 'unconfirmed'
+    ? `<span class='visit-pin ${marker.visitStatus}'>${marker.visitStatus === 'visited' ? '✓' : ''}</span>${marker.favorite ? "<span class='visit-star'>★</span>" : ''}`
+    : marker.icon
     ? `<span class='favorite-marker'>${marker.icon}</span>`
     : marker.favorite
       ? "<span class='favorite-marker'>★</span>"
@@ -1484,7 +1529,7 @@ activityMarkers.forEach((marker) => {
           iconAnchor: [16, 16]
         }),
         keyboard: true,
-        title: marker.name
+        title: `${marker.name} · ${visitStatusLabel(marker)}`
       })
     : L.marker([marker.lat, marker.lon], {
         icon: L.divIcon({
@@ -1494,7 +1539,7 @@ activityMarkers.forEach((marker) => {
           iconAnchor: [16, 16]
         }),
         keyboard: true,
-        title: marker.name
+        title: `${marker.name} · ${visitStatusLabel(marker)}`
       });
   activityLayer.bindPopup(popup).addTo(group);
   activityLayer.on('click', () => {
@@ -1630,7 +1675,7 @@ const setActivityVisibility = (markerId, visible) => {
     return;
   }
   const group = activityLayers[markerEntry.groupKey];
-  if (visible) {
+  if (visible && (!visitFilterValue || activityMarkerData[markerId].visitStatus === visitFilterValue)) {
     if (group && !group.hasLayer(markerEntry.layer)) {
       group.addLayer(markerEntry.layer);
     }
@@ -1762,7 +1807,7 @@ legend.onAdd = () => {
                   <li class='legend-item legend-item-toggle'>
                     <label class='legend-toggle-item'>
                       <input class='legend-checkbox' type='checkbox' data-marker='${markerId}' ${isChecked} />
-                      <span>${marker.name}${marker.distance ? ` · ${marker.distance} · ${marker.time}` : ''}</span>
+                      <span>${marker.name} <span class='visit-status ${marker.visitStatus}'>${visitStatusLabel(marker)}</span>${marker.distance ? ` · ${marker.distance} · ${marker.time}` : ''}</span>
                     </label>
                   </li>`;
               })
@@ -1805,6 +1850,13 @@ legend.onAdd = () => {
           <option value='14'>Day 14 · Return to Reykjavík</option>
         </select>
         <label class='map-tool-check'><input id='deanna-filter' type='checkbox' /> ★ Deanna’s must-dos only</label>
+        <select class='map-tool-select' id='visit-filter' aria-label='Filter by visit status'>
+          <option value=''>All stops · any visit status</option>
+          <option value='visited'>✓ Visited</option>
+          <option value='not-visited'>○ Not visited</option>
+          <option value='unconfirmed'>Visit unconfirmed</option>
+        </select>
+        <div style='font-size:12px;color:#475569'>Green ✓ visited · Grey ○ not visited<br>Other icons: visit unconfirmed · ★ recommendation</div>
         <label class='map-tool-check'><input id='access-connectors' type='checkbox' /> Show approximate access spurs</label>
         <div class='route-key'>
           <span class='route-key-swatch' style='background:#1f6feb'></span>main route
@@ -1917,7 +1969,7 @@ legend.onAdd = () => {
 
   const searchEntries = [
     ...Object.entries(activityMarkerData).map(([id, marker]) => ({
-      type: 'activity', id, label: marker.name, detail: marker.favorite ? '★ Deanna’s recommendation' : (activityLabels[marker.type] || marker.type)
+      type: 'activity', id, label: marker.name, detail: `${visitStatusLabel(marker)} · ${marker.favorite ? '★ Deanna’s recommendation' : (activityLabels[marker.type] || marker.type)}`
     })),
     ...geojson.features.map((feature) => ({
       type: 'overnight', id: feature.properties.night,
@@ -2031,6 +2083,16 @@ legend.onAdd = () => {
       Object.entries(deannaSnapshot).forEach(([id, visible]) => setActivityVisibility(id, visible));
       deannaSnapshot = null;
     }
+    refreshCheckboxes();
+  });
+
+  const visitFilter = div.querySelector('#visit-filter');
+  visitFilter.addEventListener('change', () => {
+    visitFilterValue = visitFilter.value;
+    Object.entries(activityMarkerData).forEach(([id, marker]) => {
+      const matchesDay = !dayFocus.value || Number(marker.night) === Number(dayFocus.value);
+      setActivityVisibility(id, matchesDay && (!deannaFilter.checked || marker.favorite));
+    });
     refreshCheckboxes();
   });
 
