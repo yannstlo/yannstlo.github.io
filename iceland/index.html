@@ -1995,6 +1995,10 @@ legend.onAdd = () => {
       button.addEventListener('click', () => {
         if (entry.type === 'activity') {
           const markerEntry = activityMarkerLookup[entry.id];
+          if (visitFilterValue && activityMarkerData[entry.id].visitStatus !== visitFilterValue) {
+            visitFilterValue = '';
+            visitFilter.value = '';
+          }
           setActivityVisibility(entry.id, true);
           map.setView(markerEntry.layer.getLatLng(), Math.max(10, map.getZoom()));
           markerEntry.layer.openPopup();
