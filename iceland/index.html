@@ -2144,7 +2144,6 @@ legend.onAdd = () => {
   setLegendCollapsed(true);
   menuToggle.addEventListener('click', () => {
     setLegendCollapsed(!div.classList.contains('collapsed'));
-    updateMapView();
   });
   const handleViewportChange = () => updateMapView();
   if (mobileLegendQuery.addEventListener) {
