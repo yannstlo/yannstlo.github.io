@@ -464,6 +464,10 @@
   .visit-pin.not-visited { border: 3px solid #94a3b8; }
   .stay-marker { background: #2477c9; color: white; }
   .stay-marker svg { width: 18px; height: 18px; }
+  .favorite-marker.visited { background: #bbf7d0; color: #a87808; }
+  .favorite-marker.not-visited { background: #cbd0d8; color: #a87808; }
+  .favorite-marker.unconfirmed { background: #fff8df; color: #a87808; }
+  .activity-marker-icon > span { transform: scale(var(--trip-icon-scale, 1)); transform-origin: center; transition: transform .15s ease; }
 </style>
 </head>
 <body>
@@ -1149,6 +1153,12 @@ const restoreLegendState = (state) => {
 };
 
 const map = L.map('map');
+const updateTripIconScale = () => {
+  const zoom = map.getZoom();
+  map.getContainer().style.setProperty('--trip-icon-scale', zoom <= 7 ? '.68' : zoom <= 9 ? '.82' : '1');
+};
+map.on('zoomend', updateTripIconScale);
+map.whenReady(updateTripIconScale);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 18,
   attribution: '&copy; OpenStreetMap contributors'
@@ -1547,7 +1557,9 @@ activityMarkers.forEach((marker) => {
   `;
   const markerId = marker.id || `${marker.type}-${activityMarkersByGroup[marker.type].length}`;
   marker.id = markerId;
-  const iconMarkup = marker.visitStatus !== 'unconfirmed'
+  const iconMarkup = marker.favorite
+    ? `<span class='favorite-marker ${marker.visitStatus}'>★</span>`
+    : marker.visitStatus !== 'unconfirmed'
     ? `<span class='visit-pin ${marker.visitStatus}'>${marker.visitStatus === 'visited' ? '✓' : ''}</span>`
     : marker.icon
     ? `<span class='favorite-marker'>${marker.icon}</span>`
@@ -1890,7 +1902,7 @@ legend.onAdd = () => {
           <option value='not-visited'>○ Not visited</option>
           <option value='unconfirmed'>Visit unconfirmed</option>
         </select>
-        <div style='font-size:12px;color:#475569'>Green ✓ visited · Grey ○ not visited<br>Other icons: visit unconfirmed · ★ recommendation</div>
+        <div style='font-size:12px;color:#475569'>★ Deanna’s picks: green visited · grey not visited · cream unconfirmed<br>Other stops: ✓ visited · ○ not visited</div>
         <label class='map-tool-check'><input id='access-connectors' type='checkbox' /> Show approximate access spurs</label>
         <div class='route-key'>
           <span class='route-key-swatch' style='background:#1f6feb'></span>main route
