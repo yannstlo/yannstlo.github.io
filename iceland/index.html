@@ -1046,6 +1046,14 @@ recordedHikes.forEach((hike) => {
   if (existing) Object.assign(existing, hike);
   else activityMarkers.push(hike);
 });
+activityMarkers.push(
+  { id: 'hellulaug', name: 'Hellulaug', type: 'thermal_baths', night: 12,
+    lat: 65.5771875, lon: -23.159671875, visitStatus: 'not-visited',
+    note: 'Passed on the Day 12 drive to Grundarfjörður; did not stop for a soak. Geothermal pool near Flókalundur. Plus code: HRGR+V4G, 451 Flókalundur.' },
+  { id: 'reykjafjardarlaug', name: 'Reykjafjarðarlaug Hot Pool', type: 'thermal_baths', night: 12,
+    lat: 65.6231125, lon: -23.469109375, visitStatus: 'not-visited',
+    note: 'Seen on the Day 12 drive along Route 63; did not stop for a soak. Plus code: JGFJ+69R, 466 Reykjarfjörður.' }
+);
 const visitStatusLabel = (marker) => ({
   visited: '✓ Visited', 'not-visited': '○ Not visited', unconfirmed: 'Visit unconfirmed'
 }[marker.visitStatus]);
@@ -1138,7 +1146,7 @@ const formatActivities = (activities = {}) => {
 };
 
 const buildPopupContent = (feature) => `
-  <div class='popup-title'>Night ${feature.properties.night}</div>
+  <div class='popup-title'>Day ${feature.properties.night}</div>
   <div><strong>${feature.properties.title}</strong></div>
   <div><strong>Trip area:</strong> ${feature.properties.originalDestination}</div>
   <div><strong>Booked with:</strong> ${feature.properties.accommodation.bookingSite}</div>
@@ -1656,14 +1664,14 @@ const overnightMarkersByNight = {};
 
 const markers = L.geoJSON(geojson, {
   pointToLayer: (feature, latlng) => L.marker(latlng, {
-    title: `Overnight ${feature.properties.night}: ${feature.properties.title}`,
+    title: `Day ${feature.properties.night}: ${feature.properties.title}`,
     icon: L.divIcon({ className: 'activity-marker-icon', iconSize: [32,32], iconAnchor: [16,16],
       html: `<span class='stay-marker'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M3 10l9-7 9 7M5 9v12h14V9M9 21v-8h6v8'/></svg></span>` })
   }),
   onEachFeature: (feature, layer) => {
     layer.bindPopup(buildPopupContent(feature));
     layer.bindTooltip(
-      `${feature.properties.night}. ${feature.properties.title}`,
+      `Day ${feature.properties.night} · ${feature.properties.title}`,
       {
         permanent: true,
         direction: 'right',
@@ -1743,7 +1751,7 @@ activityMarkers.forEach((marker) => {
     <div class='visit-status ${marker.visitStatus}'>${visitStatusLabel(marker)}</div>
     ${marker.favorite ? "<div class='trail-note'>Recommended by Deanna</div>" : ''}
     <div>Type: ${label}</div>
-    <div>Night: ${marker.night}</div>
+    <div>Day: ${marker.night}</div>
     ${marker.destination ? `<div><strong>Area:</strong> ${marker.destination}</div>` : ''}
     ${marker.bookingSite ? `<div><strong>Booked with:</strong> ${marker.bookingSite}</div>` : ''}
     ${marker.approximate ? `<div class='trail-note'>Approximate placement—the spreadsheet address does not include a precise building number.</div>` : ''}
@@ -1829,7 +1837,7 @@ activityMarkers.filter((marker) => connectorNames.has(marker.name)).forEach((mar
 
 const overlayConfig = {
   overnight: {
-    label: 'Overnight stops',
+    label: 'Places we stayed',
     layer: markers,
     color: '#111827',
     visible: true
@@ -2001,7 +2009,7 @@ legend.onAdd = () => {
         <li class='legend-item legend-item-toggle'>
           <label class='legend-toggle-item'>
             <input class='legend-checkbox' type='checkbox' data-overnight='${feature.properties.night}' ${checked} />
-            <span>${feature.properties.night}. ${feature.properties.title}</span>
+            <span>Day ${feature.properties.night} · ${feature.properties.title}</span>
           </label>
         </li>`;
     })
@@ -2216,7 +2224,7 @@ legend.onAdd = () => {
     })),
     ...geojson.features.map((feature) => ({
       type: 'overnight', id: feature.properties.night,
-      label: `${feature.properties.night}. ${feature.properties.title}`, detail: 'Overnight stop'
+      label: `Day ${feature.properties.night} · ${feature.properties.title}`, detail: 'Accommodation'
     })),
     ...routeSegments.map((segment) => ({
       type: 'route', id: segment.id, label: `${segment.from} → ${segment.to}`, detail: `${segment.km} km drive`
