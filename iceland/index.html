@@ -473,6 +473,34 @@
   .category-marker.not-visited { background:#cbd0d8; color:#475569; }
   .category-marker svg, .category-key svg { width:18px; height:18px; display:block; }
   .category-key { display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; flex-shrink:0; border-radius:8px; background:#eaf0f6; color:#334155; }
+  .category-marker { position:relative; flex-shrink:0; }
+  .category-marker.unconfirmed { background:#fff8df; color:#785c24; }
+  .recommendation-badge { position:absolute; right:-6px; top:-6px; width:14px; height:14px; border:1.5px solid white; border-radius:50%; background:#fff4cc; color:#a16b00; font:12px/14px sans-serif; text-align:center; box-shadow:0 1px 3px #0003; }
+  .category-key { border-radius:50%; border:2px solid white; box-shadow:0 1px 4px #17233530; }
+  .map-tool-input, .map-tool-select { font-size:16px; width:100%; box-sizing:border-box; min-height:44px; }
+  .map-toolbar { display:flex; gap:8px; }
+  .map-toolbar button { width:48px; height:48px; border:1px solid #fff; border-radius:50%; background:#fafbfdf5; color:#243247; box-shadow:0 3px 14px #17233530; cursor:pointer; }
+  .map-toolbar svg { width:23px; height:23px; }
+  .map-toolbar button[aria-expanded=true] { background:#dcecff; }
+  .legend.collapsed { display:none; }
+  .legend { clear:both; }
+  .legend-menu-toggle { font-size:16px; min-width:64px; }
+  .legend-section-header { min-height:44px; }
+  .legend-section-toggle { min-width:32px; min-height:44px; justify-content:center; }
+  .legend-section-title { font-size:15px; }
+  .legend-section-header .legend-toggle-item { flex:1; }
+  .legend-section-header input { order:3; margin-left:auto; }
+  .legend-list { margin-left:4px; }
+  .legend-item-toggle { min-height:44px; }
+  .panel-content[hidden] { display:none; }
+  .label-settings { margin:12px 0; }
+  .label-settings button { display:flex; align-items:center; gap:12px; width:100%; height:48px; margin:6px 0; border-radius:12px; font-size:15px; }
+  .label-settings button svg { width:24px; height:24px; }
+  .map-search-results { max-height:55dvh; overflow:auto; }
+  @media(max-width:700px) {
+    .legend { position:fixed; left:8px; right:8px; bottom:max(8px,env(safe-area-inset-bottom)); width:auto; max-width:none; max-height:70dvh; margin:0!important; border-radius:22px; }
+    .legend[data-panel=search] { top:max(68px,env(safe-area-inset-top)); bottom:auto; max-height:calc(100dvh - 88px); }
+  }
 </style>
 </head>
 <body>
@@ -1760,9 +1788,7 @@ activityMarkers.forEach((marker) => {
   `;
   const markerId = marker.id || `${marker.type}-${activityMarkersByGroup[marker.type].length}`;
   marker.id = markerId;
-  const iconMarkup = marker.favorite
-    ? `<span class='favorite-marker ${marker.visitStatus}'>★</span>`
-    : `<span class='category-marker ${marker.visitStatus}' style='--marker-color:${color}'>${categoryIcon(marker.type)}</span>`;
+  const iconMarkup = `<span class='category-marker ${marker.visitStatus}' style='--marker-color:${color}'>${categoryIcon(marker.type)}${marker.favorite ? "<span class='recommendation-badge' aria-label='Recommended by Deanna'>★</span>" : ''}</span>`;
   const activityLayer = iconMarkup
     ? L.marker([marker.lat, marker.lon], {
         icon: L.divIcon({
@@ -2039,7 +2065,7 @@ legend.onAdd = () => {
           ? `<ul class='legend-list'>${routeSegments
               .map((segment) => {
                 const checked = map.hasLayer(routeLegLayers[segment.id]) ? 'checked' : '';
-                const note = segment.note ? ` (${segment.note})` : '';
+                const note = '';
                 return `
                   <li class='legend-item legend-item-toggle'>
                     <label class='legend-toggle-item'>
@@ -2057,7 +2083,7 @@ legend.onAdd = () => {
                   <li class='legend-item legend-item-toggle'>
                     <label class='legend-toggle-item'>
                       <input class='legend-checkbox' type='checkbox' data-marker='${markerId}' ${isChecked} />
-                      <span>${marker.name} <span class='visit-status ${marker.visitStatus}'>${visitStatusLabel(marker)}</span>${marker.distance ? ` · ${marker.distance} · ${marker.time}` : ''}</span>
+                      <span class='category-marker ${marker.visitStatus}' style='--marker-color:${activityColors[marker.type]}'>${categoryIcon(marker.type)}${marker.favorite ? "<span class='recommendation-badge'>★</span>" : ''}</span><span>${marker.name}</span>
                     </label>
                   </li>`;
               })
@@ -2065,13 +2091,13 @@ legend.onAdd = () => {
       return `
         <div class='legend-section collapsed' data-section='${key}'>
           <div class='legend-section-header'>
-            <button class='legend-section-toggle' type='button' data-section-toggle='${key}'>
+            <button class='legend-section-toggle' type='button' aria-label='Expand ${label}' aria-expanded='false' data-section-toggle='${key}'>
               <span class='legend-triangle'></span>
             </button>
             <label class='legend-toggle-item'>
               <input class='legend-checkbox' type='checkbox' data-layer='${key}' ${checked} />
-              ${categoryIconPaths[key] ? `<span class='category-key'>${categoryIcon(key)}</span>` : colorDot}
-              <span class='legend-section-title' data-section-toggle='${key}'>${label}</span>
+              <span class='category-key'>${key === 'overnight' ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10l9-7 9 7M5 9v12h14V9M9 21v-8h6v8"/></svg>' : categoryIcon(key === 'route' ? 'scenic_drives' : key)}</span>
+              <span class='legend-section-title'>${label}</span>
             </label>
           </div>
           <div class='legend-section-body'>
@@ -2555,6 +2581,7 @@ legend.onAdd = () => {
         return;
       }
       section.classList.toggle('collapsed');
+      toggle.setAttribute('aria-expanded', String(!section.classList.contains('collapsed')));
       updateMapView();
       if (hasFinishedInitialLoad) persistCurrentState();
     });
@@ -2564,6 +2591,73 @@ legend.onAdd = () => {
   return div;
 };
 legend.addTo(map);
+
+// Keep the existing controls and event handlers while grouping them by purpose.
+const panel = legendContainer;
+const panelBody = panel.querySelector('.legend-body');
+const layersContent = document.createElement('div');
+layersContent.className = 'panel-content';
+while (panelBody.firstChild) layersContent.append(panelBody.firstChild);
+panelBody.append(layersContent);
+const searchContent = document.createElement('div');
+searchContent.className = 'panel-content';
+searchContent.append(panel.querySelector('#map-search'), panel.querySelector('#map-search-results'));
+const settingsContent = document.createElement('div');
+settingsContent.className = 'panel-content';
+settingsContent.append(panel.querySelector('.popup-font-control'), panel.querySelector('.offline-save-control'));
+panelBody.append(searchContent, settingsContent);
+const labelsContent = document.createElement('div');
+labelsContent.className = 'label-settings';
+labelsContent.innerHTML = '<div class="legend-subheading">Labels</div>';
+for (const [button, title] of [[townsMapButton, 'Main towns'], [labelsMapButton, 'Place labels']]) {
+  const text = document.createElement('span'); text.textContent = title;
+  button.append(text); labelsContent.append(button);
+}
+layersContent.prepend(labelsContent);
+const routeKey = panel.querySelector('.route-key');
+const legendHelp = document.createElement('div');
+legendHelp.className = 'legend-section';
+legendHelp.innerHTML = '<div class="legend-subheading">Legend</div><p>Light green: visited · Grey: skipped · Cream: unconfirmed</p><p>★ Small gold badge: Deanna’s recommendation</p>';
+legendHelp.append(routeKey); layersContent.append(legendHelp);
+panel.querySelector('.map-tools > div[style]')?.remove();
+const closePanel = panel.querySelector('.legend-menu-toggle');
+closePanel.innerHTML = 'Close';
+const panelNames = {search:'Search places', layers:'Layers & legend', settings:'Settings'};
+const toolbarButtons = {};
+function showPanel(name) {
+  panel.dataset.panel = name;
+  panel.classList.remove('collapsed');
+  panel.querySelector('.legend-heading').textContent = panelNames[name];
+  for (const [key, element] of Object.entries({search:searchContent,layers:layersContent,settings:settingsContent})) element.hidden = key !== name;
+  closePanel.setAttribute('aria-label','Close '+panelNames[name]);
+  closePanel.setAttribute('aria-expanded','true');
+  for (const [key, button] of Object.entries(toolbarButtons)) button.setAttribute('aria-expanded',String(key===name));
+  if(name==='search') panel.querySelector('#map-search').focus();
+}
+function hidePanel() {
+  panel.classList.add('collapsed');
+  panel.querySelector('#map-search').blur();
+  Object.values(toolbarButtons).forEach(button=>button.setAttribute('aria-expanded','false'));
+}
+closePanel.addEventListener('click',hidePanel);
+panel.addEventListener('keydown',event=>{if(event.key==='Escape')hidePanel();});
+panel.querySelector('#map-search-results').addEventListener('click',event=>{if(event.target.closest('button'))hidePanel();});
+const toolbar = L.control({position:'topright'});
+toolbar.onAdd = () => {
+  const container = L.DomUtil.create('div','map-toolbar');
+  const paths = {search:'<circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/>',layers:'<path d="m3 8 9-5 9 5-9 5zM3 12l9 5 9-5M3 16l9 5 9-5"/>',settings:'<circle cx="12" cy="12" r="4"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M5 19l2-2M17 7l2-2"/>'};
+  for(const name of ['search','layers','settings']) {
+    const button = document.createElement('button'); button.type='button';
+    button.title=panelNames[name]; button.setAttribute('aria-label',panelNames[name]);button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls','legend-body');
+    button.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]}</svg>`;
+    button.addEventListener('click',()=>{if(!panel.classList.contains('collapsed')&&panel.dataset.panel===name)hidePanel();else showPanel(name);});
+    toolbarButtons[name]=button;container.append(button);
+  }
+  L.DomEvent.disableClickPropagation(container);return container;
+};
+toolbar.addTo(map);
+panel.parentNode.insertBefore(toolbar.getContainer(),panel);
+hidePanel();
 
 const connectivityControl = L.control({ position: 'bottomleft' });
 connectivityControl.onAdd = () => {
