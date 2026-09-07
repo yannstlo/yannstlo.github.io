@@ -20,6 +20,9 @@
     line-height: 1.35;
   }
   .popup-title { font-weight: 600; }
+  .popup-photo { display:block; margin:10px 0; color:inherit; }
+  .popup-photo img { display:block; width:100%; height:auto; aspect-ratio:4/3; border-radius:10px; }
+  .popup-photo span { display:block; margin-top:5px; font-size:13px; color:#576574; }
   .popup-font-control {
     border-bottom: 1px solid rgba(17, 24, 39, 0.14);
     margin-bottom: 8px;
@@ -1202,6 +1205,14 @@ activityMarkers.filter(marker => marker.recordedTrack && marker.type !== 'hikes'
   place.note = place.id === 'landmannalaugar' ? 'Highlands visit. See the separate Rainbow Mountain entry under Hikes for the recorded route. Requires suitable 4×4/F-road access.' : 'Waterfall visit. See the separate Dettifoss & Selfoss entry under Hikes for the recorded east-side route.';
 });
 
+const seljalandsfossPhotoStop = activityMarkers.find(marker => /Seljalandsfoss/i.test(marker.name));
+if (seljalandsfossPhotoStop) seljalandsfossPhotoStop.photo = { src: 'photos/seljalandsfoss.jpg', alt: 'View from behind Seljalandsfoss, with the waterfall beside the cliff and the path below.' };
+const rainbowMountainHike = activityMarkers.find(marker => marker.id === 'landmannalaugar-hike');
+if (rainbowMountainHike) {
+  rainbowMountainHike.favorite = false;
+  rainbowMountainHike.note += ' Suggested by the park ranger.';
+}
+
 const visitStatusLabel = (marker) => ({
   visited: '✓ Visited', 'not-visited': '○ Not visited', unconfirmed: 'Visit unconfirmed'
 }[marker.visitStatus]);
@@ -1898,6 +1909,7 @@ activityMarkers.forEach((marker) => {
     : '';
   const popup = `
     <div class='popup-title'>${marker.name}</div>
+    ${marker.photo ? `<a class='popup-photo' href='${marker.photo.src}' target='_blank' rel='noopener noreferrer' aria-label='Open larger photo of ${marker.name}'><img src='${marker.photo.src}' alt='${marker.photo.alt}' width='1200' height='900'><span>View larger photo ↗</span></a>` : ''}
     <div class='visit-status ${marker.visitStatus}'>${visitStatusLabel(marker)}</div>
     ${marker.favorite ? "<div class='trail-note'>Recommended by Deanna</div>" : ''}
     <div>Type: ${label}</div>
@@ -1940,7 +1952,7 @@ activityMarkers.forEach((marker) => {
     activityLayer.on('add', () => track.addTo(map));
     activityLayer.on('remove', () => map.removeLayer(track));
   }
-  activityLayer.bindPopup(popup).addTo(group);
+  activityLayer.bindPopup(popup, marker.photo ? { maxWidth:320, maxHeight:Math.max(180, window.innerHeight - 150) } : {}).addTo(group);
   activityLayer.on('click', () => {
     if (map.getZoom() >= 13) return;
     const here = map.latLngToContainerPoint(activityLayer.getLatLng());
@@ -2803,6 +2815,14 @@ if ('serviceWorker' in navigator) {
 
 updateMapView();
 hasFinishedInitialLoad = true;
+if (location.hash === '#seljalandsfoss-photo' && seljalandsfossPhotoStop) {
+  const photoMarker = activityMarkerLookup[seljalandsfossPhotoStop.id]?.layer;
+  if (photoMarker) {
+    photoMarker.addTo(map);
+    map.setView([seljalandsfossPhotoStop.lat, seljalandsfossPhotoStop.lon], 14);
+    photoMarker.openPopup();
+  }
+}
 </script>
 </body>
 </html>
