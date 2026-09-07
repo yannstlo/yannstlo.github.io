@@ -468,6 +468,11 @@
   .favorite-marker.not-visited { background: #cbd0d8; color: #a87808; }
   .favorite-marker.unconfirmed { background: #fff8df; color: #a87808; }
   .activity-marker-icon > span { transform: scale(var(--trip-icon-scale, 1)); transform-origin: center; transition: transform .15s ease; }
+  .category-marker { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; box-sizing:border-box; border-radius:50%; border:2px solid white; box-shadow:0 2px 5px #17233540; background:var(--marker-color); color:white; }
+  .category-marker.visited { background:#bbf7d0; color:#166534; }
+  .category-marker.not-visited { background:#cbd0d8; color:#475569; }
+  .category-marker svg, .category-key svg { width:18px; height:18px; display:block; }
+  .category-key { display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; flex-shrink:0; border-radius:8px; background:#eaf0f6; color:#334155; }
 </style>
 </head>
 <body>
@@ -1657,6 +1662,21 @@ const activityLayers = Object.entries(activityLabels).reduce((acc, [key, label])
   return acc;
 }, {});
 
+const categoryIconPaths = {
+  "town_walks": "<path d='M3 21V9h7v12M10 21V4h10v17M2 21h20M5.5 12h2M5.5 16h2M13 8h2M17 8h1M13 12h2M17 12h1M14 21v-5h3v5'/>",
+  "scenic_drives": "<path d='M7 3 3 21M17 3l4 18M12 3v3M12 10v4M12 18v3'/>",
+  "ferries": "<path d='M5 12V6h14v6M9 6V3h6v3M3 13l9-3 9 3-3 6H6zM2 21q2-2 4 0t4 0t4 0t4 0t4 0'/>",
+  "hikes": "<circle cx='14' cy='4' r='2'/><path d='m10 8 3-1 3 4 4 1M13 8l-2 7-5 6M11 15l5 6M8 8l-2 5 3 1M20 10v11'/>",
+  "waterfalls": "<path d='M2 5h7v9M9 5h9l4 3M12 5v12M16 6v8M3 10h3M3 14h3M7 18q2-2 4 0t4 0t4 0M4 21h17'/>",
+  "geothermal_areas": "<path d='M4 21h16M8 18l4-4 4 4M12 11V5M8 12 5 8M16 12l3-4M10 3l2-1 2 1'/>",
+  "thermal_baths": "<path d='M3 14h18l-2 6H5zM7 11c-3-3 3-4 0-7M12 11c-3-3 3-4 0-7M17 11c-3-3 3-4 0-7'/>",
+  "canyons": "<path d='M2 3h6l-2 6 3 5-2 7M22 3h-6l2 6-3 5 2 7M11 21l2-5-2-4 2-5'/>",
+  "lagoons": "<path d='m4 11 6-8 4 6 3-4 4 6M8 6l2 2 2-2M3 15q3-2 6 0t6 0t6 0M3 20q3-2 6 0t6 0t6 0'/>",
+  "beaches": "<path d='M3 12a9 9 0 0 1 18 0H3M12 3c-4 3-4 6-4 9M12 3c4 3 4 6 4 9M12 12v8M3 21q5-3 10-1t8 0'/>",
+  "viewpoints": "<path d='m2 20 7-12 4 7 3-5 6 10H2M6 13l3 2 2-3'/><circle cx='17' cy='5' r='2'/>"
+};
+const categoryIcon = (type) => `<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'>${categoryIconPaths[type] || categoryIconPaths.viewpoints}</svg>`;
+
 const activityMarkerLookup = {};
 const activityMarkerData = {};
 const activityMarkersByGroup = activityOrder.reduce((acc, key) => {
@@ -1704,13 +1724,7 @@ activityMarkers.forEach((marker) => {
   marker.id = markerId;
   const iconMarkup = marker.favorite
     ? `<span class='favorite-marker ${marker.visitStatus}'>★</span>`
-    : marker.visitStatus !== 'unconfirmed'
-    ? `<span class='visit-pin ${marker.visitStatus}'>${marker.visitStatus === 'visited' ? '✓' : ''}</span>`
-    : marker.icon
-    ? `<span class='favorite-marker'>${marker.icon}</span>`
-    : marker.favorite
-      ? "<span class='favorite-marker'>★</span>"
-      : null;
+    : `<span class='category-marker ${marker.visitStatus}' style='--marker-color:${color}'>${categoryIcon(marker.type)}</span>`;
   const activityLayer = iconMarkup
     ? L.marker([marker.lat, marker.lon], {
         icon: L.divIcon({
@@ -2011,7 +2025,7 @@ legend.onAdd = () => {
             </button>
             <label class='legend-toggle-item'>
               <input class='legend-checkbox' type='checkbox' data-layer='${key}' ${checked} />
-              ${colorDot}
+              ${categoryIconPaths[key] ? `<span class='category-key'>${categoryIcon(key)}</span>` : colorDot}
               <span class='legend-section-title' data-section-toggle='${key}'>${label}</span>
             </label>
           </div>
@@ -2047,7 +2061,7 @@ legend.onAdd = () => {
           <option value='not-visited'>○ Not visited</option>
           <option value='unconfirmed'>Visit unconfirmed</option>
         </select>
-        <div style='font-size:12px;color:#475569'>★ Deanna’s picks: green visited · grey not visited · cream unconfirmed<br>Other stops: ✓ visited · ○ not visited</div>
+        <div style='font-size:12px;color:#475569'>★ Deanna’s picks: green visited · grey not visited · cream unconfirmed<br>Category symbols: green visited · grey not visited</div>
         <label class='map-tool-check'><input id='access-connectors' type='checkbox' /> Show approximate access spurs</label>
         <div class='route-key'>
           <span class='route-key-swatch' style='background:#1f6feb'></span>main route
