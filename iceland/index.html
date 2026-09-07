@@ -528,12 +528,28 @@ const accommodationMarkers = [
   { name: 'Grundarfjörður Bed & Breakfast', lat: 64.9260092, lon: -23.2567802, night: 12, destination: 'Grundarfjörður', bookingSite: 'Airbnb' },
   { name: 'Konvin Hotel · Keflavík Airport', lat: 63.972828, lon: -22.576545, night: 13, destination: 'Reykjanesbær / Keflavík Airport', bookingSite: 'Hotels.com' }
 ];
+const dayTitles = {
+  1: 'Arrival & Reykjavík',
+  2: 'Reykjavík → Golden Circle → Reykholt',
+  3: 'Landmannalaugar → Vík area',
+  4: 'South Coast → Fjaðrárgljúfur',
+  5: 'Skaftafell & glacier lagoons → Höfn',
+  6: 'Eastfjords, Stuðlagil & Vök Baths',
+  7: 'Dettifoss & Mývatn → Laugar',
+  8: 'Laugar → Goðafoss → Akureyri',
+  9: 'Akureyri → Hraunsvatn & Hvítserkur → Borðeyri',
+  10: 'Borðeyri → Ísafjörður → Þingeyri',
+  11: 'Sandafell, Dynjandi & Látrabjarg → Tálknafjörður',
+  12: 'Tálknafjörður → Laugar hike → Grundarfjörður',
+  13: 'Snæfellsnes & Eldborg → Keflavík',
+  14: 'Hotel → Keflavík Airport'
+};
 accommodationMarkers.forEach((stay) => {
   const stop = geojson.features.find((feature) => Number(feature.properties.night) === stay.night);
   if (!stop) return;
   stop.geometry.coordinates = [stay.lon, stay.lat];
   stop.properties.originalDestination = stop.properties.title;
-  stop.properties.title = stay.name;
+  stop.properties.title = dayTitles[stay.night];
   stop.properties.accommodation = stay;
   if (stay.night === 13) stop.properties.originalDestination = stay.destination;
 });
@@ -544,6 +560,20 @@ routeAddressConnectors.forEach((connector) => {
   if (!segment) return;
   const prefix = connector.start.slice(0, -1);
   const suffix = connector.end.slice(1);
+  // Day 8 starts at the actual Laugar stay, joining the westbound road
+  // directly instead of returning to the former Mývatn overnight point.
+  if (segment.id === '7-8') {
+    const distance = (points) => points.slice(1).reduce((sum,p,i) => {
+      const a=points[i], rad=Math.PI/180;
+      const h=Math.sin((p[0]-a[0])*rad/2)**2+Math.cos(a[0]*rad)*Math.cos(p[0]*rad)*Math.sin((p[1]-a[1])*rad/2)**2;
+      return sum+12742*Math.asin(Math.sqrt(h));
+    },0);
+    const original = [...prefix, ...segment.coordinates, ...suffix];
+    segment.coordinates = [...connector.start.slice(0,3), ...segment.coordinates.slice(529), ...suffix];
+    segment.km = Math.round((segment.km+connector.startKm+connector.endKm-distance(original)+distance(segment.coordinates))*10)/10;
+    segment.from = 'Laugar'; segment.to = 'Akureyri area';
+    return;
+  }
   segment.coordinates = [...prefix, ...segment.coordinates, ...suffix];
   segment.km = Math.round((segment.km + connector.startKm + connector.endKm) * 10) / 10;
   segment.from = connector.from;
@@ -1176,7 +1206,8 @@ const formatActivities = (activities = {}) => {
 const buildPopupContent = (feature) => `
   <div class='popup-title'>Day ${feature.properties.night}</div>
   <div><strong>${feature.properties.title}</strong></div>
-  <div><strong>Trip area:</strong> ${feature.properties.originalDestination}</div>
+  <div><strong>Stay:</strong> ${feature.properties.accommodation.name}</div>
+  ${feature.properties.night === 2 ? '<div>Reykjavík → Þingvellir → Geysir & Strokkur → Gullfoss → Airbnb outside Reykholt.</div>' : ''}
   <div><strong>Booked with:</strong> ${feature.properties.accommodation.bookingSite}</div>
   ${feature.properties.accommodation.approximate ? `<div class='trail-note'>Approximate placement—the spreadsheet does not include a precise building number.</div>` : ''}
   ${formatActivities(feature.properties.activities)}
@@ -2647,6 +2678,7 @@ toolbar.onAdd = () => {
   const container = L.DomUtil.create('div','map-toolbar');
   const paths = {search:'<circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/>',layers:'<path d="m3 8 9-5 9 5-9 5zM3 12l9 5 9-5M3 16l9 5 9-5"/>',settings:'<circle cx="12" cy="12" r="4"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M5 19l2-2M17 7l2-2"/>'};
   for(const name of ['search','layers','settings']) {
+    if (name === 'settings') paths.settings = '<path d="m9 3 .5-1h5l.5 3 2 1 2.5-1 2.5 4-2 2v2l2 2-2.5 4-2.5-1-2 1-.5 3h-5L9 19l-2-1-2.5 1L2 15l2-2v-2L2 9l2.5-4L7 6l2-1z"/><circle cx="12" cy="12" r="3"/>';
     const button = document.createElement('button'); button.type='button';
     button.title=panelNames[name]; button.setAttribute('aria-label',panelNames[name]);button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls','legend-body');
     button.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]}</svg>`;
