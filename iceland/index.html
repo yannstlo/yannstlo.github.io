@@ -21,7 +21,7 @@
   }
   .popup-title { font-weight: 600; }
   .popup-photo { display:block; margin:10px 0; color:inherit; }
-  .popup-photo img { display:block; width:100%; height:auto; aspect-ratio:4/3; border-radius:10px; }
+  .popup-photo img { display:block; width:100%; height:auto; max-height:260px; object-fit:contain; border-radius:10px; background:#f1f4f6; }
   .popup-photo span { display:block; margin-top:5px; font-size:13px; color:#576574; }
   .popup-font-control {
     border-bottom: 1px solid rgba(17, 24, 39, 0.14);
@@ -1213,6 +1213,257 @@ if (rainbowMountainHike) {
   rainbowMountainHike.note += ' Suggested by the park ranger.';
 }
 
+activityMarkers.push({ id: 'landmannalaugar-river', name: 'Landmannalaugar geothermal river', type: 'thermal_baths', lat: 63.9922617, lon: -19.0619388, night: 3, visitStatus: 'visited', note: 'Natural hot spring and geothermal stream beside Laugahraun. Photographed during our Landmannalaugar visit; bathing not confirmed.' });
+const tripPhotos = [
+  {
+    "name": "Hjörleifshöfði & Gígjagjá (Yoda Cave)",
+    "src": "photos/img-3628.jpg",
+    "alt": "Hjörleifshöfði & Gígjagjá (Yoda Cave) — trip photo",
+    "width": 900,
+    "height": 1200
+  },
+  {
+    "name": "Reykjavík downtown walk (Hallgrímskirkja, harbor)",
+    "src": "photos/img-7732.jpg",
+    "alt": "Reykjavík downtown walk (Hallgrímskirkja, harbor) — trip photo",
+    "width": 900,
+    "height": 1200
+  },
+  {
+    "name": "Þingvellir National Park (rift valley)",
+    "src": "photos/img-7751.jpg",
+    "alt": "Þingvellir National Park (rift valley) — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Geysir & Strokkur",
+    "src": "photos/img-7767.jpg",
+    "alt": "Geysir & Strokkur — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Gullfoss waterfall",
+    "src": "photos/img-7773.jpg",
+    "alt": "Gullfoss waterfall — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Laugarás Lagoon",
+    "src": "photos/img-7838.jpg",
+    "alt": "Laugarás Lagoon — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Landmannalaugar geothermal river",
+    "src": "photos/img-7855.jpg",
+    "alt": "Landmannalaugar geothermal river — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Landmannalaugar Highlands — 4×4/F-road access",
+    "src": "photos/img-7859.jpg",
+    "alt": "Landmannalaugar Highlands — 4×4/F-road access — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Rainbow Mountain hike — Landmannalaugar",
+    "src": "photos/img-7872.jpg",
+    "alt": "Rainbow Mountain hike — Landmannalaugar — trip photo",
+    "width": 1200,
+    "height": 370
+  },
+  {
+    "name": "Dyrhólaey arch & viewpoints",
+    "src": "photos/img-7916.jpg",
+    "alt": "Dyrhólaey arch & viewpoints — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Fjaðrárgljúfur canyon",
+    "src": "photos/img-7938.jpg",
+    "alt": "Fjaðrárgljúfur canyon — trip photo",
+    "width": 900,
+    "height": 1200
+  },
+  {
+    "name": "Sjónarnípa, Svartifoss & waterfalls via Austurbrekkur",
+    "src": "photos/img-7968.jpg",
+    "alt": "Sjónarnípa, Svartifoss & waterfalls via Austurbrekkur — trip photo",
+    "width": 1200,
+    "height": 378
+  },
+  {
+    "name": "Hangandifoss Waterfall & Múlagljúfur Canyon",
+    "src": "photos/img-7998.jpg",
+    "alt": "Hangandifoss Waterfall & Múlagljúfur Canyon — trip photo",
+    "width": 900,
+    "height": 1200
+  },
+  {
+    "name": "Diamond Beach",
+    "src": "photos/img-8019.jpg",
+    "alt": "Diamond Beach — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Stokksnes & Vestrahorn mountain views",
+    "src": "photos/img-8036.jpg",
+    "alt": "Stokksnes & Vestrahorn mountain views — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Stuðlagil Canyon",
+    "src": "photos/img-8063.jpg",
+    "alt": "Stuðlagil Canyon — trip photo",
+    "width": 900,
+    "height": 1200
+  },
+  {
+    "name": "Dettifoss waterfall",
+    "src": "photos/img-8084.jpg",
+    "alt": "Dettifoss waterfall — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Hverir geothermal area",
+    "src": "photos/img-8108.jpg",
+    "alt": "Hverir geothermal area — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Hverfjall Volcano Crater",
+    "src": "photos/img-8135.jpg",
+    "alt": "Hverfjall Volcano Crater — trip photo",
+    "width": 676,
+    "height": 1200
+  },
+  {
+    "name": "Goðafoss waterfall",
+    "src": "photos/img-8152.jpg",
+    "alt": "Goðafoss waterfall — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Hraunsvatn",
+    "src": "photos/img-8199.jpg",
+    "alt": "Hraunsvatn — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Hvítserkur sea stack",
+    "src": "photos/img-8210.jpg",
+    "alt": "Hvítserkur sea stack — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Arctic Fox Centre (Súðavík)",
+    "src": "photos/img-8232.jpg",
+    "alt": "Arctic Fox Centre (Súðavík) — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Sandafell hike",
+    "src": "photos/img-8254.jpg",
+    "alt": "Sandafell hike — trip photo",
+    "width": 900,
+    "height": 1200
+  },
+  {
+    "name": "Dynjandi waterfall",
+    "src": "photos/img-8266.jpg",
+    "alt": "Dynjandi waterfall — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Látrabjarg bird cliffs",
+    "src": "photos/img-8272.jpg",
+    "alt": "Látrabjarg bird cliffs — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Pollurinn Hot Pool",
+    "src": "photos/img-8284.jpg",
+    "alt": "Pollurinn Hot Pool — trip photo",
+    "width": 900,
+    "height": 1200
+  },
+  {
+    "name": "Laugar in Sælingsdalur hike",
+    "src": "photos/img-8296.jpg",
+    "alt": "Laugar in Sælingsdalur hike — trip photo",
+    "width": 900,
+    "height": 1200
+  },
+  {
+    "name": "Kirkjufell & Kirkjufellsfoss",
+    "src": "photos/img-8313.jpg",
+    "alt": "Kirkjufell & Kirkjufellsfoss — trip photo",
+    "width": 900,
+    "height": 1200
+  },
+  {
+    "name": "Saxhóll crater",
+    "src": "photos/img-8327.jpg",
+    "alt": "Saxhóll crater — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Rauðfeldsgjá gorge",
+    "src": "photos/img-8388.jpg",
+    "alt": "Rauðfeldsgjá gorge — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Gerðuberg basalt cliffs",
+    "src": "photos/img-8403.jpg",
+    "alt": "Gerðuberg basalt cliffs — trip photo",
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "name": "Eldborg crater",
+    "src": "photos/img-8404.jpg",
+    "alt": "Eldborg crater — trip photo",
+    "width": 1200,
+    "height": 900
+  }
+];
+tripPhotos.forEach(photo => {
+  const stop = activityMarkers.find(marker => marker.name === photo.name);
+  if (!stop) throw new Error('Missing photo destination: ' + photo.name);
+  stop.photo = photo;
+});
+// Remaining photo locations confirmed by Yann.
+activityMarkers.push(
+  { id:'londrangar', name:'Lóndrangar sea stacks', type:'viewpoints', lat:64.7293617, lon:-23.7986617, night:13, visitStatus:'visited', photo:{src:'photos/img-8385.jpg',alt:'Lóndrangar sea stacks above the lava-covered coast.',width:1200,height:900} },
+  { id:'sudavik-fjord-view', name:'Fjord viewpoint near Súðavík', type:'viewpoints', lat:66.0365667, lon:-22.9424383, night:10, visitStatus:'visited', photo:{src:'photos/img-8226.jpg',alt:'Mountain and fjord panorama near Súðavík.',width:1200,height:444} }
+);
+const cavePhotoStop = activityMarkers.find(marker => marker.name === 'Vatnshellir lava cave');
+if (!cavePhotoStop) throw new Error('Missing Vatnshellir photo destination');
+cavePhotoStop.photo = {src:'photos/img-8373.jpg',alt:'Inside Vatnshellir lava cave.',width:1200,height:900};
+const hvollPhotoStay = geojson.features.find(feature => /Hvoll/i.test(feature.properties.accommodation.name));
+if (!hvollPhotoStay) throw new Error('Missing Hvoll photo destination');
+hvollPhotoStay.properties.photo = {src:'photos/img-7945.jpg',alt:'Evening mountain view from Hvoll accommodation.'};
+
 const visitStatusLabel = (marker) => ({
   visited: '✓ Visited', 'not-visited': '○ Not visited', unconfirmed: 'Visit unconfirmed'
 }[marker.visitStatus]);
@@ -1308,6 +1559,7 @@ const buildPopupContent = (feature) => `
   <div class='popup-title'>Day ${feature.properties.night}</div>
   <div><strong>${feature.properties.title}</strong></div>
   <div><strong>Stay:</strong> ${feature.properties.accommodation.name}</div>
+  ${feature.properties.photo ? `<a class='popup-photo' href='${feature.properties.photo.src}' target='_blank' rel='noopener noreferrer'><img src='${feature.properties.photo.src}' alt='${feature.properties.photo.alt}' width='1200' height='900' loading='lazy'><span>View larger photo ↗</span></a>` : ''}
   ${feature.properties.night === 2 ? '<div>Reykjavík → Þingvellir → Geysir & Strokkur → Gullfoss → Airbnb outside Reykholt.</div>' : ''}
   <div><strong>Booked with:</strong> ${feature.properties.accommodation.bookingSite}</div>
   ${feature.properties.accommodation.approximate ? `<div class='trail-note'>Approximate placement—the spreadsheet does not include a precise building number.</div>` : ''}
@@ -1909,7 +2161,7 @@ activityMarkers.forEach((marker) => {
     : '';
   const popup = `
     <div class='popup-title'>${marker.name}</div>
-    ${marker.photo ? `<a class='popup-photo' href='${marker.photo.src}' target='_blank' rel='noopener noreferrer' aria-label='Open larger photo of ${marker.name}'><img src='${marker.photo.src}' alt='${marker.photo.alt}' width='1200' height='900'><span>View larger photo ↗</span></a>` : ''}
+    ${marker.photo ? `<a class='popup-photo' href='${marker.photo.src}' target='_blank' rel='noopener noreferrer' aria-label='Open larger photo of ${marker.name}'><img src='${marker.photo.src}' alt='${marker.photo.alt}' width='${marker.photo.width || 1200}' height='${marker.photo.height || 900}' loading='lazy'><span>View larger photo ↗</span></a>` : ''}
     <div class='visit-status ${marker.visitStatus}'>${visitStatusLabel(marker)}</div>
     ${marker.favorite ? "<div class='trail-note'>Recommended by Deanna</div>" : ''}
     <div>Type: ${label}</div>
