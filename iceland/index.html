@@ -21,6 +21,11 @@
   }
   .popup-title { font-weight: 600; }
   .popup-photo { display:block; margin:10px 0; color:inherit; }
+  .popup-navigation { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px 16px 12px; border-top:1px solid #dce2ea; }
+  .popup-navigation button { min-height:44px; border:0; border-radius:8px; padding:6px 10px; background:#e9f1fc; color:#17436f; cursor:pointer; }
+  .popup-navigation button:disabled { opacity:.4; cursor:default; }
+  .popup-scroll-cue { text-align:center; font-size:13px; color:#42566d; padding:4px; }
+  .legend-location-link { flex:1; text-align:left; border:0; background:none; color:inherit; font:inherit; cursor:pointer; display:flex; align-items:center; gap:8px; min-height:44px; }
   .popup-photo img { display:block; width:100%; height:auto; max-height:260px; object-fit:contain; border-radius:10px; background:#f1f4f6; }
   .popup-photo span { display:block; margin-top:5px; font-size:13px; color:#576574; }
   .popup-font-control {
@@ -1773,13 +1778,14 @@ const fitTripPopup = () => {
     const popup = activeTripPopup;
     if (!popup || !map.hasLayer(popup)) return;
     const height = Math.min(map.getSize().y, window.visualViewport?.height || window.innerHeight);
-    popup.options.maxHeight = Math.max(80, height - 180);
+    popup.options.maxHeight = Math.max(80, height - 260);
     const popupWidth = Math.max(120, Math.min(320, map.getSize().x - 60));
     popup.options.minWidth = popupWidth;
     popup.options.maxWidth = popupWidth;
     popup.options.autoPanPaddingTopLeft = L.point(12, 76);
     popup.options.autoPanPaddingBottomRight = L.point(12, 30);
     popup.update();
+    updatePopupNavigation(popup);
   });
 };
 map.on('popupopen', event => {
@@ -2921,6 +2927,19 @@ legend.onAdd = () => {
     const routeId = input.getAttribute('data-route');
     const label = input.closest('label');
     if (label) {
+      const row = document.createElement('div');
+      row.className = label.className;
+      const jump = document.createElement('button');
+      jump.type = 'button';
+      jump.className = 'legend-location-link';
+      Array.from(label.childNodes).filter(node => node !== input).forEach(node => jump.append(node));
+      row.append(input, jump);
+      label.replaceWith(row);
+      jump.addEventListener('click', () => {
+        if (!input.checked) { input.checked = true; input.dispatchEvent(new Event('change')); }
+        const layer = markerId ? activityMarkerLookup[markerId]?.layer : night ? overnightMarkersByNight[Number(night)] : routeLegLayers[routeId];
+        if (layer) openTripCard(layer);
+      });
       label.addEventListener('mouseenter', () => {
         if (markerId) {
           const markerEntry = activityMarkerLookup[markerId];
@@ -3082,6 +3101,53 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' }).catch(() => {});
 }
 
+const tripCardEntries = () => [
+  ...Object.entries(activityMarkerLookup).map(([id,entry]) => ({layer:entry.layer, day:activityMarkerData[id]?.night || 0})),
+  ...Object.entries(overnightMarkersByNight).map(([day,layer]) => ({layer,day:Number(day)}))
+].filter(entry => map.hasLayer(entry.layer)).sort((a,b) => a.day-b.day);
+const openTripCard = (layer) => {
+  hidePanel();
+  if (layer.getLatLng) {
+    map.setView(layer.getLatLng(), Math.max(11,map.getZoom()), {animate:false});
+    layer.openPopup();
+  } else if (layer.getBounds) {
+    map.fitBounds(layer.getBounds(), {padding:[35,35],animate:false});
+    L.popup().setLatLng(layer.getBounds().getCenter()).setContent(layer.dayPopup).openOn(map);
+  }
+};
+const updatePopupNavigation = (popup) => {
+  const root = popup.getElement();
+  const wrapper = root?.querySelector('.leaflet-popup-content-wrapper');
+  const content = root?.querySelector('.leaflet-popup-content');
+  if (!wrapper || !content) return;
+  wrapper.querySelector('.popup-navigation')?.remove();
+  wrapper.querySelector('.popup-scroll-cue')?.remove();
+  const cue = document.createElement('div');
+  cue.className = 'popup-scroll-cue';
+  const updateCue = () => {
+    const more = content.scrollHeight > content.clientHeight + 2;
+    cue.hidden = !more;
+    cue.textContent = content.scrollTop + content.clientHeight < content.scrollHeight - 3 ? 'Scroll for more ↓' : '↑ Scroll back to top';
+  };
+  content.onscroll = updateCue;
+  wrapper.append(cue);
+  updateCue();
+  const entries = tripCardEntries();
+  const index = entries.findIndex(entry => entry.layer.getPopup() === popup || entry.layer.getPopup()?.getContent() === popup.getContent());
+  if (index < 0) return;
+  const nav = document.createElement('div');
+  nav.className = 'popup-navigation';
+  for (const [offset,title] of [[-1,'← Previous'],[1,'Next →']]) {
+    const button = document.createElement('button');
+    button.type = 'button'; button.textContent = title;
+    button.disabled = !entries[index+offset];
+    button.onclick = () => openTripCard(entries[index+offset].layer);
+    nav.append(button);
+  }
+  wrapper.append(nav);
+  popup.update();
+  updateCue();
+};
 updateMapView();
 hasFinishedInitialLoad = true;
 if (location.hash === '#seljalandsfoss-photo' && seljalandsfossPhotoStop) {
