@@ -2270,33 +2270,6 @@ activityMarkers.forEach((marker) => {
   activityMarkersByGroup[marker.type].push(markerId);
 });
 
-const accessConnectors = L.featureGroup();
-const connectorNames = new Set([
-  'Hangandifoss Waterfall & Múlagljúfur Canyon',
-  'Hjörleifshöfði & Gígjagjá (Yoda Cave)',
-  'Látrabjarg bird cliffs'
-]);
-const routePoints = routeSegments.flatMap((segment) => (segment.coordinates || []).filter((_, index) => index % 8 === 0));
-activityMarkers.filter((marker) => connectorNames.has(marker.name)).forEach((marker) => {
-  let nearest = null;
-  let nearestDistance = Infinity;
-  routePoints.forEach((point) => {
-    const distance = Math.pow(point[0] - marker.lat, 2) + Math.pow(point[1] - marker.lon, 2);
-    if (distance < nearestDistance) {
-      nearestDistance = distance;
-      nearest = point;
-    }
-  });
-  if (nearest) {
-    L.polyline([nearest, [marker.lat, marker.lon]], {
-      color: '#7c3aed',
-      dashArray: '6 6',
-      weight: 2,
-      opacity: 0.8
-    }).bindTooltip(`Approximate access to ${marker.name} · confirm navigation`).addTo(accessConnectors);
-  }
-});
-
 const overlayConfig = {
   overnight: {
     label: 'Places we stayed',
@@ -2569,7 +2542,6 @@ legend.onAdd = () => {
           <option value='unconfirmed'>Visit unconfirmed</option>
         </select>
         <div style='font-size:12px;color:#475569'>★ Deanna’s picks: green visited · grey not visited · cream unconfirmed<br>Category symbols: green visited · grey not visited</div>
-        <label class='map-tool-check'><input id='access-connectors' type='checkbox' /> Show approximate access spurs</label>
         <div class='route-key'>
           <span class='route-key-swatch' style='background:#1f6feb'></span>main route
           <span class='route-key-swatch' style='background:none;border-top:4px dotted #153e90;height:0'></span>tunnel (hover/tap)
@@ -2676,7 +2648,6 @@ legend.onAdd = () => {
   const searchResults = div.querySelector('#map-search-results');
   const dayFocus = div.querySelector('#day-focus');
   const deannaFilter = div.querySelector('#deanna-filter');
-  const connectorToggle = div.querySelector('#access-connectors');
   let daySnapshot = null;
   let deannaSnapshot = null;
 
@@ -2737,11 +2708,6 @@ legend.onAdd = () => {
       searchInput.value = '';
       clearSearchResults();
     }
-  });
-
-  connectorToggle.addEventListener('change', () => {
-    if (connectorToggle.checked) map.addLayer(accessConnectors);
-    else map.removeLayer(accessConnectors);
   });
 
   dayFocus.addEventListener('change', () => {
