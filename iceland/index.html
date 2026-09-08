@@ -1774,7 +1774,9 @@ const fitTripPopup = () => {
     if (!popup || !map.hasLayer(popup)) return;
     const height = Math.min(map.getSize().y, window.visualViewport?.height || window.innerHeight);
     popup.options.maxHeight = Math.max(80, height - 180);
-    popup.options.maxWidth = Math.min(320, map.getSize().x - 60);
+    const popupWidth = Math.max(120, Math.min(320, map.getSize().x - 60));
+    popup.options.minWidth = popupWidth;
+    popup.options.maxWidth = popupWidth;
     popup.options.autoPanPaddingTopLeft = L.point(12, 76);
     popup.options.autoPanPaddingBottomRight = L.point(12, 30);
     popup.update();
