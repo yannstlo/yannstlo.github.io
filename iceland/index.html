@@ -3147,6 +3147,8 @@ tripCardOrder.push(...Object.entries(overnightMarkersByNight).map(([day,layer]) 
 tripCardOrder.sort((a,b) => a.day-b.day || a.minute-b.minute || a.name.localeCompare(b.name));
 const tripCardEntries = () => tripCardOrder.filter(entry => map.hasLayer(entry.layer));
 let pendingCardArrival = null;
+const cardTravelDuration = (distanceMeters) =>
+  Math.min(1.8, Math.max(0.35, 0.35 + 0.3 * Math.log2(1 + Math.max(0, distanceMeters) / 1000)));
 const cardLandingCenter = (layer, zoom) => {
   const popup = layer.getPopup();
   const size = map.getSize();
@@ -3178,6 +3180,9 @@ const cardLandingCenter = (layer, zoom) => {
   return map.unproject(map.project(layer.getLatLng(),zoom).subtract(L.point(anchorX-size.x/2, anchorY-size.y/2)),zoom);
 };
 const openTripCard = (layer) => {
+  const origin = activeTripPopup?.getLatLng() || map.getCenter();
+  const destination = layer.getLatLng ? layer.getLatLng() : layer.getBounds().getCenter();
+  const duration = cardTravelDuration(map.distance(origin, destination));
   hidePanel();
   if (pendingCardArrival) map.off('moveend', pendingCardArrival);
   pendingCardArrival = null;
@@ -3193,12 +3198,12 @@ const openTripCard = (layer) => {
     } else {
       pendingCardArrival = () => { pendingCardArrival = null; layer.openPopup(); };
       map.once('moveend', pendingCardArrival);
-      map.flyTo(target, zoom, {duration:0.85});
+      map.flyTo(target, zoom, {duration});
     }
   } else if (layer.getBounds) {
     pendingCardArrival = () => { pendingCardArrival = null; L.popup().setLatLng(layer.getBounds().getCenter()).setContent(layer.dayPopup).openOn(map); };
     map.once('moveend', pendingCardArrival);
-    map.flyToBounds(layer.getBounds(), {padding:[35,35],duration:0.85});
+    map.flyToBounds(layer.getBounds(), {padding:[35,35],duration});
   }
 };
 const updatePopupNavigation = (popup) => {
