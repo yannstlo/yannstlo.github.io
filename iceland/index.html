@@ -1468,6 +1468,10 @@ const laugarRecordedHike = activityMarkers.find(marker => marker.name === 'Lauga
 laugarRecordedHike.url = 'https://www.alltrails.com/explore/recording/afternoon-hike-at-laugar-in-saelingsdal-cbd4eab?u=m&sh=qkqryz';
 laugarRecordedHike.urlLabel = 'View recorded hike on AllTrails';
 
+const djupalonPhotoStop = activityMarkers.find(marker => marker.name === 'Djúpalónssandur beach');
+if (!djupalonPhotoStop) throw new Error('Missing Djúpalónssandur photo destination');
+djupalonPhotoStop.photo = {src:'photos/img-8343.jpg',alt:'Djúpalónssandur beach and its dark volcanic coastline.',width:1200,height:900};
+
 const visitStatusLabel = (marker) => ({
   visited: '✓ Visited', 'not-visited': '○ Not visited', unconfirmed: 'Visit unconfirmed'
 }[marker.visitStatus]);
