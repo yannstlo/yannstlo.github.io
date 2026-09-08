@@ -3101,18 +3101,42 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' }).catch(() => {});
 }
 
-const tripCardEntries = () => [
-  ...Object.entries(activityMarkerLookup).map(([id,entry]) => ({layer:entry.layer, day:activityMarkerData[id]?.night || 0})),
-  ...Object.entries(overnightMarkersByNight).map(([day,layer]) => ({layer,day:Number(day)}))
-].filter(entry => map.hasLayer(entry.layer)).sort((a,b) => a.day-b.day);
+// Order places by progress along that day's driving route, with the stay last.
+const tripCardOrder = Object.entries(activityMarkerLookup).map(([id,entry]) => {
+  const marker = activityMarkerData[id];
+  const points = routeSegments.filter(segment => Number(segment.day) === Number(marker.night)).flatMap(segment => segment.coordinates || []);
+  let nearest = Infinity, progress = 0;
+  points.forEach((point,index) => {
+    const distance = (point[0]-marker.lat)**2 + ((point[1]-marker.lon)*Math.cos(marker.lat*Math.PI/180))**2;
+    if (distance < nearest) { nearest = distance; progress = index; }
+  });
+  return {layer:entry.layer, day:Number(marker.night), progress, name:marker.name};
+}).concat(Object.entries(overnightMarkersByNight).map(([day,layer]) => ({layer,day:Number(day),progress:Infinity,name:'Accommodation'})))
+  .sort((a,b) => a.day-b.day || a.progress-b.progress || a.name.localeCompare(b.name));
+const tripCardEntries = () => tripCardOrder.filter(entry => map.hasLayer(entry.layer));
+let pendingCardArrival = null;
 const openTripCard = (layer) => {
   hidePanel();
+  if (pendingCardArrival) map.off('moveend', pendingCardArrival);
+  pendingCardArrival = null;
+  map.stop();
+  map.closePopup();
   if (layer.getLatLng) {
-    map.setView(layer.getLatLng(), Math.max(11,map.getZoom()), {animate:false});
-    layer.openPopup();
+    const target = layer.getLatLng();
+    const zoom = Math.min(13, Math.max(11,map.getZoom()));
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion || (map.getCenter().equals(target) && map.getZoom() === zoom)) {
+      map.setView(target, zoom, {animate:false});
+      layer.openPopup();
+    } else {
+      pendingCardArrival = () => { pendingCardArrival = null; layer.openPopup(); };
+      map.once('moveend', pendingCardArrival);
+      map.flyTo(target, zoom, {duration:1.8});
+    }
   } else if (layer.getBounds) {
-    map.fitBounds(layer.getBounds(), {padding:[35,35],animate:false});
-    L.popup().setLatLng(layer.getBounds().getCenter()).setContent(layer.dayPopup).openOn(map);
+    pendingCardArrival = () => { pendingCardArrival = null; L.popup().setLatLng(layer.getBounds().getCenter()).setContent(layer.dayPopup).openOn(map); };
+    map.once('moveend', pendingCardArrival);
+    map.flyToBounds(layer.getBounds(), {padding:[35,35],duration:1.8});
   }
 };
 const updatePopupNavigation = (popup) => {
