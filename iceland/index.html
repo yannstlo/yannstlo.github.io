@@ -1477,6 +1477,21 @@ const djupalonPhotoStop = activityMarkers.find(marker => marker.name === 'Djúpa
 if (!djupalonPhotoStop) throw new Error('Missing Djúpalónssandur photo destination');
 djupalonPhotoStop.photo = {src:'photos/img-8343.jpg',alt:'Djúpalónssandur beach and its dark volcanic coastline.',width:1200,height:900};
 
+// Actual capture day and local time from the original trip photos (Day 1: Aug 24).
+const photoVisitTimes = {
+  7732:[1,19,48],7751:[2,10,11],7767:[2,13,8],7773:[2,14,25],7838:[2,20,25],
+  7855:[3,10,59],7859:[3,11,50],7872:[3,12,56],7916:[4,8,41],3628:[4,13,28],7938:[4,15,5],
+  7968:[5,10,13],7998:[5,14,4],8019:[5,16,33],8036:[6,8,46],8063:[6,16,10],
+  8084:[7,10,37],8108:[7,13,22],8135:[7,15,55],8152:[8,10,27],8199:[9,12,50],8210:[9,15,46],
+  8226:[10,12,31],8232:[10,13,35],8254:[11,9,23],8266:[11,10,57],8272:[11,14,3],8284:[11,18,1],
+  8296:[12,12,31],8313:[12,17,36],8327:[13,9,40],8343:[13,10,35],8373:[13,12,6],8385:[13,12,38],8388:[13,13,5],8403:[13,14,33],8404:[13,15,20]
+};
+activityMarkers.forEach(marker => {
+  const number = marker.photo?.src.match(/img-(\d+)/)?.[1];
+  const visit = photoVisitTimes[number];
+  if (visit) { marker.night = visit[0]; marker.visitMinute = visit[1]*60+visit[2]; }
+});
+
 const visitStatusLabel = (marker) => ({
   visited: '✓ Visited', 'not-visited': '○ Not visited', unconfirmed: 'Visit unconfirmed'
 }[marker.visitStatus]);
@@ -2793,9 +2808,6 @@ legend.onAdd = () => {
     menuToggle.setAttribute('aria-label', collapsed ? 'Show map layers' : 'Hide map layers');
   };
   setLegendCollapsed(true);
-  menuToggle.addEventListener('click', () => {
-    setLegendCollapsed(!div.classList.contains('collapsed'));
-  });
   const handleViewportChange = () => updateMapView();
   if (mobileLegendQuery.addEventListener) {
     mobileLegendQuery.addEventListener('change', handleViewportChange);
@@ -3044,7 +3056,15 @@ legendHelp.innerHTML = '<div class="legend-subheading">Legend</div><p>Light gree
 legendHelp.append(routeKey); layersContent.append(legendHelp);
 panel.querySelector('.map-tools > div[style]')?.remove();
 const closePanel = panel.querySelector('.legend-menu-toggle');
-closePanel.innerHTML = 'Close';
+let menuPinned = false;
+closePanel.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 3h8l-1 7 4 4H5l4-4-1-7ZM12 14v8"/></svg>';
+const updatePinButton = () => {
+  closePanel.setAttribute('aria-pressed',String(menuPinned));
+  closePanel.setAttribute('aria-label',menuPinned ? 'Unpin menu' : 'Pin menu open');
+  closePanel.title = menuPinned ? 'Unpin menu' : 'Keep menu open';
+  closePanel.style.background = menuPinned ? '#b9d8ff' : '';
+};
+updatePinButton();
 const panelNames = {search:'Search places', layers:'Layers & legend', settings:'Settings'};
 const toolbarButtons = {};
 function showPanel(name) {
@@ -3052,18 +3072,19 @@ function showPanel(name) {
   panel.classList.remove('collapsed');
   panel.querySelector('.legend-heading').textContent = panelNames[name];
   for (const [key, element] of Object.entries({search:searchContent,layers:layersContent,settings:settingsContent})) element.hidden = key !== name;
-  closePanel.setAttribute('aria-label','Close '+panelNames[name]);
+  updatePinButton();
   closePanel.setAttribute('aria-expanded','true');
   for (const [key, button] of Object.entries(toolbarButtons)) button.setAttribute('aria-expanded',String(key===name));
   if(name==='search') panel.querySelector('#map-search').focus();
 }
-function hidePanel() {
+function hidePanel(force = false) {
+  if (menuPinned && !force) return;
   panel.classList.add('collapsed');
   panel.querySelector('#map-search').blur();
   Object.values(toolbarButtons).forEach(button=>button.setAttribute('aria-expanded','false'));
 }
-closePanel.addEventListener('click',hidePanel);
-panel.addEventListener('keydown',event=>{if(event.key==='Escape')hidePanel();});
+closePanel.addEventListener('click',()=>{menuPinned=!menuPinned;updatePinButton();});
+panel.addEventListener('keydown',event=>{if(event.key==='Escape')hidePanel(true);});
 panel.querySelector('#map-search-results').addEventListener('click',event=>{if(event.target.closest('button'))hidePanel();});
 const toolbar = L.control({position:'topright'});
 toolbar.onAdd = () => {
@@ -3074,7 +3095,7 @@ toolbar.onAdd = () => {
     const button = document.createElement('button'); button.type='button';
     button.title=panelNames[name]; button.setAttribute('aria-label',panelNames[name]);button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls','legend-body');
     button.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]}</svg>`;
-    button.addEventListener('click',()=>{if(!panel.classList.contains('collapsed')&&panel.dataset.panel===name)hidePanel();else showPanel(name);});
+    button.addEventListener('click',()=>{if(!panel.classList.contains('collapsed')&&panel.dataset.panel===name)hidePanel(true);else showPanel(name);});
     toolbarButtons[name]=button;container.append(button);
   }
   L.DomEvent.disableClickPropagation(container);return container;
@@ -3110,9 +3131,17 @@ const tripCardOrder = Object.entries(activityMarkerLookup).map(([id,entry]) => {
     const distance = (point[0]-marker.lat)**2 + ((point[1]-marker.lon)*Math.cos(marker.lat*Math.PI/180))**2;
     if (distance < nearest) { nearest = distance; progress = index; }
   });
-  return {layer:entry.layer, day:Number(marker.night), progress, name:marker.name};
-}).concat(Object.entries(overnightMarkersByNight).map(([day,layer]) => ({layer,day:Number(day),progress:Infinity,name:'Accommodation'})))
-  .sort((a,b) => a.day-b.day || a.progress-b.progress || a.name.localeCompare(b.name));
+  return {layer:entry.layer, day:Number(marker.night), progress, minute:marker.visitMinute, name:marker.name};
+});
+tripCardOrder.forEach(entry => {
+  if (Number.isFinite(entry.minute)) return;
+  const anchors = tripCardOrder.filter(other => other.day === entry.day && Number.isFinite(other.minute) && other.layer !== entry.layer && other.measured !== false);
+  anchors.sort((a,b) => Math.abs(a.progress-entry.progress)-Math.abs(b.progress-entry.progress));
+  entry.minute = anchors.length ? anchors[0].minute + Math.sign(entry.progress-anchors[0].progress)*0.5 : entry.progress;
+  entry.measured = false;
+});
+tripCardOrder.push(...Object.entries(overnightMarkersByNight).map(([day,layer]) => ({layer,day:Number(day),minute:Infinity,name:'Accommodation'})));
+tripCardOrder.sort((a,b) => a.day-b.day || a.minute-b.minute || a.name.localeCompare(b.name));
 const tripCardEntries = () => tripCardOrder.filter(entry => map.hasLayer(entry.layer));
 let pendingCardArrival = null;
 const openTripCard = (layer) => {
