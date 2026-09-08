@@ -1810,7 +1810,10 @@ map.on('popupopen', event => {
   });
   fitTripPopup();
 });
-map.on('popupclose', event => { if (activeTripPopup === event.popup) activeTripPopup = null; });
+map.on('popupclose', event => {
+  event.popup.options.autoPan = true;
+  if (activeTripPopup === event.popup) activeTripPopup = null;
+});
 map.on('zoomend resize', fitTripPopup);
 window.visualViewport?.addEventListener('resize', fitTripPopup);
 const updateTripIconScale = () => {
@@ -3144,6 +3147,36 @@ tripCardOrder.push(...Object.entries(overnightMarkersByNight).map(([day,layer]) 
 tripCardOrder.sort((a,b) => a.day-b.day || a.minute-b.minute || a.name.localeCompare(b.name));
 const tripCardEntries = () => tripCardOrder.filter(entry => map.hasLayer(entry.layer));
 let pendingCardArrival = null;
+const cardLandingCenter = (layer, zoom) => {
+  const popup = layer.getPopup();
+  const size = map.getSize();
+  const viewportHeight = Math.min(size.y, window.visualViewport?.height || window.innerHeight);
+  const width = Math.max(120, Math.min(320, size.x - 60));
+  const maxHeight = Math.max(80, viewportHeight - 260);
+  // Measure the same content and typography before starting the flight.
+  const measure = document.createElement('div');
+  measure.className = 'leaflet-popup leaflet-zoom-animated';
+  measure.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;left:-10000px;top:0';
+  const content = document.createElement('div');
+  content.className = 'leaflet-popup-content';
+  content.style.cssText = `width:${width}px;max-height:${maxHeight}px;overflow:auto`;
+  const html = popup?.getContent();
+  if (typeof html === 'string') content.innerHTML = html;
+  else if (html instanceof HTMLElement) content.append(html.cloneNode(true));
+  measure.append(content); map.getContainer().append(measure);
+  const cardHeight = content.getBoundingClientRect().height + 110;
+  measure.remove();
+  if (popup) {
+    popup.options.minWidth = width; popup.options.maxWidth = width;
+    popup.options.maxHeight = maxHeight;
+    popup.options.autoPan = false;
+  }
+  let availableWidth = size.x;
+  if (menuPinned && !panel.classList.contains('collapsed') && size.x > 700) availableWidth -= panel.getBoundingClientRect().width + 20;
+  const anchorX = availableWidth / 2;
+  const anchorY = Math.min(viewportHeight - 35, (76 + viewportHeight - 30 + cardHeight) / 2);
+  return map.unproject(map.project(layer.getLatLng(),zoom).subtract(L.point(anchorX-size.x/2, anchorY-size.y/2)),zoom);
+};
 const openTripCard = (layer) => {
   hidePanel();
   if (pendingCardArrival) map.off('moveend', pendingCardArrival);
@@ -3151,8 +3184,8 @@ const openTripCard = (layer) => {
   map.stop();
   map.closePopup();
   if (layer.getLatLng) {
-    const target = layer.getLatLng();
     const zoom = Math.min(13, Math.max(11,map.getZoom()));
+    const target = cardLandingCenter(layer, zoom);
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reducedMotion || (map.getCenter().equals(target) && map.getZoom() === zoom)) {
       map.setView(target, zoom, {animate:false});
@@ -3160,12 +3193,12 @@ const openTripCard = (layer) => {
     } else {
       pendingCardArrival = () => { pendingCardArrival = null; layer.openPopup(); };
       map.once('moveend', pendingCardArrival);
-      map.flyTo(target, zoom, {duration:1.8});
+      map.flyTo(target, zoom, {duration:0.85});
     }
   } else if (layer.getBounds) {
     pendingCardArrival = () => { pendingCardArrival = null; L.popup().setLatLng(layer.getBounds().getCenter()).setContent(layer.dayPopup).openOn(map); };
     map.once('moveend', pendingCardArrival);
-    map.flyToBounds(layer.getBounds(), {padding:[35,35],duration:1.8});
+    map.flyToBounds(layer.getBounds(), {padding:[35,35],duration:0.85});
   }
 };
 const updatePopupNavigation = (popup) => {
