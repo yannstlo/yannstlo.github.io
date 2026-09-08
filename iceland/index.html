@@ -1464,6 +1464,10 @@ const hvollPhotoStay = geojson.features.find(feature => /Hvoll/i.test(feature.pr
 if (!hvollPhotoStay) throw new Error('Missing Hvoll photo destination');
 hvollPhotoStay.properties.photo = {src:'photos/img-7945.jpg',alt:'Evening mountain view from Hvoll accommodation.'};
 
+const laugarRecordedHike = activityMarkers.find(marker => marker.name === 'Laugar in Sælingsdalur hike');
+laugarRecordedHike.url = 'https://www.alltrails.com/explore/recording/afternoon-hike-at-laugar-in-saelingsdal-cbd4eab?u=m&sh=qkqryz';
+laugarRecordedHike.urlLabel = 'View recorded hike on AllTrails';
+
 const visitStatusLabel = (marker) => ({
   visited: '✓ Visited', 'not-visited': '○ Not visited', unconfirmed: 'Visit unconfirmed'
 }[marker.visitStatus]);
@@ -1648,6 +1652,7 @@ const persistCurrentState = () => {
   const overlayState = captureOverlayState();
   const legendState = captureLegendState();
   saveMapState({
+    discoveryDefaultsVersion: 1,
     center: [center.lat, center.lng],
     zoom: map.getZoom(),
     popupFontSize,
@@ -1753,6 +1758,34 @@ const restoreLegendState = (state) => {
 };
 
 const map = L.map('map');
+// All popup types share a viewport-sized scroll area, including after photos load.
+let activeTripPopup = null;
+let popupLayoutPending = false;
+const fitTripPopup = () => {
+  if (!activeTripPopup || popupLayoutPending) return;
+  popupLayoutPending = true;
+  requestAnimationFrame(() => {
+    popupLayoutPending = false;
+    const popup = activeTripPopup;
+    if (!popup || !map.hasLayer(popup)) return;
+    const height = Math.min(map.getSize().y, window.visualViewport?.height || window.innerHeight);
+    popup.options.maxHeight = Math.max(80, height - 180);
+    popup.options.maxWidth = Math.min(320, map.getSize().x - 60);
+    popup.options.autoPanPaddingTopLeft = L.point(12, 76);
+    popup.options.autoPanPaddingBottomRight = L.point(12, 30);
+    popup.update();
+  });
+};
+map.on('popupopen', event => {
+  activeTripPopup = event.popup;
+  event.popup.getElement()?.querySelectorAll('img').forEach(img => {
+    if (!img.complete) img.addEventListener('load', fitTripPopup, {once:true});
+  });
+  fitTripPopup();
+});
+map.on('popupclose', event => { if (activeTripPopup === event.popup) activeTripPopup = null; });
+map.on('zoomend resize', fitTripPopup);
+window.visualViewport?.addEventListener('resize', fitTripPopup);
 const updateTripIconScale = () => {
   const zoom = map.getZoom();
   map.getContainer().style.setProperty('--trip-icon-scale', zoom <= 7 ? '.68' : zoom <= 9 ? '.82' : '1');
@@ -1942,8 +1975,20 @@ document.addEventListener('map-location-error', (event) => {
     : 'Location unavailable — tap to retry';
 });
 
-// Start with a clear overview; retain only the text-size preference.
-const savedMapState = { popupFontSize: loadMapState()?.popupFontSize };
+// Restore deliberate choices; migrate empty state caused by the old hidden defaults.
+const previousMapState = loadMapState();
+const savedMapState = previousMapState && typeof previousMapState === 'object' ? { ...previousMapState } : {};
+if (!savedMapState.discoveryDefaultsVersion && Array.isArray(savedMapState.visibleMarkers) && !savedMapState.visibleMarkers.length) {
+  delete savedMapState.visibleMarkers;
+  if (savedMapState.visibleGroups) {
+    savedMapState.visibleGroups = { ...savedMapState.visibleGroups };
+    activityOrder.forEach(key => delete savedMapState.visibleGroups[key]);
+  }
+}
+if (typeof savedMapState.labelsVisible === 'boolean') {
+  mapLabelsVisible = savedMapState.labelsVisible;
+  map.getContainer().classList.toggle('labels-hidden', !mapLabelsVisible);
+}
 const DEFAULT_POPUP_FONT_SIZE = 16;
 const MIN_POPUP_FONT_SIZE = 12;
 const MAX_POPUP_FONT_SIZE = 22;
@@ -2271,7 +2316,7 @@ activityOrder.forEach((key) => {
     label: activityLabels[key] || key,
     layer: activityLayers[key],
     color: activityColors[key] || '#6e7781',
-    visible: false
+    visible: true
   };
 });
 
