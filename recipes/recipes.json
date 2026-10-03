@@ -1,5 +1,20 @@
 [
   {
+    "slug": "slow-cooker-beef-bourguignon",
+    "title": "Slow-Cooker Beef Bourguignon",
+    "date": "2026-10-03",
+    "rating": null,
+    "summary": "A make-ahead slow-cooker dinner with tender beef, red wine, carrots, mushrooms and pearl onions — ideal after a long hiking day.",
+    "heroImage": "/recipes/images/slow-cooker-beef-bourguignon-hero.jpg",
+    "url": "/recipes/slow-cooker-beef-bourguignon/",
+    "tags": [
+      "Beef",
+      "Slow Cooker",
+      "Make-Ahead",
+      "Dinner"
+    ]
+  },
+  {
     "slug": "lemon-garlic-dijon-chicken",
     "title": "Lemon-Garlic Dijon Chicken Thighs",
     "date": "2026-09-25",

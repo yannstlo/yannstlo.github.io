@@ -9,7 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(recipes => {
         const sorted = recipes.sort((a, b) => b.date.localeCompare(a.date));
         archive.innerHTML = sorted.map(recipe => {
-          const stars = '★'.repeat(recipe.rating) + '☆'.repeat(Math.max(0, 5 - recipe.rating));
+          const hasRating = Number.isInteger(recipe.rating) && recipe.rating >= 1 && recipe.rating <= 5;
+          const stars = hasRating
+            ? '★'.repeat(recipe.rating) + '☆'.repeat(5 - recipe.rating)
+            : 'Not rated yet';
+          const ratingLabel = hasRating
+            ? `${recipe.rating} out of 5 stars`
+            : 'Not rated yet';
           const date = new Date(recipe.date + 'T12:00:00');
           const formatted = new Intl.DateTimeFormat('en-CA', {
             year: 'numeric', month: 'long', day: 'numeric'
@@ -22,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="recipe-card-body">
                   <div class="recipe-date">${formatted}</div>
                   <h2>${recipe.title}</h2>
-                  <div class="rating" aria-label="${recipe.rating} out of 5 stars">${stars}</div>
+                  <div class="rating" aria-label="${ratingLabel}">${stars}</div>
                   <p>${recipe.summary}</p>
                   <div class="tag-list">
                     ${recipe.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
