@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+<title id="title">Crispy honey-soy chicken with sriracha mayo</title>
+<desc id="desc">A typographic recipe title card. Four servings, 35 to 40 minutes, with rice and roasted broccoli and carrots.</desc>
+<rect width="1200" height="900" fill="#f2e1d8"/>
+<rect x="44" y="44" width="1112" height="812" rx="24" fill="#f7f4ef" stroke="#b85d38" stroke-width="2"/>
+<path d="M92 120H1108" stroke="#b85d38" stroke-width="2"/>
+<text x="94" y="105" fill="#8f4328" font-family="Arial,sans-serif" font-size="25" letter-spacing="5">YANN.CA · DINNER AT HOME</text>
+<g fill="#26231f" font-family="Georgia,serif" font-weight="bold">
+<text x="90" y="280" font-size="90">Crispy</text>
+<text x="90" y="390" font-size="98">Honey-Soy</text>
+<text x="90" y="500" font-size="98">Chicken Bowls</text>
+</g>
+<rect x="90" y="548" width="1020" height="108" rx="20" fill="#b85d38"/>
+<text x="123" y="620" fill="white" font-family="Arial,sans-serif" font-size="56" font-weight="bold">WITH SRIRACHA MAYO</text>
+<text x="94" y="717" fill="#65735a" font-family="Arial,sans-serif" font-size="30">Rice · Roasted broccoli &amp; carrots · Lime</text>
+<path d="M92 755H1108" stroke="#e5ded5" stroke-width="2"/>
+<text x="94" y="809" fill="#746d64" font-family="Arial,sans-serif" font-size="29" letter-spacing="2">4 SERVINGS</text>
+<text x="746" y="809" fill="#746d64" font-family="Arial,sans-serif" font-size="29" letter-spacing="2">35–40 MINUTES</text>
+</svg>
