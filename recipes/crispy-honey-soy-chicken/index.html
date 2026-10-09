@@ -10,6 +10,27 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="/recipes/recipes.css">
+  <style>
+/* Recipe-specific detail-page theme. Do not apply to the archive. */
+body[data-recipe-theme="crispy-honey-soy-chicken"] {
+  --bg: #fbf8f5;
+  --surface: #ffffff;
+  --text: #33261a;
+  --muted: #7f644a;
+  --accent: #a0561b;
+  --accent-dark: #764014;
+  --accent-soft: #f4eae1;
+  --line: #e9d6c6;
+  --green: #a0561b;
+  --control-line: #7f644a;
+  --focus: #764014;
+}
+body[data-recipe-theme="crispy-honey-soy-chicken"] :is(.view-switcher, .step-ingredients, .notes) { background: var(--accent-soft); }
+body[data-recipe-theme="crispy-honey-soy-chicken"] .rating { color: var(--accent-dark); }
+body[data-recipe-theme="crispy-honey-soy-chicken"] .button.secondary { border-color: var(--control-line); }
+body[data-recipe-theme="crispy-honey-soy-chicken"] .view-switcher button.active { box-shadow: inset 0 0 0 2px var(--accent); }
+body[data-recipe-theme="crispy-honey-soy-chicken"] :is(a, button):focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+  </style>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -17,7 +38,7 @@
   "name": "Crispy Honey-Soy Chicken Bowls with Sriracha Mayo",
   "datePublished": "2026-10-08",
   "description": "Crispy chicken in a honey-garlic soy glaze, with rice, roasted broccoli and carrots, and a sriracha-lime mayo drizzle.",
-  "image": "https://yann.ca/recipes/images/crispy-honey-soy-chicken-hero.svg",
+  "image": "https://yann.ca/recipes/images/crispy-honey-soy-chicken-hero.jpg",
   "totalTime": "PT40M",
   "recipeYield": "4 servings",
   "recipeCategory": "Dinner",
@@ -88,7 +109,7 @@
 }
   </script>
 </head>
-<body>
+<body data-recipe-theme="crispy-honey-soy-chicken">
   <header class="site-bar">
     <a class="site-name" href="/">yann.ca</a>
     <a class="back-link" href="/recipes/">← All recipes</a>
@@ -96,7 +117,7 @@
 
   <main class="recipe-shell">
     <div class="recipe-hero">
-      <img src="/recipes/images/crispy-honey-soy-chicken-hero.svg" alt="Crispy honey-soy chicken bowls with sriracha mayo: recipe title card" width="1200" height="900" style="object-fit:contain;background:#f2e1d8;">
+      <img src="/recipes/images/crispy-honey-soy-chicken-hero.jpg" alt="AI-generated serving image of crispy honey-soy chicken over rice with roasted broccoli, carrots and sriracha-lime mayo" width="1200" height="900">
     </div>
 
     <section class="recipe-header">
@@ -116,8 +137,8 @@
         <span class="tag">Sriracha Mayo</span>
       </div>
       <div class="action-row">
-        <a class="button" href="/recipes/crispy-honey-soy-chicken/crispy-honey-soy-chicken-recipe.pdf" download>Download recipe PDF</a>
-        <a class="button secondary" href="/recipes/crispy-honey-soy-chicken/crispy-honey-soy-chicken-recipe.pdf" target="_blank" rel="noopener">View recipe PDF</a>
+        <a class="button" href="/recipes/images/crispy-honey-soy-chicken-card.jpg" download>Download recipe card</a>
+        <a class="button secondary" href="/recipes/images/crispy-honey-soy-chicken-card.jpg" target="_blank" rel="noopener">View recipe card</a>
         <button class="button secondary" type="button" onclick="window.print()">Print recipe</button>
       </div>
     </section>
@@ -312,10 +333,15 @@
     </section>
 
     <section class="card-preview">
-      <p class="eyebrow">Save it for dinner</p>
-      <h2>Printable recipe</h2>
-      <p>The original two-page PDF includes the ingredient list and instructions with quantities.</p>
-      <a class="button" href="/recipes/crispy-honey-soy-chicken/crispy-honey-soy-chicken-recipe.pdf" download>Download recipe PDF</a>
+      <p class="eyebrow">Save it to Photos</p>
+      <h2>Recipe card</h2>
+      <p>The condensed Pinterest-style card is available as an image for the quick version. Serving images are AI-generated.</p>
+      <a href="/recipes/images/crispy-honey-soy-chicken-card.jpg" download>
+        <img src="/recipes/images/crispy-honey-soy-chicken-card.jpg" alt="Downloadable Crispy Honey-Soy Chicken Bowls with Sriracha Mayo recipe card" loading="lazy" width="1200" height="1800">
+      </a>
+      <div class="action-row">
+        <a class="button secondary" href="/recipes/crispy-honey-soy-chicken/crispy-honey-soy-chicken-recipe.pdf" download>Download printable PDF</a>
+      </div>
     </section>
   </main>
 
@@ -323,3 +349,4 @@
   <script src="/recipes/recipes.js"></script>
 </body>
 </html>
+
