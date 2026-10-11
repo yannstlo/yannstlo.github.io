@@ -18,16 +18,24 @@
     "slug": "slow-cooker-beef-bourguignon",
     "title": "Slow-Cooker Beef Bourguignon",
     "date": "2026-10-03",
-    "rating": null,
-    "summary": "A make-ahead slow-cooker dinner with tender beef, red wine, carrots, mushrooms and pearl onions — ideal after a long hiking day.",
-    "heroImage": "/recipes/images/slow-cooker-beef-bourguignon-hero.jpg",
+    "rating": 5,
+    "summary": "Tender slow-cooker beef bourguignon in a rich red-wine sauce with carrots, bacon, mushrooms and pearl onions.",
+    "heroImage": "/recipes/images/slow-cooker-beef-bourguignon-hero.jpg?v=20261011",
     "url": "/recipes/slow-cooker-beef-bourguignon/",
     "tags": [
       "Beef",
       "Slow Cooker",
-      "Make-Ahead",
+      "Comfort Food",
       "Dinner"
-    ]
+    ],
+    "origin": {
+      "type": "ai-generated",
+      "label": "AI-generated with ChatGPT",
+      "date": "2026-10-03",
+      "sourceName": null,
+      "sourceUrl": null,
+      "note": "No external recipe source was recorded."
+    }
   },
   {
     "slug": "lemon-garlic-dijon-chicken",

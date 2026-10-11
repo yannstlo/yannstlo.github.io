@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const escapeHtml = value => String(value).replace(/[&<>"']/g, character => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[character]));
   const archive = document.querySelector('[data-recipe-grid]');
   if (archive) {
-    fetch('/recipes/recipes.json')
+    fetch('/recipes/recipes.json?v=20261011')
       .then(response => {
         if (!response.ok) throw new Error('Unable to load recipes');
         return response.json();
@@ -30,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   <h2>${recipe.title}</h2>
                   <div class="rating" aria-label="${ratingLabel}">${stars}</div>
                   <p>${recipe.summary}</p>
+                  ${recipe.origin?.label ? `<p class="recipe-origin-label">Origin: ${escapeHtml(recipe.origin.label)}</p>` : ''}
                   <div class="tag-list">
                     ${recipe.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                   </div>

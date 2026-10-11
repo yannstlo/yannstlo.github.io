@@ -415,6 +415,15 @@ a { color: inherit; }
 
 .card-preview p { color: var(--muted); }
 
+.recipe-card-body .recipe-origin-label {
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+}
+
+.recipe-origin p { margin: 10px 0 0; }
+.recipe-origin .origin-image-note { color: var(--muted); font-size: .9rem; }
+
 .footer {
   width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
