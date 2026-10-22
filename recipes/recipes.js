@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }[character]));
   const archive = document.querySelector('[data-recipe-grid]');
   if (archive) {
-    fetch('/recipes/recipes.json?v=20261011')
+    fetch('/recipes/recipes.json?v=20261022')
       .then(response => {
         if (!response.ok) throw new Error('Unable to load recipes');
         return response.json();
@@ -67,3 +67,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+

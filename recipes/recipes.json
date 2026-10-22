@@ -51,5 +51,26 @@
       "Easy",
       "Oven"
     ]
+  },
+  {
+    "slug": "moms-spaghetti-sauce",
+    "title": "Mom’s Spaghetti Sauce",
+    "date": "2026-08-10",
+    "rating": null,
+    "summary": "Mom’s full handwritten beef-and-pork spaghetti sauce, with notes on my one-fifth batch and custom October 21 batch.",
+    "heroImage": "/recipes/images/moms-spaghetti-sauce-hero.jpg",
+    "url": "/recipes/moms-spaghetti-sauce/",
+    "tags": [
+      "Family recipe",
+      "Beef & pork",
+      "Freezer",
+      "Spaghetti sauce"
+    ],
+    "origin": {
+      "type": "family",
+      "label": "Mom’s handwritten family recipe",
+      "sourceName": "Mom’s handwritten recipe",
+      "sourceUrl": null
+    }
   }
 ]
