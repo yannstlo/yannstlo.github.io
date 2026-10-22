@@ -49,6 +49,9 @@
 
         .social-links {
             display: flex;
+            flex-wrap: wrap;
+            max-width: min(560px, calc(100% - 32px));
+            row-gap: 18px;
             justify-content: center;
             align-items: center;
             margin-top: 30px;
@@ -129,8 +132,15 @@
         <a href="/recipes/" aria-label="Recipes" title="Recipes">
             <i class="fa-solid fa-utensils"></i>
         </a>
+        <a href="/projects/" aria-label="Home tech projects" title="Home tech projects">
+            <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+        </a>
+        <a href="/iceland/" aria-label="Iceland map" title="Iceland map">
+            <i class="fa-solid fa-map" aria-hidden="true"></i>
+        </a>
     </div>
     <script src="shader.js"></script>
 </body>
 
 </html>
+
