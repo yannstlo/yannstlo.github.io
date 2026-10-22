@@ -5,3 +5,5 @@
 @media(max-width:360px){.parts-grid{grid-template-columns:1fr}.site-bar nav{gap:8px 12px}.card-body{padding:23px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.project-card{transition:none}.project-card:hover{transform:none}}
 @media print{body{background:#fff;color:#000}.site-bar,.project-sidebar,.footer,.skip-link{display:none}.shell{width:100%}.project-content{display:block;padding-top:24px}.project-header{padding-top:0}.project-header h1{font-size:40pt}.project-hero>img{max-height:300px;object-fit:contain}.project-body{max-width:none}.project-body section{break-inside:avoid}.project-body p{color:#222}.callout,.part,.stack article,.result{background:#fff;border:1px solid #aaa;box-shadow:none;color:#000}.result p,.result .eyebrow{color:#222}a{text-decoration:underline}}
+/* Keep the keyboard focus indicator inside the clipped project card. */
+.card-link:focus-visible{outline:3px solid var(--accent);outline-offset:-6px;border-radius:var(--radius)}
