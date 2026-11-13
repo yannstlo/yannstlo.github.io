@@ -1,5 +1,28 @@
 [
   {
+    "slug": "korean-spicy-ground-beef-rice-bowl",
+    "title": "Korean Spicy Ground Beef Rice Bowl",
+    "date": "2026-11-12",
+    "rating": null,
+    "summary": "Medium-spicy gochujang-glazed ground beef over rice with cucumber, carrots, green onions and sesame. A quick bulgogi-style dinner.",
+    "heroImage": "/recipes/images/korean-spicy-ground-beef-rice-bowl-hero.svg",
+    "url": "/recipes/korean-spicy-ground-beef-rice-bowl/",
+    "tags": [
+      "Beef",
+      "Korean-inspired",
+      "Rice Bowl",
+      "30 Minutes"
+    ],
+    "origin": {
+      "type": "ai-generated",
+      "label": "AI-generated with ChatGPT",
+      "date": "2026-11-12",
+      "sourceName": null,
+      "sourceUrl": null,
+      "note": "No external recipe source was recorded."
+    }
+  },
+  {
     "slug": "crispy-honey-soy-chicken",
     "title": "Crispy Honey-Soy Chicken Bowls with Sriracha Mayo",
     "date": "2026-10-08",
